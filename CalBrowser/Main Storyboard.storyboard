@@ -1,9 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="gmy-3A-uLW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SJa-7z-fOW">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
+        <!--Calendars View Controller - Calendars-->
+        <scene sceneID="FtP-dr-7hn">
+            <objects>
+                <tableViewController id="6uD-Qt-iy0" customClass="CalendarsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gWK-nE-dJj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="9VL-R9-q7r">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9VL-R9-q7r" id="2sX-Fe-ccd">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="6uD-Qt-iy0" id="gfZ-Sx-Vbo"/>
+                            <outlet property="delegate" destination="6uD-Qt-iy0" id="fKb-LZ-7ZS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Calendars" id="DBG-yH-KaF"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9jj-DX-w2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-226" y="550"/>
+        </scene>
+        <!--Root Navigation Controller-->
+        <scene sceneID="umK-F7-FiM">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="SJa-7z-fOW" customClass="RootNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="csH-f1-fIH">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="6uD-Qt-iy0" kind="relationship" relationship="rootViewController" id="noG-Ys-Sbb"/>
+                        <segue destination="gmy-3A-uLW" kind="modal" identifier="authorize" id="FiU-VI-tW8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IIG-9M-Izo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1014" y="200"/>
+        </scene>
         <!--Auth View Controller-->
         <scene sceneID="1rA-UM-jQq">
             <objects>
@@ -33,7 +78,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tUb-rv-chM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="265" y="99"/>
+            <point key="canvasLocation" x="-226" y="-125"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

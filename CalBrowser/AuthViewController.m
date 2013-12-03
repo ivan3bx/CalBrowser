@@ -8,6 +8,7 @@
 
 #import "AuthViewController.h"
 #import "NXOAuth2.h"
+#import "CABLConfig.h"
 
 @interface AuthViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -15,30 +16,6 @@
 @end
 
 @implementation AuthViewController
-
-- (void)awakeFromNib
-{
-    [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreAccountsDidChangeNotification
-                                                      object:[NXOAuth2AccountStore sharedStore]
-                                                       queue:nil
-                                                  usingBlock:^(NSNotification *aNotification){
-                                                      // Update your UI
-                                                      NXOAuth2Account *account = aNotification.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
-                                                      if (account) {
-                                                          [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:account]
-                                                                                                    forKey:@"OAuth2Credentials"];
-                                                      }
-                                                  }];
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreDidFailToRequestAccessNotification
-                                                      object:[NXOAuth2AccountStore sharedStore]
-                                                       queue:nil
-                                                  usingBlock:^(NSNotification *aNotification){
-                                                      NSError *error = [aNotification.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
-                                                      // Do something with the error
-                                                      NSLog(@"Was notified of ERROR storing account: %@", error);
-                                                  }];
-}
 
 - (void)viewDidLoad
 {

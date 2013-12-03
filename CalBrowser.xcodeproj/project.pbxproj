@@ -24,6 +24,11 @@
 		2C8D23B5184AA52E00F089B9 /* libOAuth2Client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8D23A2184952E900F089B9 /* libOAuth2Client.a */; };
 		2C8D23F8184AAACB00F089B9 /* Main Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D23F7184AAACB00F089B9 /* Main Storyboard.storyboard */; };
 		2C8D23FA184B95FA00F089B9 /* clientConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D23F9184B95FA00F089B9 /* clientConfig.json */; };
+		2C8D23FE184C0ABE00F089B9 /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D23FD184C0ABE00F089B9 /* RootNavigationController.m */; };
+		2C8D2402184C0C0A00F089B9 /* CABLConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D2401184C0C0A00F089B9 /* CABLConfig.m */; };
+		2C8D2405184C4C3400F089B9 /* CalendarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D2404184C4C3400F089B9 /* CalendarsViewController.m */; };
+		2C8D2408184C6B0600F089B9 /* apps-domain.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D2407184C6B0600F089B9 /* apps-domain.json */; };
+		2C8D240B184C715E00F089B9 /* CABLResourceList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D240A184C715E00F089B9 /* CABLResourceList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +86,7 @@
 		2C8D22E018482D0800F089B9 /* CalBrowser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CalBrowser-Prefix.pch"; sourceTree = "<group>"; };
 		2C8D22E118482D0800F089B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2C8D22E218482D0800F089B9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2C8D22E418482D0800F089B9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2C8D22E418482D0800F089B9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CalBrowser/Images.xcassets; sourceTree = "<group>"; };
 		2C8D22EA18482D0900F089B9 /* CalBrowserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalBrowserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8D22EB18482D0900F089B9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2C8D22F318482D0900F089B9 /* CalBrowserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CalBrowserTests-Info.plist"; sourceTree = "<group>"; };
@@ -93,6 +98,15 @@
 		2C8D23B0184AA43400F089B9 /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
 		2C8D23F7184AAACB00F089B9 /* Main Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main Storyboard.storyboard"; sourceTree = "<group>"; };
 		2C8D23F9184B95FA00F089B9 /* clientConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clientConfig.json; sourceTree = "<group>"; };
+		2C8D23FC184C0ABE00F089B9 /* RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootNavigationController.h; sourceTree = "<group>"; };
+		2C8D23FD184C0ABE00F089B9 /* RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootNavigationController.m; sourceTree = "<group>"; };
+		2C8D2400184C0C0A00F089B9 /* CABLConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABLConfig.h; sourceTree = "<group>"; };
+		2C8D2401184C0C0A00F089B9 /* CABLConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CABLConfig.m; sourceTree = "<group>"; };
+		2C8D2403184C4C3400F089B9 /* CalendarsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarsViewController.h; sourceTree = "<group>"; };
+		2C8D2404184C4C3400F089B9 /* CalendarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarsViewController.m; sourceTree = "<group>"; };
+		2C8D2407184C6B0600F089B9 /* apps-domain.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "apps-domain.json"; sourceTree = "<group>"; };
+		2C8D2409184C715E00F089B9 /* CABLResourceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABLResourceList.h; sourceTree = "<group>"; };
+		2C8D240A184C715E00F089B9 /* CABLResourceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CABLResourceList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +139,9 @@
 			isa = PBXGroup;
 			children = (
 				2C8D239A184952E900F089B9 /* OAuth2Client.xcodeproj */,
-				2C8D22D818482D0800F089B9 /* CalBrowser */,
+				2C8D22D818482D0800F089B9 /* Sources */,
+				2C8D22E418482D0800F089B9 /* Images.xcassets */,
+				2C8D22D918482D0800F089B9 /* Supporting Files */,
 				2C8D22F118482D0900F089B9 /* CalBrowserTests */,
 				2C8D22D118482D0800F089B9 /* Frameworks */,
 				2C8D22D018482D0800F089B9 /* Products */,
@@ -153,30 +169,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2C8D22D818482D0800F089B9 /* CalBrowser */ = {
+		2C8D22D818482D0800F089B9 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				2C8D22E118482D0800F089B9 /* AppDelegate.h */,
 				2C8D22E218482D0800F089B9 /* AppDelegate.m */,
-				2C8D22E418482D0800F089B9 /* Images.xcassets */,
-				2C8D22D918482D0800F089B9 /* Supporting Files */,
 				2C8D23AF184AA43400F089B9 /* AuthViewController.h */,
 				2C8D23B0184AA43400F089B9 /* AuthViewController.m */,
+				2C8D23FC184C0ABE00F089B9 /* RootNavigationController.h */,
+				2C8D23FD184C0ABE00F089B9 /* RootNavigationController.m */,
 				2C8D23F7184AAACB00F089B9 /* Main Storyboard.storyboard */,
-				2C8D23F9184B95FA00F089B9 /* clientConfig.json */,
+				2C8D2400184C0C0A00F089B9 /* CABLConfig.h */,
+				2C8D2401184C0C0A00F089B9 /* CABLConfig.m */,
+				2C8D2403184C4C3400F089B9 /* CalendarsViewController.h */,
+				2C8D2404184C4C3400F089B9 /* CalendarsViewController.m */,
+				2C8D2409184C715E00F089B9 /* CABLResourceList.h */,
+				2C8D240A184C715E00F089B9 /* CABLResourceList.m */,
 			);
+			name = Sources;
 			path = CalBrowser;
 			sourceTree = "<group>";
 		};
 		2C8D22D918482D0800F089B9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2C8D2407184C6B0600F089B9 /* apps-domain.json */,
+				2C8D23F9184B95FA00F089B9 /* clientConfig.json */,
 				2C8D22DA18482D0800F089B9 /* CalBrowser-Info.plist */,
 				2C8D22DB18482D0800F089B9 /* InfoPlist.strings */,
 				2C8D22DE18482D0800F089B9 /* main.m */,
 				2C8D22E018482D0800F089B9 /* CalBrowser-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = CalBrowser;
 			sourceTree = "<group>";
 		};
 		2C8D22F118482D0900F089B9 /* CalBrowserTests */ = {
@@ -309,6 +334,7 @@
 				2C8D22DD18482D0800F089B9 /* InfoPlist.strings in Resources */,
 				2C8D22E518482D0800F089B9 /* Images.xcassets in Resources */,
 				2C8D23FA184B95FA00F089B9 /* clientConfig.json in Resources */,
+				2C8D2408184C6B0600F089B9 /* apps-domain.json in Resources */,
 				2C8D23F8184AAACB00F089B9 /* Main Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,7 +356,11 @@
 			files = (
 				2C8D22E318482D0800F089B9 /* AppDelegate.m in Sources */,
 				2C8D23B2184AA43400F089B9 /* AuthViewController.m in Sources */,
+				2C8D2405184C4C3400F089B9 /* CalendarsViewController.m in Sources */,
 				2C8D22DF18482D0800F089B9 /* main.m in Sources */,
+				2C8D2402184C0C0A00F089B9 /* CABLConfig.m in Sources */,
+				2C8D240B184C715E00F089B9 /* CABLResourceList.m in Sources */,
+				2C8D23FE184C0ABE00F089B9 /* RootNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
