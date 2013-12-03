@@ -12,10 +12,12 @@ but over time will model the essential aspects of calendar interactions
 
 ### Bootstrap (5 minutes)
 
-1. Clone the repo & dependent submodule(s)
+1. Clone the repo, install dependent [pods](http://beta.cocoapods.org) and open the workspace
 
-    git clone git@github.com:ivan3bx/CalBrowser.git
-		git submodule update --init --recursive		
+		git clone git@github.com:ivan3bx/CalBrowser.git
+		cd CalBrowser
+		pod install
+		open CalBrowser.xcworkspace
 
 2. Create a new app in Google's ['Cloud Console'](https://cloud.google.com/console#/flows/enableapi?apiid=calendar)
 3. In the cloud console, set up an 'iOS' style application.
