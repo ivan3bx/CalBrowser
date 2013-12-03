@@ -1,0 +1,17 @@
+PODS:
+  - FMDB (2.1):
+    - FMDB/standard
+  - FMDB/common (2.1)
+  - FMDB/standard (2.1):
+    - FMDB/common
+  - NXOAuth2Client (1.2.4)
+
+DEPENDENCIES:
+  - FMDB (~> 2.1)
+  - NXOAuth2Client (~> 1.2.4)
+
+SPEC CHECKSUMS:
+  FMDB: 3fd5aaf632ca4ed39e3f101e0398504e6d5b0918
+  NXOAuth2Client: 4666d0d73ba7689181ef4597e1b1beda3978c724
+
+COCOAPODS: 0.28.0
