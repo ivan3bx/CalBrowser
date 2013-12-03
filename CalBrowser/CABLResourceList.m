@@ -128,7 +128,6 @@ typedef void(^ErrorHandler)(NSError *);
          */
         NSMutableDictionary *newEntry = [[NSMutableDictionary alloc] init];
         [_entries addObject:newEntry];
-    } else if ([elementName isEqualToString:@"])
     } else if ([elementName isEqualToString:@"apps:property"]) {
         /*
          * Append some metadata to the current entry
