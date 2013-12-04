@@ -15,4 +15,8 @@
 
 +(void)loadResourceList:(void (^)(CABLResourceList *))onSuccess error:(void (^)(NSError *))onError;
 
+-(id)initWithData:(NSData *)data;
+-(NSUInteger)count;
+-(NSDictionary *)resourceForIndex:(NSUInteger)index;
+
 @end

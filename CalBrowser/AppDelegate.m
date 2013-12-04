@@ -17,6 +17,7 @@
     [self registerUserDefaults];
     [self registerOAuthClient];
     [self registerAppsDomain];
+    [self createDatabase];
 }
 
 + (void)registerOAuthClient
@@ -102,6 +103,21 @@
         @throw [NSException exceptionWithName:@"Invalid configuration"
                                        reason:@"Unable to initialize defaults"
                                      userInfo:nil];
+    }
+}
+
++ (void)createDatabase
+{
+    NSString *templateDatabasePath = [[NSBundle mainBundle] pathForResource:@"resources_template" ofType:@"db"];
+    NSString *databasePath = [CABLConfig sharedInstance].databasePath;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:databasePath]) {
+        NSError *error;
+        [[NSFileManager defaultManager] copyItemAtPath:templateDatabasePath toPath:databasePath error:&error];
+        if (error) {
+            @throw [NSException exceptionWithName:@"Invalid configuration"
+                                           reason:@"Unable to initialize database"
+                                         userInfo:error.userInfo];
+        }
     }
 }
 

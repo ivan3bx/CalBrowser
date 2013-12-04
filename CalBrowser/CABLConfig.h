@@ -14,6 +14,7 @@
  */
 extern NSString* const kDefaultAccount;
 extern NSString* const kAppsDomainKey;
+extern NSString* const kDatabasePathKey;
 
 @interface CABLConfig : NSObject
 
@@ -21,5 +22,5 @@ extern NSString* const kAppsDomainKey;
 
 @property(nonatomic, readwrite) NXOAuth2Account *currentAccount;
 @property(nonatomic, readwrite) NSString *appsDomain;
-
+@property(nonatomic, readwrite) NSString *databasePath;
 @end

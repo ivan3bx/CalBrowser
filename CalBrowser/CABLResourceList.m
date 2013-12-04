@@ -28,15 +28,33 @@ typedef void(^ErrorHandler)(NSError *);
 
 +(void)loadResourceList:(SuccessHandler)onSuccess error:(ErrorHandler)onError;
 {
-    CABLResourceList *list = [[CABLResourceList alloc] init];
-    list.successHandler = onSuccess;
-    list.errorHandler = onError;
+    NXOAuth2Account *account = [CABLConfig sharedInstance].currentAccount;
 
-    NSString *const BASE_URL    = @"https://apps-apis.google.com/a/feeds/calendar/resource/2.0";
-    NSString *const APP_DOMAIN  = [CABLConfig sharedInstance].appsDomain;
-    NSString *urlStringWithDomain = [NSString stringWithFormat:@"%@/%@/", BASE_URL, APP_DOMAIN];
-    NSURLRequest *request = [CABLResourceList createRequest:urlStringWithDomain];
-    [list load:request];
+    //
+    // Verify connectivity
+    //
+    [NXOAuth2Request performMethod:@"GET"
+                        onResource:[NSURL URLWithString:@"https://www.googleapis.com/calendar/v3/users/me/settings/timezone"]
+                   usingParameters:nil
+                       withAccount:account sendProgressHandler:nil
+                   responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+                       //
+                       // Refresh account credentials
+                       //
+                       [[CABLConfig sharedInstance] setCurrentAccount:account];
+                       
+                       //
+                       // Query the resource list
+                       //
+                       CABLResourceList *list = [[CABLResourceList alloc] init];
+                       list.successHandler = onSuccess;
+                       list.errorHandler = onError;
+                       
+                       NSString *const BASE_URL    = @"https://apps-apis.google.com/a/feeds/calendar/resource/2.0";
+                       NSString *const APP_DOMAIN  = [CABLConfig sharedInstance].appsDomain;
+                       NSString *urlStringWithDomain = [NSString stringWithFormat:@"%@/%@/", BASE_URL, APP_DOMAIN];
+                       [list load:[CABLResourceList createRequest:urlStringWithDomain]];
+                   }];
 }
 
 +(NSURLRequest *)createRequest:(NSString *)urlString
@@ -46,28 +64,67 @@ typedef void(^ErrorHandler)(NSError *);
                                                    method:@"GET"
                                                parameters:nil];
     
+    //
     // Associate current user's account with this request
+    //
     signedReq.account = [CABLConfig sharedInstance].currentAccount;
     
+    //
     // Append content-type (since this API is XML)
+    //
     NSMutableURLRequest *xmlRequest = [signedReq.signedURLRequest mutableCopy];
     [xmlRequest addValue:@"application/atom+xml" forHTTPHeaderField:@"Content-type"];
     return xmlRequest;
 }
 
+-(id)initWithData:(NSData *)data
+{
+    self = [super init];
+    if (self) {
+        _data = [data mutableCopy];
+        [self parseData];
+    }
+    return self;
+}
+
+-(void)parseData
+{
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:_data];
+    parser.delegate = self;
+    [parser parse];
+    _data = nil;
+}
+
 -(void)load:(NSURLRequest *)request
 {
-    NSLog(@"Will start new request: %@", request.URL.absoluteString);
     [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+-(NSUInteger)count
+{
+    return _entries.count;
+}
+
+-(NSDictionary *)resourceForIndex:(NSUInteger)index
+{
+    return _entries[index];
 }
 
 #pragma mark -
 #pragma mark NSURLConnectionDelegate methods
 #pragma mark -
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
 {
-    NSLog(@"Connection did receive response");
+    if (response.statusCode != 200) {
+        NSDictionary *dict = @{@"statusCode" : [NSNumber numberWithInt:response.statusCode],
+                               @"message"    : @"Calendar resource list failed to load data"};
+        if (self.errorHandler) {
+            self.errorHandler([NSError errorWithDomain:@"CalBrowser" code:1 userInfo:dict]);
+        } else {
+            NSLog(@"%@", dict);
+        }
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -82,10 +139,7 @@ typedef void(^ErrorHandler)(NSError *);
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:_data];
-    parser.delegate = self;
-    [parser parse];
-    _data = nil;
+    [self parseData];
 }
 
 
@@ -104,10 +158,19 @@ typedef void(^ErrorHandler)(NSError *);
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    NSLog(@"I have %u entries, and next URL: %@", _entries.count, _nextURLString);
     if (_nextURLString) {
+        //
+        // We have more data to fetch
+        //
         NSURLRequest *nextReq = [CABLResourceList createRequest:_nextURLString];
         [self load:nextReq];
+    } else {
+        //
+        // No additional data to fetch
+        //
+        if (self.successHandler) {
+            self.successHandler(self);
+        }
     }
 }
 
@@ -118,36 +181,24 @@ typedef void(^ErrorHandler)(NSError *);
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
 {
     if ([elementName isEqualToString:@"link"] && [attributeDict[@"rel"] isEqualToString:@"next"]) {
-        /*
-         * Eureka - Google Apps is telling us there's more data
-         */
+        //
+        // Eureka - Google Apps is telling us there's more data
+        //
         _nextURLString = attributeDict[@"href"];
     } else if ([elementName isEqualToString:@"entry"]) {
-        /*
-         * Append a new entry
-         */
+        //
+        // Append a new entry
+        //
         NSMutableDictionary *newEntry = [[NSMutableDictionary alloc] init];
         [_entries addObject:newEntry];
     } else if ([elementName isEqualToString:@"apps:property"]) {
-        /*
-         * Append some metadata to the current entry
-         */
+        //
+        // Append some metadata to the current entry
+        //
         NSMutableDictionary * dict = _entries.lastObject;
         dict[attributeDict[@"name"]] = attributeDict[@"value"];
     }
 }
-
-/*
- * End parsing a new entry
- */
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
-  namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    if ([elementName isEqualToString:@"entry"]) {
-//        NSLog(@"Added new entry: %@", _entries.lastObject);
-    }
-}
-
 
 @end
 

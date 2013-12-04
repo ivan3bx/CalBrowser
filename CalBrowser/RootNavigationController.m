@@ -18,46 +18,68 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserverForName:NXOAuth2AccountStoreAccountsDidChangeNotification
-                        object:[NXOAuth2AccountStore sharedStore] queue:nil
-                    usingBlock:^(NSNotification *notification){
-                        NXOAuth2Account *account = notification.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
-                        [self didAuthorize:account];
-                    }];
-    
-    [center addObserverForName:NXOAuth2AccountStoreDidFailToRequestAccessNotification
-                        object:[NXOAuth2AccountStore sharedStore] queue:nil
-                    usingBlock:^(NSNotification *notification){
-                        NSError *error = [notification.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
-                        [self didFailToAuthorizeWithError:error];
-                    }];
-}
-
-- (void)didAuthorize:(NXOAuth2Account *)account
-{
-    [CABLConfig sharedInstance].currentAccount = account;
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)didFailToAuthorizeWithError:(NSError *)error
-{
-    NSLog(@"Failed to authorize user");
+    [self registerFailedToAuthorize];
+    [self registerDidAuthorize];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NXOAuth2Account *account = [CABLConfig sharedInstance].currentAccount;
+    NXOAuth2Account *account = [[CABLConfig sharedInstance] currentAccount];
     
     if (account == nil) {
+        //
+        // Kick off authentication
+        //
         [self performSegueWithIdentifier:@"authorize" sender:self];
     }
 
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark -
+#pragma mark NSNotification handling
+#pragma mark -
+
+- (void)registerDidAuthorize
 {
-    [super didReceiveMemoryWarning];
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    
+    [center addObserverForName:NXOAuth2AccountStoreAccountsDidChangeNotification
+                        object:[NXOAuth2AccountStore sharedStore] queue:nil
+                    usingBlock:^(NSNotification *notification) {
+                        //
+                        // Access the account that authorized
+                        //
+                        NXOAuth2Account *account = notification.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
+                        
+                        //
+                        // Store the account for later
+                        //
+                        [CABLConfig sharedInstance].currentAccount = account;
+                        
+                        //
+                        // Dismiss the auth controller
+                        //
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                    }];
+}
+
+- (void)registerFailedToAuthorize
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:NXOAuth2AccountStoreDidFailToRequestAccessNotification
+                        object:[NXOAuth2AccountStore sharedStore] queue:nil
+                    usingBlock:^(NSNotification *notification){
+                        //
+                        // Access the error
+                        //
+                        NSError *error = [notification.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
+                        
+                        //
+                        // Log for now & clear the account
+                        //
+                        NSLog(@"Failed to authorize with error: %@", error.userInfo);
+                        [[CABLConfig sharedInstance] setCurrentAccount:nil];
+                    }];
 }
 
 @end

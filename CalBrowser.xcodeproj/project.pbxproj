@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C5BDF50184D905800C02B37 /* CABLResourceListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5BDF4F184D905800C02B37 /* CABLResourceListTest.m */; };
+		2C5BDF52184D94CE00C02B37 /* resource_input.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2C5BDF51184D94CE00C02B37 /* resource_input.xml */; };
 		2C8D22D318482D0800F089B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8D22D218482D0800F089B9 /* Foundation.framework */; };
 		2C8D22D518482D0800F089B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8D22D418482D0800F089B9 /* CoreGraphics.framework */; };
 		2C8D22D718482D0800F089B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8D22D618482D0800F089B9 /* UIKit.framework */; };
@@ -18,7 +20,6 @@
 		2C8D22ED18482D0900F089B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8D22D218482D0800F089B9 /* Foundation.framework */; };
 		2C8D22EE18482D0900F089B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8D22D618482D0800F089B9 /* UIKit.framework */; };
 		2C8D22F618482D0900F089B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D22F418482D0900F089B9 /* InfoPlist.strings */; };
-		2C8D22F818482D0900F089B9 /* CalBrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D22F718482D0900F089B9 /* CalBrowserTests.m */; };
 		2C8D23A7184A9E6B00F089B9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8D23A6184A9E6B00F089B9 /* Security.framework */; };
 		2C8D23B2184AA43400F089B9 /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D23B0184AA43400F089B9 /* AuthViewController.m */; };
 		2C8D23F8184AAACB00F089B9 /* Main Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D23F7184AAACB00F089B9 /* Main Storyboard.storyboard */; };
@@ -28,7 +29,11 @@
 		2C8D2405184C4C3400F089B9 /* CalendarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D2404184C4C3400F089B9 /* CalendarsViewController.m */; };
 		2C8D2408184C6B0600F089B9 /* apps-domain.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D2407184C6B0600F089B9 /* apps-domain.json */; };
 		2C8D240B184C715E00F089B9 /* CABLResourceList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D240A184C715E00F089B9 /* CABLResourceList.m */; };
+		2CF2E11D184DABF3001C5835 /* CABLResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E11C184DABF3001C5835 /* CABLResource.m */; };
+		2CF2E11F184DBAF0001C5835 /* CABLResourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E11E184DBAF0001C5835 /* CABLResourceTest.m */; };
+		2CF2E121184DBD00001C5835 /* resources_template.db in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E120184DBD00001C5835 /* resources_template.db */; };
 		480D38A69EE84F0CA1FA33F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0CECBAE01E7417B8BC01B24 /* libPods.a */; };
+		9029189898C54BA080AACCE2 /* libPods-CalBrowserTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63838D431343475FAEDF0AD6 /* libPods-CalBrowserTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +60,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C5BDF4F184D905800C02B37 /* CABLResourceListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CABLResourceListTest.m; sourceTree = "<group>"; };
+		2C5BDF51184D94CE00C02B37 /* resource_input.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = resource_input.xml; sourceTree = "<group>"; };
 		2C8D22CF18482D0800F089B9 /* CalBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8D22D218482D0800F089B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C8D22D418482D0800F089B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -70,7 +77,6 @@
 		2C8D22EB18482D0900F089B9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2C8D22F318482D0900F089B9 /* CalBrowserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CalBrowserTests-Info.plist"; sourceTree = "<group>"; };
 		2C8D22F518482D0900F089B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		2C8D22F718482D0900F089B9 /* CalBrowserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalBrowserTests.m; sourceTree = "<group>"; };
 		2C8D23A6184A9E6B00F089B9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		2C8D23AF184AA43400F089B9 /* AuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthViewController.h; sourceTree = "<group>"; };
 		2C8D23B0184AA43400F089B9 /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
@@ -85,7 +91,13 @@
 		2C8D2407184C6B0600F089B9 /* apps-domain.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "apps-domain.json"; sourceTree = "<group>"; };
 		2C8D2409184C715E00F089B9 /* CABLResourceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABLResourceList.h; sourceTree = "<group>"; };
 		2C8D240A184C715E00F089B9 /* CABLResourceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CABLResourceList.m; sourceTree = "<group>"; };
+		2CF2E11B184DABF3001C5835 /* CABLResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABLResource.h; sourceTree = "<group>"; };
+		2CF2E11C184DABF3001C5835 /* CABLResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CABLResource.m; sourceTree = "<group>"; };
+		2CF2E11E184DBAF0001C5835 /* CABLResourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CABLResourceTest.m; sourceTree = "<group>"; };
+		2CF2E120184DBD00001C5835 /* resources_template.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = resources_template.db; sourceTree = "<group>"; };
+		63838D431343475FAEDF0AD6 /* libPods-CalBrowserTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CalBrowserTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF59B2528894136BB671C19 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		8E0E1A56C3D940AABF7B1E91 /* Pods-CalBrowserTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalBrowserTests.xcconfig"; path = "Pods/Pods-CalBrowserTests.xcconfig"; sourceTree = "<group>"; };
 		A0CECBAE01E7417B8BC01B24 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -109,6 +121,7 @@
 				2C8D22EC18482D0900F089B9 /* XCTest.framework in Frameworks */,
 				2C8D22EE18482D0900F089B9 /* UIKit.framework in Frameworks */,
 				2C8D22ED18482D0900F089B9 /* Foundation.framework in Frameworks */,
+				9029189898C54BA080AACCE2 /* libPods-CalBrowserTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +138,7 @@
 				2C8D22D118482D0800F089B9 /* Frameworks */,
 				2C8D22D018482D0800F089B9 /* Products */,
 				7EF59B2528894136BB671C19 /* Pods.xcconfig */,
+				8E0E1A56C3D940AABF7B1E91 /* Pods-CalBrowserTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,6 +160,7 @@
 				2C8D22D618482D0800F089B9 /* UIKit.framework */,
 				2C8D22EB18482D0900F089B9 /* XCTest.framework */,
 				A0CECBAE01E7417B8BC01B24 /* libPods.a */,
+				63838D431343475FAEDF0AD6 /* libPods-CalBrowserTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -166,6 +181,8 @@
 				2C8D2404184C4C3400F089B9 /* CalendarsViewController.m */,
 				2C8D2409184C715E00F089B9 /* CABLResourceList.h */,
 				2C8D240A184C715E00F089B9 /* CABLResourceList.m */,
+				2CF2E11B184DABF3001C5835 /* CABLResource.h */,
+				2CF2E11C184DABF3001C5835 /* CABLResource.m */,
 			);
 			name = Sources;
 			path = CalBrowser;
@@ -174,6 +191,7 @@
 		2C8D22D918482D0800F089B9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2CF2E120184DBD00001C5835 /* resources_template.db */,
 				2C8D2407184C6B0600F089B9 /* apps-domain.json */,
 				2C8D23F9184B95FA00F089B9 /* clientConfig.json */,
 				2C8D22DA18482D0800F089B9 /* CalBrowser-Info.plist */,
@@ -188,8 +206,10 @@
 		2C8D22F118482D0900F089B9 /* CalBrowserTests */ = {
 			isa = PBXGroup;
 			children = (
-				2C8D22F718482D0900F089B9 /* CalBrowserTests.m */,
 				2C8D22F218482D0900F089B9 /* Supporting Files */,
+				2C5BDF4F184D905800C02B37 /* CABLResourceListTest.m */,
+				2C5BDF51184D94CE00C02B37 /* resource_input.xml */,
+				2CF2E11E184DBAF0001C5835 /* CABLResourceTest.m */,
 			);
 			path = CalBrowserTests;
 			sourceTree = "<group>";
@@ -230,9 +250,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C8D22FE18482D0900F089B9 /* Build configuration list for PBXNativeTarget "CalBrowserTests" */;
 			buildPhases = (
+				5F00DD307C924EAE9663CC37 /* Check Pods Manifest.lock */,
 				2C8D22E618482D0900F089B9 /* Sources */,
 				2C8D22E718482D0900F089B9 /* Frameworks */,
 				2C8D22E818482D0900F089B9 /* Resources */,
+				8738D8257092453DAABEA4EA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -284,6 +306,7 @@
 				2C8D22DD18482D0800F089B9 /* InfoPlist.strings in Resources */,
 				2C8D22E518482D0800F089B9 /* Images.xcassets in Resources */,
 				2C8D23FA184B95FA00F089B9 /* clientConfig.json in Resources */,
+				2CF2E121184DBD00001C5835 /* resources_template.db in Resources */,
 				2C8D2408184C6B0600F089B9 /* apps-domain.json in Resources */,
 				2C8D23F8184AAACB00F089B9 /* Main Storyboard.storyboard in Resources */,
 			);
@@ -293,6 +316,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C5BDF52184D94CE00C02B37 /* resource_input.xml in Resources */,
 				2C8D22F618482D0900F089B9 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +324,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5F00DD307C924EAE9663CC37 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		82D6EFC1058F43E09AB0DB57 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -313,6 +352,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8738D8257092453DAABEA4EA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-CalBrowserTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DE753509F4D2427886384626 /* Check Pods Manifest.lock */ = {
@@ -340,6 +394,7 @@
 				2C8D22E318482D0800F089B9 /* AppDelegate.m in Sources */,
 				2C8D23B2184AA43400F089B9 /* AuthViewController.m in Sources */,
 				2C8D2405184C4C3400F089B9 /* CalendarsViewController.m in Sources */,
+				2CF2E11D184DABF3001C5835 /* CABLResource.m in Sources */,
 				2C8D22DF18482D0800F089B9 /* main.m in Sources */,
 				2C8D2402184C0C0A00F089B9 /* CABLConfig.m in Sources */,
 				2C8D240B184C715E00F089B9 /* CABLResourceList.m in Sources */,
@@ -351,7 +406,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C8D22F818482D0900F089B9 /* CalBrowserTests.m in Sources */,
+				2C5BDF50184D905800C02B37 /* CABLResourceListTest.m in Sources */,
+				2CF2E11F184DBAF0001C5835 /* CABLResourceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +547,7 @@
 		};
 		2C8D22FF18482D0900F089B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E0E1A56C3D940AABF7B1E91 /* Pods-CalBrowserTests.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CalBrowser.app/CalBrowser";
@@ -514,6 +571,7 @@
 		};
 		2C8D230018482D0900F089B9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E0E1A56C3D940AABF7B1E91 /* Pods-CalBrowserTests.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CalBrowser.app/CalBrowser";

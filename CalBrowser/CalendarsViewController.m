@@ -21,29 +21,10 @@
 {
     // Start loading a list of calendars
     [CABLResourceList loadResourceList:^(CABLResourceList *data) {
-        NSLog(@"Successfully loaded some data: %@", data);
+        NSLog(@"Successfully loaded some data: %i", data.count);
     } error:^(NSError *error) {
         NSLog(@"Failed to load data, error: %@", error.userInfo);
     }];
-    
-//    NSString *baseURL   = @"https://apps-apis.google.com/a/feeds/calendar/resource/2.0";
-//    NSString *appDomain = [CABLConfig sharedInstance].appsDomain;
-//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/", baseURL, appDomain]];
-//    
-//    NXOAuth2Request *authReq = [[NXOAuth2Request alloc] initWithResource:url method:@"GET" parameters:nil];
-//    authReq.account = [CABLConfig sharedInstance].currentAccount;
-//    
-//    NSURLRequest *req = authReq.signedURLRequest;
-//    NSMutableURLRequest *mut = [req mutableCopy];
-//    [mut addValue:@"application/atom+xml" forHTTPHeaderField:@"Content-type"];
-//    
-//    [NSURLConnection sendAsynchronousRequest:mut
-//                                       queue:[NSOperationQueue mainQueue]
-//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-//        NSLog(@"Received response:: %@, Error: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding], connectionError.userInfo);
-//        
-//    }];
-
 }
 
 #pragma mark - Table view data source

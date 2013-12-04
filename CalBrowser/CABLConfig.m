@@ -10,6 +10,7 @@
 
 NSString *const kDefaultAccount = @"OAuthCredentials";
 NSString *const kAppsDomainKey = @"GoogleAppsDomainKey";
+NSString *const kDatabasePathKey = @"CABLDatabasePath";
 
 // Shared instance of this configuration class
 CABLConfig *INSTANCE;
@@ -37,7 +38,7 @@ CABLConfig *INSTANCE;
     self = [super init];
     if (self) {
         prefs = [NSUserDefaults standardUserDefaults];
-        [prefs registerDefaults:@{kDefaultAccount : @""}
+        [prefs registerDefaults:@{kDefaultAccount : @"", kDatabasePathKey : [NSString stringWithFormat:@"%@/Library/Caches/resources.db", NSHomeDirectory()]}
          ];
     }
     return self;
@@ -57,6 +58,11 @@ CABLConfig *INSTANCE;
 {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:account];
     [prefs setObject:data forKey:kDefaultAccount];
+}
+
+- (NSString *)databasePath
+{
+    return [prefs stringForKey:kDatabasePathKey];
 }
 
 @end

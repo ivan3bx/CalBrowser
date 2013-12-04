@@ -5,13 +5,16 @@ PODS:
   - FMDB/standard (2.1):
     - FMDB/common
   - NXOAuth2Client (1.2.4)
+  - OCMock (2.2.1)
 
 DEPENDENCIES:
   - FMDB (~> 2.1)
   - NXOAuth2Client (~> 1.2.4)
+  - OCMock (~> 2.2.1)
 
 SPEC CHECKSUMS:
   FMDB: 3fd5aaf632ca4ed39e3f101e0398504e6d5b0918
   NXOAuth2Client: 4666d0d73ba7689181ef4597e1b1beda3978c724
+  OCMock: 80e4cfbc71a0e1bd28caf10a9fda27da7c4c8402
 
 COCOAPODS: 0.28.0
