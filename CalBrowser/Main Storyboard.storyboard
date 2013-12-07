@@ -4,6 +4,94 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
+        <!--Selection View Controller-->
+        <scene sceneID="OcK-t3-sDE">
+            <objects>
+                <viewController id="Q9l-FA-ojw" customClass="SelectionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kiv-9H-yeB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fmh-Db-aFm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vSG-5G-GfQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbo-xP-WVF" customClass="CircleLineButton">
+                                <rect key="frame" x="30" y="390" width="110" height="110"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="9Zk-WP-gDP"/>
+                                    <constraint firstAttribute="height" constant="110" id="T5E-cC-aec"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="11:30">
+                                    <color key="titleColor" red="0.15294118225574493" green="0.64705884456634521" blue="0.70980393886566162" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4j9-zd-spu" customClass="CircleLineButton">
+                                <rect key="frame" x="180" y="390" width="110" height="110"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="FL9-SO-EoR"/>
+                                    <constraint firstAttribute="width" constant="110" id="bPa-S9-b0s"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="12:00">
+                                    <color key="titleColor" red="0.66274511814117432" green="0.66274511814117432" blue="0.66274511814117432" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start time..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fr-lc-9fM">
+                                <rect key="frame" x="105" y="347" width="110" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="23"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Foo-n5-mqU">
+                                <rect key="frame" x="0.0" y="103" width="320" height="160"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="11:35" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRt-S9-hHx">
+                                        <rect key="frame" x="20" y="45" width="280" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="70"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="current time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sI-6E-G7j">
+                                        <rect key="frame" x="180" y="109" width="73" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Find me a room" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFd-In-52K">
+                                <rect key="frame" x="20" y="74" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="25"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97254908084869385" green="0.97254908084869385" blue="0.97254908084869385" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="Fmh-Db-aFm" firstAttribute="top" secondItem="4j9-zd-spu" secondAttribute="bottom" constant="68" id="ONG-nb-oui"/>
+                            <constraint firstItem="Fmh-Db-aFm" firstAttribute="top" secondItem="wbo-xP-WVF" secondAttribute="bottom" constant="68" id="gEz-pK-p1b"/>
+                            <constraint firstAttribute="trailing" secondItem="4j9-zd-spu" secondAttribute="trailing" constant="30" id="ktX-lb-thR"/>
+                            <constraint firstItem="wbo-xP-WVF" firstAttribute="leading" secondItem="vSG-5G-GfQ" secondAttribute="leading" constant="30" id="wal-Id-0Sf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="n5D-ko-cC8"/>
+                    <connections>
+                        <outlet property="currentTimeBtn" destination="wbo-xP-WVF" id="9Pq-XP-Gg1"/>
+                        <outlet property="currentTimeLabel" destination="VRt-S9-hHx" id="OXi-Ul-AfY"/>
+                        <outlet property="currentTimeView" destination="Foo-n5-mqU" id="GHR-DS-hVg"/>
+                        <outlet property="nextTimeBtn" destination="4j9-zd-spu" id="Fxf-LM-G1o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xcu-RT-Hy7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-226" y="599"/>
+        </scene>
         <!--Calendars View Controller - Calendars-->
         <scene sceneID="FtP-dr-7hn">
             <objects>
@@ -14,7 +102,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="9VL-R9-q7r">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9VL-R9-q7r" id="2sX-Fe-ccd">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -31,7 +119,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9jj-DX-w2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-226" y="550"/>
+            <point key="canvasLocation" x="194" y="566"/>
         </scene>
         <!--Root Navigation Controller-->
         <scene sceneID="umK-F7-FiM">
@@ -41,8 +129,8 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="6uD-Qt-iy0" kind="relationship" relationship="rootViewController" id="noG-Ys-Sbb"/>
                         <segue destination="gmy-3A-uLW" kind="modal" identifier="authorize" id="FiU-VI-tW8"/>
+                        <segue destination="Q9l-FA-ojw" kind="relationship" relationship="rootViewController" id="oAu-fq-6HV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IIG-9M-Izo" userLabel="First Responder" sceneMemberID="firstResponder"/>
