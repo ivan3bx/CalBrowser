@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CalendarsViewController : UITableViewController
-
+@property (nonatomic,readwrite) NSDate *startTime;
 @end

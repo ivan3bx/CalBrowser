@@ -27,6 +27,9 @@
                                 <state key="normal" title="11:30">
                                     <color key="titleColor" red="0.15294118225574493" green="0.64705884456634521" blue="0.70980393886566162" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="6uD-Qt-iy0" kind="push" id="iGN-Rh-OXB"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4j9-zd-spu" customClass="CircleLineButton">
                                 <rect key="frame" x="180" y="390" width="110" height="110"/>
@@ -39,6 +42,9 @@
                                 <state key="normal" title="12:00">
                                     <color key="titleColor" red="0.66274511814117432" green="0.66274511814117432" blue="0.66274511814117432" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="6uD-Qt-iy0" kind="push" id="vWz-g3-fDR"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start time..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fr-lc-9fM">
                                 <rect key="frame" x="105" y="347" width="110" height="21"/>
@@ -80,7 +86,9 @@
                             <constraint firstItem="wbo-xP-WVF" firstAttribute="leading" secondItem="vSG-5G-GfQ" secondAttribute="leading" constant="30" id="wal-Id-0Sf"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="n5D-ko-cC8"/>
+                    <navigationItem key="navigationItem" id="n5D-ko-cC8">
+                        <barButtonItem key="backBarButtonItem" title="Start Time" id="SkY-dg-b6G"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="currentTimeBtn" destination="wbo-xP-WVF" id="9Pq-XP-Gg1"/>
                         <outlet property="currentTimeLabel" destination="VRt-S9-hHx" id="OXi-Ul-AfY"/>
@@ -89,9 +97,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcu-RT-Hy7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-226" y="599"/>
+            <point key="canvasLocation" x="-352" y="566"/>
         </scene>
-        <!--Calendars View Controller - Calendars-->
+        <!--Calendars View Controller - Rooms-->
         <scene sceneID="FtP-dr-7hn">
             <objects>
                 <tableViewController id="6uD-Qt-iy0" customClass="CalendarsViewController" sceneMemberID="viewController">
@@ -101,7 +109,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="9VL-R9-q7r">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9VL-R9-q7r" id="2sX-Fe-ccd">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -114,11 +122,57 @@
                             <outlet property="delegate" destination="6uD-Qt-iy0" id="fKb-LZ-7ZS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Calendars" id="DBG-yH-KaF"/>
+                    <navigationItem key="navigationItem" title="Rooms" id="DBG-yH-KaF">
+                        <barButtonItem key="backBarButtonItem" title="Rooms" id="A9O-F5-xYx"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="afk-aj-2LL">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NFh-Qz-cDR">
+                                <rect key="frame" x="235" y="7" width="69" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Offices">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="TTE-dj-JlE" kind="push" id="GPe-kp-78p"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9jj-DX-w2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="194" y="566"/>
+            <point key="canvasLocation" x="71" y="566"/>
+        </scene>
+        <!--Table View Controller - Offices-->
+        <scene sceneID="42N-oz-BFr">
+            <objects>
+                <tableViewController id="TTE-dj-JlE" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Reu-8h-yRT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hEf-CS-irP">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hEf-CS-irP" id="cJa-kb-Z1a">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="TTE-dj-JlE" id="Nmk-yk-oij"/>
+                            <outlet property="delegate" destination="TTE-dj-JlE" id="z1V-yH-S7x"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Offices" id="lQy-ut-h4l">
+                        <barButtonItem key="backBarButtonItem" title="Offices" id="Zir-a9-S7s"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="inx-ca-SOg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="640" y="560"/>
         </scene>
         <!--Root Navigation Controller-->
         <scene sceneID="umK-F7-FiM">
@@ -173,4 +227,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="vWz-g3-fDR"/>
+    </inferredMetricsTieBreakers>
 </document>
