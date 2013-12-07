@@ -124,18 +124,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Rooms" id="DBG-yH-KaF">
                         <barButtonItem key="backBarButtonItem" title="Rooms" id="A9O-F5-xYx"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="afk-aj-2LL">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NFh-Qz-cDR">
-                                <rect key="frame" x="235" y="7" width="69" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Offices">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="TTE-dj-JlE" kind="push" id="GPe-kp-78p"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Locations" id="afk-aj-2LL">
+                            <connections>
+                                <segue destination="TTE-dj-JlE" kind="push" id="4q9-Tk-diP"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
@@ -143,7 +135,7 @@
             </objects>
             <point key="canvasLocation" x="71" y="566"/>
         </scene>
-        <!--Table View Controller - Offices-->
+        <!--Table View Controller - Locations-->
         <scene sceneID="42N-oz-BFr">
             <objects>
                 <tableViewController id="TTE-dj-JlE" sceneMemberID="viewController">
@@ -166,8 +158,8 @@
                             <outlet property="delegate" destination="TTE-dj-JlE" id="z1V-yH-S7x"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Offices" id="lQy-ut-h4l">
-                        <barButtonItem key="backBarButtonItem" title="Offices" id="Zir-a9-S7s"/>
+                    <navigationItem key="navigationItem" title="Locations" id="lQy-ut-h4l">
+                        <barButtonItem key="backBarButtonItem" title="Locations" id="Zir-a9-S7s"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="inx-ca-SOg" userLabel="First Responder" sceneMemberID="firstResponder"/>
