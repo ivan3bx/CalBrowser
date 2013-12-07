@@ -46,7 +46,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="23"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Foo-n5-mqU">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Foo-n5-mqU" customClass="CurrentTimeView">
                                 <rect key="frame" x="0.0" y="103" width="320" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -84,7 +84,6 @@
                     <connections>
                         <outlet property="currentTimeBtn" destination="wbo-xP-WVF" id="9Pq-XP-Gg1"/>
                         <outlet property="currentTimeLabel" destination="VRt-S9-hHx" id="OXi-Ul-AfY"/>
-                        <outlet property="currentTimeView" destination="Foo-n5-mqU" id="GHR-DS-hVg"/>
                         <outlet property="nextTimeBtn" destination="4j9-zd-spu" id="Fxf-LM-G1o"/>
                     </connections>
                 </viewController>

@@ -31,6 +31,7 @@
 		2C8D240B184C715E00F089B9 /* CABLResourceList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D240A184C715E00F089B9 /* CABLResourceList.m */; };
 		2CA0481E1852EC2400BC95C4 /* SelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA0481D1852EC2400BC95C4 /* SelectionViewController.m */; };
 		2CA048211852EEC900BC95C4 /* CircleLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA048201852EEC900BC95C4 /* CircleLineButton.m */; };
+		2CA048241853021400BC95C4 /* CurrentTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA048231853021400BC95C4 /* CurrentTimeView.m */; };
 		2CF2E11D184DABF3001C5835 /* CABLResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E11C184DABF3001C5835 /* CABLResource.m */; };
 		2CF2E11F184DBAF0001C5835 /* CABLResourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E11E184DBAF0001C5835 /* CABLResourceTest.m */; };
 		2CF2E121184DBD00001C5835 /* resources_template.db in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E120184DBD00001C5835 /* resources_template.db */; };
@@ -97,6 +98,8 @@
 		2CA0481D1852EC2400BC95C4 /* SelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionViewController.m; sourceTree = "<group>"; };
 		2CA0481F1852EEC900BC95C4 /* CircleLineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleLineButton.h; sourceTree = "<group>"; };
 		2CA048201852EEC900BC95C4 /* CircleLineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleLineButton.m; sourceTree = "<group>"; };
+		2CA048221853021400BC95C4 /* CurrentTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentTimeView.h; sourceTree = "<group>"; };
+		2CA048231853021400BC95C4 /* CurrentTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentTimeView.m; sourceTree = "<group>"; };
 		2CF2E11B184DABF3001C5835 /* CABLResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABLResource.h; sourceTree = "<group>"; };
 		2CF2E11C184DABF3001C5835 /* CABLResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CABLResource.m; sourceTree = "<group>"; };
 		2CF2E11E184DBAF0001C5835 /* CABLResourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CABLResourceTest.m; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 				2CA0481D1852EC2400BC95C4 /* SelectionViewController.m */,
 				2CA0481F1852EEC900BC95C4 /* CircleLineButton.h */,
 				2CA048201852EEC900BC95C4 /* CircleLineButton.m */,
+				2CA048221853021400BC95C4 /* CurrentTimeView.h */,
+				2CA048231853021400BC95C4 /* CurrentTimeView.m */,
 			);
 			name = Sources;
 			path = CalBrowser;
@@ -407,6 +412,7 @@
 				2CF2E11D184DABF3001C5835 /* CABLResource.m in Sources */,
 				2C8D22DF18482D0800F089B9 /* main.m in Sources */,
 				2CA0481E1852EC2400BC95C4 /* SelectionViewController.m in Sources */,
+				2CA048241853021400BC95C4 /* CurrentTimeView.m in Sources */,
 				2C8D2402184C0C0A00F089B9 /* CABLConfig.m in Sources */,
 				2C8D240B184C715E00F089B9 /* CABLResourceList.m in Sources */,
 				2C8D23FE184C0ABE00F089B9 /* RootNavigationController.m in Sources */,

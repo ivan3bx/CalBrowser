@@ -22,6 +22,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.currentTimeBtn drawCircleButton];
-    [self.nextTimeBtn drawCircleButton];    
+    [self.nextTimeBtn drawCircleButton];
 }
 @end

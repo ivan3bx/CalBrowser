@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CircleLineButton.h"
+#import "CurrentTimeView.h"
 
 @interface SelectionViewController : UIViewController
 @property (weak, nonatomic) IBOutlet CircleLineButton *currentTimeBtn;
 @property (weak, nonatomic) IBOutlet CircleLineButton *nextTimeBtn;
 @property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
-@property (weak, nonatomic) IBOutlet UIView *currentTimeView;
 
 @end
