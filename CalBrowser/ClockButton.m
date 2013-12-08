@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 reboundable. All rights reserved.
 //
 
-#import "CircleLineButton.h"
+#import "ClockButton.h"
 
-@interface CircleLineButton ()
+@interface ClockButton ()
 
 @property (nonatomic, strong) CAShapeLayer *circleLayer;
 @end
 
-@implementation CircleLineButton
+@implementation ClockButton
 
 /*
  * Set the value for this button to be the half-hour closest or preceeding the reference date

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CircleLineButton : UIButton
+@interface ClockButton : UIButton
 
 /*
  * Draws the button's contents
