@@ -32,10 +32,22 @@
  */
 -(BOOL)save;
 
++(void)reset;
+
+/*
+ * Count of all resources in the repository
+ */
++(NSUInteger)numberOfEntries;
+
 /*
  * Finds a specific resource by its email identifier
  */
 +(CABLResource *)findByEmail:(NSString *)arg;
+
+/*
+ * All resources
+ */
++(NSArray *)findAll;
 
 /*
  * Find all resources matching the same 'name' prefix

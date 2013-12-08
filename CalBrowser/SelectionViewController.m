@@ -72,14 +72,14 @@
     NSString *nextTimeBlock;
     
     if (components.minute <= 25) {
-        currentTimeBlock = [NSString stringWithFormat:@"%i:00", hour];
-        nextTimeBlock    = [NSString stringWithFormat:@"%i:30", hour];
+        currentTimeBlock = [NSString stringWithFormat:@"%i:00", (int)hour];
+        nextTimeBlock    = [NSString stringWithFormat:@"%i:30", (int)hour];
     } else if (components.minute <= 55) {
-        currentTimeBlock = [NSString stringWithFormat:@"%i:30", hour];
-        nextTimeBlock    = [NSString stringWithFormat:@"%i:00", (hour + 1) % 12];
+        currentTimeBlock = [NSString stringWithFormat:@"%i:30", (int)hour];
+        nextTimeBlock    = [NSString stringWithFormat:@"%i:00", (int)(hour + 1) % 12];
     } else {
-        currentTimeBlock = [NSString stringWithFormat:@"%i:00", (hour + 1) % 12];
-        nextTimeBlock    = [NSString stringWithFormat:@"%i:30", (hour + 1) % 12];
+        currentTimeBlock = [NSString stringWithFormat:@"%i:00", (int)(hour + 1) % 12];
+        nextTimeBlock    = [NSString stringWithFormat:@"%i:30", (int)(hour + 1) % 12];
     }
     
     //

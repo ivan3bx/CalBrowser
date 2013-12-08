@@ -7,10 +7,11 @@
 //
 
 #import "CABLResourceList.h"
+#import "CABLResource.h"
 #import "CABLConfig.h"
 
 
-typedef void(^SuccessHandler)(CABLResourceList *);
+typedef void(^SuccessHandler)(NSArray *);
 typedef void(^ErrorHandler)(NSError *);
 
 @interface CABLResourceList() <NSXMLParserDelegate> {
@@ -28,8 +29,31 @@ typedef void(^ErrorHandler)(NSError *);
 
 +(void)loadResourceList:(SuccessHandler)onSuccess error:(ErrorHandler)onError;
 {
-    NXOAuth2Account *account = [CABLConfig sharedInstance].currentAccount;
+    if (self.shouldFetchFromCache) {
+        //
+        // Short-circuit any network loading
+        //
+        onSuccess([CABLResource findAll]);
+    } else {
+        //
+        // Fetch from the network
+        //
+        [self fetchFromNetwork:onSuccess handleError:onError];
+    }
+}
 
+/*
+ * This method decides whether we should rely on cached resource information
+ */
++ (BOOL)shouldFetchFromCache
+{
+    return [CABLResource numberOfEntries] > 0;
+}
+
++(void)fetchFromNetwork:(SuccessHandler)onSuccess handleError:(ErrorHandler)onError
+{
+    NXOAuth2Account *account = [CABLConfig sharedInstance].currentAccount;
+    
     //
     // Verify connectivity
     //
@@ -117,7 +141,7 @@ typedef void(^ErrorHandler)(NSError *);
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
 {
     if (response.statusCode != 200) {
-        NSDictionary *dict = @{@"statusCode" : [NSNumber numberWithInt:response.statusCode],
+        NSDictionary *dict = @{@"statusCode" : [NSNumber numberWithInt:(int)response.statusCode],
                                @"message"    : @"Calendar resource list failed to load data"};
         if (self.errorHandler) {
             self.errorHandler([NSError errorWithDomain:@"CalBrowser" code:1 userInfo:dict]);
@@ -167,9 +191,12 @@ typedef void(^ErrorHandler)(NSError *);
     } else {
         //
         // No additional data to fetch
+        // - refresh the cache
+        // - yield to the handler
         //
+        [CABLResource reloadWithData:_entries];
         if (self.successHandler) {
-            self.successHandler(self);
+            self.successHandler([CABLResource findAll]);
         }
     }
 }

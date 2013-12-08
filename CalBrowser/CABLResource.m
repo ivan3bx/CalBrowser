@@ -21,7 +21,11 @@
 {
     self = [super init];
     if (self) {
-        _data = data;
+        if (!data[@"resourceDescription"]) {
+            data = [NSMutableDictionary dictionaryWithDictionary:data];
+            ((NSMutableDictionary *)data)[@"resourceDescription"] = @"";
+        }
+        _data = [data copy];
     }
     return self;
 }
@@ -43,7 +47,6 @@
                        VALUES \
                        (:resourceId, :resourceCommonName, :resourceEmail, \
                         :resourceDescription, :resourceType)" withParameterDictionary:_data];
-        NSLog(@"Did do something? %i", result);
 
         [db close];
         return result;
@@ -51,44 +54,48 @@
     return NO;
 }
 
-+(CABLResource *)findByEmail:(NSString *)arg
++(NSUInteger)numberOfEntries
 {
-    CABLResource *result;
+    NSUInteger count = 0;
     FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
     if ([db open]) {
-        FMResultSet *res = [db executeQuery:@"SELECT \
-                            (resourceId, resourceCommonName, resourceEmail, \
-                             resourceDescription, resourceType) \
-                            FROM resources \
-                            WHERE resourceEmail = (?)", arg];
+        FMResultSet *res = [db executeQuery:@"SELECT count(*) FROM resources"];
         if([res next]) {
-            NSDictionary *dataArg = @{@"resourceId"         : [res stringForColumn:@"resourceId"],
-                                      @"resourceCommonName" : [res stringForColumn:@"resourceCommonName"],
-                                      @"resourceEmail"      : [res stringForColumn:@"resourceEmail"],
-                                      @"resourceDescription": [res stringForColumn:@"resourceDescription"],
-                                      @"resourceType"       : [res stringForColumn:@"resourceType"]};
-            result = [[CABLResource alloc] initWithData:dataArg];
+            count = [res intForColumnIndex:0];
         }
-        [db close];
     }
-    return result;
+    [db close];
+    return count;
+}
+
++(CABLResource *)findByEmail:(NSString *)arg
+{
+    return [self findByQuery:@"SELECT * from resources WHERE resourceEmail = (?)"
+               withCondition:arg].firstObject;
+}
+
++(NSArray *)findAll
+{
+    return [self findByQuery:@"SELECT * from resources ORDER BY resourceCommonName" withCondition:nil];
 }
 
 +(NSArray *)findAllByNamePrefix:(NSString *)arg
 {
+    arg = [NSString stringWithFormat:@"%@%%", arg];
+    return [self findByQuery:@"SELECT * FROM resources WHERE resourceCommonName LIKE (?)"
+               withCondition:arg];
+}
+
++(NSArray *)findByQuery:(NSString *)query withCondition:(NSString *)condition
+{
     NSMutableArray *result = [NSMutableArray array];
     FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
     if ([db open]) {
-        FMResultSet *res = [db executeQuery:@"SELECT \
-                            (resourceId, resourceCommonName, resourceEmail, \
-                            resourceDescription, resourceType) \
-                            FROM resources \
-                            WHERE resourceCommonName LIKE (?)", arg];
+        FMResultSet *res = [db executeQuery:query, condition];
         while([res next]) {
             NSDictionary *dataArg = @{@"resourceId"         : [res stringForColumn:@"resourceId"],
                                       @"resourceCommonName" : [res stringForColumn:@"resourceCommonName"],
                                       @"resourceEmail"      : [res stringForColumn:@"resourceEmail"],
-                                      @"resourceDescription": [res stringForColumn:@"resourceDescription"],
                                       @"resourceType"       : [res stringForColumn:@"resourceType"]};
             [result addObject:[[CABLResource alloc] initWithData:dataArg]];
         }
@@ -99,10 +106,26 @@
 
 +(NSArray *)reloadWithData:(NSArray *)data
 {
-    return nil;
+    NSMutableArray *savedEntries = [NSMutableArray array];
+
+    [CABLResource reset];
+    [data enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
+        CABLResource *resource = [[CABLResource alloc] initWithData:obj];
+        [savedEntries addObject:resource];
+        [resource save];
+    }];
+    return savedEntries;
 }
 
-
++(void)reset
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
+    if ([db open]) {
+        BOOL result = [db executeUpdate:@"DELETE from resources"];
+        NSAssert(result, @"Failed to clear existing resources");
+    }
+    [db close];
+}
 
 #pragma mark -
 #pragma mark Data accessors

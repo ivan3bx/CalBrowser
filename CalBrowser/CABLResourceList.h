@@ -13,7 +13,7 @@
  */
 @interface CABLResourceList : NSObject
 
-+(void)loadResourceList:(void (^)(CABLResourceList *))onSuccess error:(void (^)(NSError *))onError;
++(void)loadResourceList:(void (^)(NSArray *))onSuccess error:(void (^)(NSError *))onError;
 
 -(id)initWithData:(NSData *)data;
 -(NSUInteger)count;

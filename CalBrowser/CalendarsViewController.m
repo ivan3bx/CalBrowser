@@ -10,9 +10,10 @@
 #import "CABLConfig.h"
 #import "NXOAuth2.h"
 #import "CABLResourceList.h"
+#import "CABLResource.h"
 
 @interface CalendarsViewController ()
-
+@property(nonatomic,readwrite) NSArray *rooms;
 @end
 
 @implementation CalendarsViewController
@@ -20,14 +21,17 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     // Start loading a list of calendars
-    [CABLResourceList loadResourceList:^(CABLResourceList *data) {
-        NSLog(@"Successfully loaded some data: %i", data.count);
+    [CABLResourceList loadResourceList:^(NSArray *data) {
+        self.rooms = data;
+        [(UITableView *)self.view reloadData];
     } error:^(NSError *error) {
         NSLog(@"Failed to load data, error: %@", error.userInfo);
     }];
 }
 
-#pragma mark - Table view data source
+#pragma mark -
+#pragma mark - UITableViewDataSource methods
+#pragma mark -
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -36,7 +40,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return self.rooms.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -45,7 +49,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = [NSString stringWithFormat:@"Foo on you: %i", indexPath.row];
+    CABLResource *entry = self.rooms[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", entry.name];
     return cell;
 }
 
