@@ -6,6 +6,7 @@
 //  Copyright (c) Ivan Moscoso. All rights reserved.
 //
 
+#import <FMDB/FMDatabase.h>
 #import "AppDelegate.h"
 #import "NXOAuth2.h"
 #import "CABLConfig.h"
@@ -17,7 +18,7 @@
     [self registerUserDefaults];
     [self registerOAuthClient];
     [self registerAppsDomain];
-    [self createDatabase];
+    [self updateDatabase];
 }
 
 + (void)registerOAuthClient
@@ -106,19 +107,51 @@
     }
 }
 
-+ (void)createDatabase
++ (void)updateDatabase
 {
     NSString *templateDatabasePath = [[NSBundle mainBundle] pathForResource:@"resources_template" ofType:@"db"];
     NSString *databasePath = [CABLConfig sharedInstance].databasePath;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:databasePath]) {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+
+    if (![fileManager fileExistsAtPath:databasePath]) {
+        //
+        // Database doesn't exist; create it
+        //
         NSError *error;
-        [[NSFileManager defaultManager] copyItemAtPath:templateDatabasePath toPath:databasePath error:&error];
+        [fileManager copyItemAtPath:templateDatabasePath toPath:databasePath error:&error];
         if (error) {
             @throw [NSException exceptionWithName:@"Invalid configuration"
                                            reason:@"Unable to initialize database"
                                          userInfo:error.userInfo];
         }
+    } else if (![[self schemaFor:databasePath] isEqualToString:[self schemaFor:templateDatabasePath]]) {
+        NSError *error;
+        [fileManager removeItemAtPath:databasePath error:&error];
+
+        if (!error) {
+            [fileManager copyItemAtPath:templateDatabasePath toPath:databasePath error:&error];
+        }
+        
+        if (error) {
+            @throw [NSException exceptionWithName:@"Invalid configuration"
+                                           reason:@"Fatal error upgrading database"
+                                         userInfo:error.userInfo];
+        }
     }
+}
+
++ (NSString *)schemaFor:(NSString *)dbFile
+{
+    NSString *result;
+    FMDatabase *db = [FMDatabase databaseWithPath:dbFile];
+    if ([db open]) {
+        FMResultSet *res = [db executeQuery:@"SELECT name, sql FROM sqlite_master WHERE type = 'table'"];
+        if(res.next) {
+            result = [res stringForColumnIndex:1];
+        }
+    }
+    [db close];
+    return result;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
