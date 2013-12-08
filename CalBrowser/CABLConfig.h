@@ -12,9 +12,10 @@
 /*
  * User defaults
  */
-extern NSString* const kDefaultAccount;
-extern NSString* const kAppsDomainKey;
-extern NSString* const kDatabasePathKey;
+extern NSString*  const kDefaultAccount;
+extern NSString*  const kAppsDomainKey;
+extern NSString*  const kDatabasePathKey;
+extern NSUInteger const kMeetingLengthInMinutes;
 
 @interface CABLConfig : NSObject
 

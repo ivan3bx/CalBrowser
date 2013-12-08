@@ -10,6 +10,8 @@
 
 @interface ClockButton : UIButton
 
+@property (nonatomic) NSDate *selectedDate;
+
 /*
  * Draws the button's contents
  */

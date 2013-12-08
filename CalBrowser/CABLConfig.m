@@ -8,10 +8,10 @@
 
 #import "CABLConfig.h"
 
-NSString *const kDefaultAccount  = @"OAuthCredentials";
-NSString *const kAppsDomainKey   = @"GoogleAppsDomainKey";
-NSString *const kDatabasePathKey = @"CABLDatabasePath";
-
+NSString *const  kDefaultAccount  = @"OAuthCredentials";
+NSString *const  kAppsDomainKey   = @"GoogleAppsDomainKey";
+NSString *const  kDatabasePathKey = @"CABLDatabasePath";
+NSUInteger const kMeetingLengthInMinutes = 30;
 /*
  * Paths and important configuration values
  */

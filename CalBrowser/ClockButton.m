@@ -20,22 +20,20 @@
  */
 -(void)setTimeForPreviousHalfHourFrom:(NSDate *)referenceDate
 {
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:referenceDate];
-    NSUInteger hour = [components hour];
-    
-    NSString *currentTimeBlock;
-    
-    if (components.minute <= 25) {
-        currentTimeBlock = [NSString stringWithFormat:@"%i:00", (int)hour];
-    } else if (components.minute <= 55) {
-        currentTimeBlock = [NSString stringWithFormat:@"%i:30", (int)hour];
+    NSDateComponents *components = [self componentsFromDate:referenceDate];
+
+    if ([components minute] < 25) {
+        components.minute = 0;
+    } else if ([components minute] < 55) {
+        components.minute = 30;
     } else {
-        currentTimeBlock = [NSString stringWithFormat:@"%i:00", (int)(hour + 1) % 12];
+        components.minute = 0;
+        components.hour = components.hour + 1;
     }
+    [self setTitleFromDateComponents:components];
     
-    [self setTitle:currentTimeBlock forState:UIControlStateNormal];
-    [self setTitle:currentTimeBlock forState:UIControlStateHighlighted];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    self.selectedDate = [cal dateFromComponents:components];
 }
 
 /*
@@ -43,53 +41,77 @@
  */
 -(void)setTimeForNextHalfHourFrom:(NSDate *)referenceDate
 {
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:referenceDate];
-    NSUInteger hour = [components hour];
+    NSDateComponents *components = [self componentsFromDate:referenceDate];
     
-    NSString *nextTimeBlock;
-    
-    if (components.minute <= 25) {
-        nextTimeBlock = [NSString stringWithFormat:@"%i:30", (int)hour];
-    } else if (components.minute <= 55) {
-        nextTimeBlock = [NSString stringWithFormat:@"%i:00", (int)(hour + 1) % 12];
+    if ([components minute] < 25) {
+        components.minute = 30;
+    } else if ([components minute] < 55) {
+        components.minute = 00;
+        components.hour = components.hour + 1;
     } else {
-        nextTimeBlock = [NSString stringWithFormat:@"%i:30", (int)(hour + 1) % 12];
+        components.minute = 30;
+        components.hour = components.hour + 1;
     }
+    [self setTitleFromDateComponents:components];
     
-    [self setTitle:nextTimeBlock forState:UIControlStateNormal];
-    [self setTitle:nextTimeBlock forState:UIControlStateHighlighted];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    self.selectedDate = [cal dateFromComponents:components];
+}
+
+-(void)setTitleFromDateComponents:(NSDateComponents *)components
+{
+    // Create an 'output' date
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDate *outputDate = [cal dateFromComponents:components];
+    
+    //
+    // Create a date formatter
+    //
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"h:mm"];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    
+    //
+    // Set the output
+    //
+    NSString *stringValue = [dateFormatter stringFromDate:outputDate];
+    [self setTitle:stringValue forState:UIControlStateNormal];
+    [self setTitle:stringValue forState:UIControlStateHighlighted];
+}
+
+-(NSDateComponents *)componentsFromDate:(NSDate *)date
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    return [calendar components:
+            NSTimeZoneCalendarUnit
+            | NSYearCalendarUnit
+            | NSMonthCalendarUnit
+            | NSDayCalendarUnit
+            | NSHourCalendarUnit
+            | NSMinuteCalendarUnit fromDate:date];
 }
 
 - (void)drawCircleButton
 {
     self.circleLayer = [CAShapeLayer layer];
-    
-    [self.circleLayer setBounds:CGRectMake(0.0f, 0.0f, [self bounds].size.width,
+    [self.circleLayer setBounds:CGRectMake(0.0f, 0.0f,
+                                           [self bounds].size.width,
                                            [self bounds].size.height)];
     [self.circleLayer setPosition:CGPointMake(CGRectGetMidX([self bounds]),CGRectGetMidY([self bounds]))];
     
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
+    CGRect rect = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:rect];
     
     [self.circleLayer setPath:[path CGPath]];
-    
-    [self.circleLayer setStrokeColor:[self.currentTitleColor CGColor]];
-    
+    [self.circleLayer setStrokeColor:self.currentTitleColor.CGColor];
     [self.circleLayer setLineWidth:2.0f];
     [self.circleLayer setFillColor:[[UIColor clearColor] CGColor]];
-    
-    [[self layer] addSublayer:self.circleLayer];
+    [[self layer] insertSublayer:self.circleLayer atIndex:0];
 }
 
 - (void)setHighlighted:(BOOL)highlighted
 {
-    if (highlighted)
-    {
-        [self.circleLayer setFillColor:[UIColor darkGrayColor].CGColor];
-    }
-    else
-    {
-        [self.circleLayer setFillColor:[UIColor clearColor].CGColor];
-    }
+    UIColor *color = highlighted ? [UIColor lightGrayColor] : [UIColor clearColor];
+    [self.circleLayer setFillColor:color.CGColor];
 }
 @end

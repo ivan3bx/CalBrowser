@@ -40,9 +40,9 @@
     dest = (CalendarsViewController *)segue.destinationViewController;
     
     if (sender == self.currentTimeBtn) {
-        // TODO: Set the date on the destination controller
+        [dest setMeetingStartAt:self.currentTimeBtn.selectedDate];
     } else if (sender == self.nextTimeBtn) {
-        // TODO: Set the date on the destination controller
+        [dest setMeetingStartAt:self.currentTimeBtn.selectedDate];
     }
 }
 

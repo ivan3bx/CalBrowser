@@ -14,19 +14,29 @@
 
 @interface CalendarsViewController ()
 @property(nonatomic,readwrite) NSArray *rooms;
+@property(nonatomic,readwrite) NSDate *startTime;
+@property(nonatomic,readwrite) NSDate *endTime;
+
 @end
 
 @implementation CalendarsViewController
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    // Start loading a list of calendars
+    // Start loading list of available rooms
+    
     [CABLResourceList loadResourceList:^(NSArray *data) {
         self.rooms = data;
         [(UITableView *)self.view reloadData];
     } error:^(NSError *error) {
         NSLog(@"Failed to load data, error: %@", error.userInfo);
     }];
+}
+
+-(void)setMeetingStartAt:(NSDate *)startTime
+{
+    self.startTime = startTime;
+    self.endTime   = [startTime dateByAddingTimeInterval:(kMeetingLengthInMinutes * 60)];
 }
 
 #pragma mark -

@@ -27,6 +27,12 @@
                                 <state key="normal" title="11:30">
                                     <color key="titleColor" red="0.15294118225574493" green="0.64705884456634521" blue="0.70980393886566162" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
+                                <state key="selected">
+                                    <color key="titleColor" red="0.15294118230000001" green="0.64705884459999996" blue="0.70980393890000004" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.15294118230000001" green="0.64705884459999996" blue="0.70980393890000004" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="6uD-Qt-iy0" kind="push" id="iGN-Rh-OXB"/>
                                 </connections>
@@ -41,6 +47,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="12:00">
                                     <color key="titleColor" red="0.66274511814117432" green="0.66274511814117432" blue="0.66274511814117432" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="6uD-Qt-iy0" kind="push" id="vWz-g3-fDR"/>
@@ -109,7 +121,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="9VL-R9-q7r">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9VL-R9-q7r" id="2sX-Fe-ccd">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -145,7 +157,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hEf-CS-irP">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hEf-CS-irP" id="cJa-kb-Z1a">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>

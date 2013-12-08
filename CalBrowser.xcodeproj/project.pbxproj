@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2776A91854511E00D063FE /* ClockButtonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2776A81854511E00D063FE /* ClockButtonTest.m */; };
 		2C5BDF50184D905800C02B37 /* CABLResourceListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5BDF4F184D905800C02B37 /* CABLResourceListTest.m */; };
 		2C5BDF52184D94CE00C02B37 /* resource_input.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2C5BDF51184D94CE00C02B37 /* resource_input.xml */; };
 		2C8D22D318482D0800F089B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8D22D218482D0800F089B9 /* Foundation.framework */; };
@@ -63,6 +64,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C2776A81854511E00D063FE /* ClockButtonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClockButtonTest.m; sourceTree = "<group>"; };
 		2C5BDF4F184D905800C02B37 /* CABLResourceListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CABLResourceListTest.m; sourceTree = "<group>"; };
 		2C5BDF51184D94CE00C02B37 /* resource_input.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = resource_input.xml; sourceTree = "<group>"; };
 		2C8D22CF18482D0800F089B9 /* CalBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,9 +224,10 @@
 			isa = PBXGroup;
 			children = (
 				2C8D22F218482D0900F089B9 /* Supporting Files */,
-				2C5BDF4F184D905800C02B37 /* CABLResourceListTest.m */,
 				2C5BDF51184D94CE00C02B37 /* resource_input.xml */,
+				2C5BDF4F184D905800C02B37 /* CABLResourceListTest.m */,
 				2CF2E11E184DBAF0001C5835 /* CABLResourceTest.m */,
+				2C2776A81854511E00D063FE /* ClockButtonTest.m */,
 			);
 			path = CalBrowserTests;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C2776A91854511E00D063FE /* ClockButtonTest.m in Sources */,
 				2C5BDF50184D905800C02B37 /* CABLResourceListTest.m in Sources */,
 				2CF2E11F184DBAF0001C5835 /* CABLResourceTest.m in Sources */,
 			);
