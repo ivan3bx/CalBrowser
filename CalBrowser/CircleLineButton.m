@@ -15,6 +15,52 @@
 
 @implementation CircleLineButton
 
+/*
+ * Set the value for this button to be the half-hour closest or preceeding the reference date
+ */
+-(void)setTimeForPreviousHalfHourFrom:(NSDate *)referenceDate
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:referenceDate];
+    NSUInteger hour = [components hour];
+    
+    NSString *currentTimeBlock;
+    
+    if (components.minute <= 25) {
+        currentTimeBlock = [NSString stringWithFormat:@"%i:00", (int)hour];
+    } else if (components.minute <= 55) {
+        currentTimeBlock = [NSString stringWithFormat:@"%i:30", (int)hour];
+    } else {
+        currentTimeBlock = [NSString stringWithFormat:@"%i:00", (int)(hour + 1) % 12];
+    }
+    
+    [self setTitle:currentTimeBlock forState:UIControlStateNormal];
+    [self setTitle:currentTimeBlock forState:UIControlStateHighlighted];
+}
+
+/*
+ * Set the value for this button to be the half-hour proceeding the reference date
+ */
+-(void)setTimeForNextHalfHourFrom:(NSDate *)referenceDate
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:referenceDate];
+    NSUInteger hour = [components hour];
+    
+    NSString *nextTimeBlock;
+    
+    if (components.minute <= 25) {
+        nextTimeBlock = [NSString stringWithFormat:@"%i:30", (int)hour];
+    } else if (components.minute <= 55) {
+        nextTimeBlock = [NSString stringWithFormat:@"%i:00", (int)(hour + 1) % 12];
+    } else {
+        nextTimeBlock = [NSString stringWithFormat:@"%i:30", (int)(hour + 1) % 12];
+    }
+    
+    [self setTitle:nextTimeBlock forState:UIControlStateNormal];
+    [self setTitle:nextTimeBlock forState:UIControlStateHighlighted];
+}
+
 - (void)drawCircleButton
 {
     self.circleLayer = [CAShapeLayer layer];

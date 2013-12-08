@@ -10,5 +10,18 @@
 
 @interface CircleLineButton : UIButton
 
-- (void)drawCircleButton;
+/*
+ * Draws the button's contents
+ */
+-(void)drawCircleButton;
+
+/*
+ * Set the value to be the time closest/preceeding reference date
+ */
+-(void)setTimeForPreviousHalfHourFrom:(NSDate *)referenceDate;
+
+/*
+ * Set the value to be the time proceeding the reference date
+ */
+-(void)setTimeForNextHalfHourFrom:(NSDate *)referenceDate;
 @end

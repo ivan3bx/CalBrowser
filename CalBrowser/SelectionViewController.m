@@ -63,36 +63,7 @@
     //
     // Update current / next buttons
     //
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:now];
-    
-    NSUInteger hour = [components hour];
-    
-    NSString *currentTimeBlock;
-    NSString *nextTimeBlock;
-    
-    if (components.minute <= 25) {
-        currentTimeBlock = [NSString stringWithFormat:@"%i:00", (int)hour];
-        nextTimeBlock    = [NSString stringWithFormat:@"%i:30", (int)hour];
-    } else if (components.minute <= 55) {
-        currentTimeBlock = [NSString stringWithFormat:@"%i:30", (int)hour];
-        nextTimeBlock    = [NSString stringWithFormat:@"%i:00", (int)(hour + 1) % 12];
-    } else {
-        currentTimeBlock = [NSString stringWithFormat:@"%i:00", (int)(hour + 1) % 12];
-        nextTimeBlock    = [NSString stringWithFormat:@"%i:30", (int)(hour + 1) % 12];
-    }
-    
-    //
-    // Set current block button titles
-    //
-    [self.currentTimeBtn setTitle:currentTimeBlock forState:UIControlStateNormal];
-    [self.currentTimeBtn setTitle:currentTimeBlock forState:UIControlStateHighlighted];
-
-    //
-    // Set next block button titles
-    //
-    [self.nextTimeBtn setTitle:nextTimeBlock forState:UIControlStateNormal];
-    [self.nextTimeBtn setTitle:nextTimeBlock forState:UIControlStateHighlighted];
-
+    [self.currentTimeBtn setTimeForPreviousHalfHourFrom:now];
+    [self.nextTimeBtn setTimeForNextHalfHourFrom:now];
 }
 @end
