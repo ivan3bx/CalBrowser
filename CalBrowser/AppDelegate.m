@@ -66,8 +66,7 @@
 
 + (void)registerAppsDomain
 {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:@"apps-domain" ofType:@"json"];
+    NSString *path = [CABLConfig sharedInstance].appsDomainConfigPath;
 
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
         @throw [NSException exceptionWithName:@"Missing configuration"
