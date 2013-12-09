@@ -3,7 +3,7 @@
 //  CalBrowser
 //
 //  Created by Ivan Moscoso on 11/28/13.
-//  Copyright (c) Ivan Moscoso. All rights reserved.
+//  Copyright (c) 2013 Ivan Moscoso. All rights reserved.
 //
 
 #import <FMDB/FMDatabase.h>

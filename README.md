@@ -27,9 +27,16 @@ but over time will model the essential aspects of calendar interactions
 		  -> CalBrowser/
 		  	-> clientConfig.json
 
-5. Build and run.  The app delegate will check and verify that the client configuration is correct.
+5. Create a simple JSON file in the following directory, holding the name of your Google Apps domain, such as `{"domain" : "example.com"}`
+
+		ROOT_DIR/
+		-> CalBrowser/
+		    -> apps-domain.json
+
+6. Build and run.  The app delegate will check and verify that the client configuration is correct.
 
 ### What does it do?
 * OAuth interaction via [OAuth2Client](https://github.com/nxtbgthng/OAuth2Client).
 * Wiring up for Google Calendar.
 * Basic UI to perform authentication, and store the user account credentials.
+* Minimal UI demonstrating a simple use case

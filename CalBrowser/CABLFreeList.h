@@ -3,7 +3,7 @@
 //  CalBrowser
 //
 //  Created by Ivan Moscoso on 12/8/13.
-//  Copyright (c) 2013 reboundable. All rights reserved.
+//  Copyright (c) 2013 Ivan Moscoso. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
