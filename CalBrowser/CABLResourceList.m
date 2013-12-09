@@ -57,7 +57,7 @@ typedef void(^ErrorHandler)(NSError *);
     list.errorHandler = onError;
     
     NSString *const BASE_URL    = @"https://apps-apis.google.com/a/feeds/calendar/resource/2.0";
-    NSString *const APP_DOMAIN  = [CABLConfig sharedInstance].appsDomain;
+    NSString *const APP_DOMAIN  = [CABLConfig sharedInstance].appsDomainName;
     NSString *urlStringWithDomain = [NSString stringWithFormat:@"%@/%@/", BASE_URL, APP_DOMAIN];
     [list load:[CABLResourceList createRequest:urlStringWithDomain]];
 }

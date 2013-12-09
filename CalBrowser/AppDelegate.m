@@ -94,7 +94,7 @@
                                          userInfo:nil];
         }
 
-        [CABLConfig sharedInstance].appsDomain = domain;
+        [CABLConfig sharedInstance].appsDomainName = domain;
     }
 }
 

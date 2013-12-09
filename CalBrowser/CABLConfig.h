@@ -22,6 +22,6 @@ extern NSUInteger const kMeetingLengthInMinutes;
 +(CABLConfig *)sharedInstance;
 
 @property(nonatomic, readwrite) NXOAuth2Account *currentAccount;
-@property(nonatomic, readwrite) NSString *appsDomain;
+@property(nonatomic, readwrite) NSString *appsDomainName;
 @property(nonatomic, readwrite) NSString *databasePath;
 @end
