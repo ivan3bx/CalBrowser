@@ -11,6 +11,7 @@
 #import "NXOAuth2.h"
 #import "CABLResourceList.h"
 #import "CABLResource.h"
+#import "CABLFreeList.h"
 
 @interface CalendarsViewController ()
 @property(nonatomic,readwrite) NSArray *rooms;
@@ -24,11 +25,18 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     // Start loading list of available rooms
-    
-    [CABLResourceList loadResourceList:^(NSArray *data) {
-        self.rooms = data;
+    CABLFreeList *freeList = [[CABLFreeList alloc] initWithRange:self.startTime
+                                                          ending:self.endTime];
+    [freeList load:^(CABLFreeList *freeList) {
+        //
+        // Block responds to an instance with data
+        //
+        self.rooms = freeList.freeResources;
         [(UITableView *)self.view reloadData];
     } error:^(NSError *error) {
+        //
+        // Handle network or data errors
+        //
         NSLog(@"Failed to load data, error: %@", error.userInfo);
     }];
 }

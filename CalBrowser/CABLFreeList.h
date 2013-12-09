@@ -20,6 +20,7 @@
 /*
  * Loads data & calls back appropriately
  */
--(void)load:(void (^)(CABLFreeList *))onSuccess error:(void (^)(NSError *))onError;
+-(void)load:(void (^)(CABLFreeList *freeList))onSuccess error:(void (^)(NSError *error))onError;
 
+@property(nonatomic,readonly) NSArray *freeResources;
 @end

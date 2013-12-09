@@ -52,33 +52,14 @@ typedef void(^ErrorHandler)(NSError *);
 
 +(void)fetchFromNetwork:(SuccessHandler)onSuccess handleError:(ErrorHandler)onError
 {
-    NXOAuth2Account *account = [CABLConfig sharedInstance].currentAccount;
+    CABLResourceList *list = [[CABLResourceList alloc] init];
+    list.successHandler = onSuccess;
+    list.errorHandler = onError;
     
-    //
-    // Verify connectivity
-    //
-    [NXOAuth2Request performMethod:@"GET"
-                        onResource:[NSURL URLWithString:@"https://www.googleapis.com/calendar/v3/users/me/settings/timezone"]
-                   usingParameters:nil
-                       withAccount:account sendProgressHandler:nil
-                   responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
-                       //
-                       // Refresh account credentials
-                       //
-                       [[CABLConfig sharedInstance] setCurrentAccount:account];
-                       
-                       //
-                       // Query the resource list
-                       //
-                       CABLResourceList *list = [[CABLResourceList alloc] init];
-                       list.successHandler = onSuccess;
-                       list.errorHandler = onError;
-                       
-                       NSString *const BASE_URL    = @"https://apps-apis.google.com/a/feeds/calendar/resource/2.0";
-                       NSString *const APP_DOMAIN  = [CABLConfig sharedInstance].appsDomain;
-                       NSString *urlStringWithDomain = [NSString stringWithFormat:@"%@/%@/", BASE_URL, APP_DOMAIN];
-                       [list load:[CABLResourceList createRequest:urlStringWithDomain]];
-                   }];
+    NSString *const BASE_URL    = @"https://apps-apis.google.com/a/feeds/calendar/resource/2.0";
+    NSString *const APP_DOMAIN  = [CABLConfig sharedInstance].appsDomain;
+    NSString *urlStringWithDomain = [NSString stringWithFormat:@"%@/%@/", BASE_URL, APP_DOMAIN];
+    [list load:[CABLResourceList createRequest:urlStringWithDomain]];
 }
 
 +(NSURLRequest *)createRequest:(NSString *)urlString
@@ -142,7 +123,7 @@ typedef void(^ErrorHandler)(NSError *);
 {
     if (response.statusCode != 200) {
         NSDictionary *dict = @{@"statusCode" : [NSNumber numberWithInt:(int)response.statusCode],
-                               @"message"    : @"Calendar resource list failed to load data"};
+                               @"message"    : @"Calendar resource list failed to load any data"};
         if (self.errorHandler) {
             self.errorHandler([NSError errorWithDomain:@"CalBrowser" code:1 userInfo:dict]);
         } else {
