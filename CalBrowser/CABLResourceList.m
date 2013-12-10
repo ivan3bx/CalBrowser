@@ -103,6 +103,7 @@ typedef void(^ErrorHandler)(NSError *);
 -(void)load:(NSURLRequest *)request
 {
     [NSURLConnection connectionWithRequest:request delegate:self];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 
 -(NSUInteger)count
@@ -144,6 +145,7 @@ typedef void(^ErrorHandler)(NSError *);
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self parseData];
 }
 

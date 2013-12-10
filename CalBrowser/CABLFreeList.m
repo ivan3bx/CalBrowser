@@ -110,6 +110,8 @@ typedef void(^ErrorHandler)(NSError *error);
     if (!error) {
         [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [urlRequest setHTTPBody:bodyData];
+
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         [NSURLConnection connectionWithRequest:urlRequest delegate:self];
     } else {
         [NSException raise:NSGenericException format:@"Invalid POST data [%@]", error.userInfo];
@@ -150,6 +152,8 @@ typedef void(^ErrorHandler)(NSError *error);
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
     // Parse _data
     NSError *error;
     NSDictionary *results = [NSJSONSerialization JSONObjectWithData:_data

@@ -46,6 +46,7 @@
     NXOAuth2Account *account = [CABLConfig sharedInstance].currentAccount;
     NSURL *url = [NSURL URLWithString:@"https://www.googleapis.com/calendar/v3/users/me/settings/timezone"];
     
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [NXOAuth2Request performMethod:@"GET"
                         onResource:url usingParameters:nil
                        withAccount:account sendProgressHandler:nil
@@ -54,11 +55,13 @@
                            //
                            // Display the authenticate view
                            //
+                           [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                            [self forceAuthentication];
                        } else {
                            //
                            // Update the account & its access token
                            //
+                           [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                            [[CABLConfig sharedInstance] setCurrentAccount:account];
                        }
                    }];
