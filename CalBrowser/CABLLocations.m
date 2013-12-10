@@ -11,7 +11,8 @@
 #import "CABLConfig.h"
 
 @interface CABLLocations() {
-    NSDictionary *cities;
+    NSDictionary *_cityData;
+    NSArray *_cityNames;
 }
 @end
 
@@ -27,18 +28,23 @@
         NSDictionary *domainConfig = [NSJSONSerialization JSONObjectWithData:configData
                                                                      options:NSJSONReadingAllowFragments
                                                                        error:&error];
-        cities = domainConfig[@"cities"];
+        _cityData = domainConfig[@"cities"];
     }
     return self;
 }
 
 -(NSArray *)cityNames
 {
-    NSMutableArray *names = [[NSMutableArray alloc] init];
-    [cities enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSArray *locations, BOOL *stop) {
-        [names addObject:name];
-    }];
-    return names;
+    if (!_cityNames) {
+        NSMutableArray *names = [[NSMutableArray alloc] init];
+        [_cityData enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSArray *locations, BOOL *stop) {
+            [names addObject:name];
+        }];
+        _cityNames = [names sortedArrayUsingComparator:^NSComparisonResult(NSString *s1, NSString *s2) {
+            return [s1 compare:s2];
+        }];
+    }
+    return _cityNames;
 }
 
 /*
@@ -47,23 +53,31 @@
  */
 -(NSArray *)locationsForCity:(NSString *)name
 {
-    return [cities[name] copy];
+    return [_cityData[name] copy];
 }
 
 /*
  * A given location may have a set of floor #'s associated
  */
--(NSSet *)floorNumbersForLocation:(NSString *)location
+-(NSArray *)floorNumbersForLocation:(NSString *)location
 {
-    NSMutableSet *floorNumbers = [[NSMutableSet alloc] init];
+    NSMutableOrderedSet *floorNumbers = [[NSMutableOrderedSet alloc] init];
     
     for (CABLResource *item in [CABLResource findAllByNamePrefix:location]) {
-        NSError *error;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@".*?-(\\d+).*"
-                                                                               options:NSRegularExpressionCaseInsensitive
-                                                                                 error:&error];
+                                                                               options:0
+                                                                                 error:nil];
+        NSTextCheckingResult *result = [regex firstMatchInString:item.name
+                                                         options:0 range:NSMakeRange(0, item.name.length)];
+        NSString *matchedValue = [item.name substringWithRange:[result rangeAtIndex:1]];
+        NSNumber *floorNum = [[[NSNumberFormatter alloc] init] numberFromString:matchedValue];
+        if (floorNum) {
+            [floorNumbers addObject:floorNum];
+        }
     }
-    return floorNumbers;
+    return [floorNumbers sortedArrayUsingComparator:^NSComparisonResult(NSNumber *n1, NSNumber *n2) {
+        return [n1 compare:n2];
+    }];
 }
 
 /*

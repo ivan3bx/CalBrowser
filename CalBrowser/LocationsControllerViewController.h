@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CABLLocations.h"
 
 @interface LocationsControllerViewController : UITableViewController
-
+@property (nonatomic,readonly) CABLLocations *locations;
 @end

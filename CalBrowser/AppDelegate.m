@@ -155,6 +155,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    application.statusBarHidden = NO;
     return YES;
 }
 

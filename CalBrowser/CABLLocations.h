@@ -19,7 +19,7 @@
  *  - If secondary prefix exists and starts with a number, that
  *    number is presumed to be a floor number.
  */
-@property (nonatomic,readonly) NSArray *cityNames;
+@property (nonatomic, readonly) NSArray *cityNames;
 
 /*
  * Cities are logical groupings of several locations,
@@ -30,7 +30,7 @@
 /*
  * A given location may have a set of floor #'s associated
  */
--(NSSet *)floorNumbersForLocation:(NSString *)location;
+-(NSArray *)floorNumbersForLocation:(NSString *)location;
 
 /*
  * This method will construct an optimal array of 'prefixes' to 
