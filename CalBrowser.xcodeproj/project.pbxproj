@@ -148,6 +148,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0EE0CA185926BE005773CF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2C8D2400184C0C0A00F089B9 /* CABLConfig.h */,
+				2C8D2401184C0C0A00F089B9 /* CABLConfig.m */,
+				2C8D2409184C715E00F089B9 /* CABLResourceList.h */,
+				2C8D240A184C715E00F089B9 /* CABLResourceList.m */,
+				2CF2E11B184DABF3001C5835 /* CABLResource.h */,
+				2CF2E11C184DABF3001C5835 /* CABLResource.m */,
+				2C44603918557186001FFA74 /* CABLFreeList.h */,
+				2C44603A18557186001FFA74 /* CABLFreeList.m */,
+				2C44603F1855A810001FFA74 /* CABLLocations.h */,
+				2C4460401855A810001FFA74 /* CABLLocations.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		2C0EE0CB185926DF005773CF /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				2CA0481F1852EEC900BC95C4 /* ClockButton.h */,
+				2CA048201852EEC900BC95C4 /* ClockButton.m */,
+				2CA048221853021400BC95C4 /* CurrentTimeView.h */,
+				2CA048231853021400BC95C4 /* CurrentTimeView.m */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
 		2C8D22C618482D0800F089B9 = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +216,8 @@
 		2C8D22D818482D0800F089B9 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2C0EE0CB185926DF005773CF /* Custom Views */,
+				2C0EE0CA185926BE005773CF /* Models */,
 				2C8D22E118482D0800F089B9 /* AppDelegate.h */,
 				2C8D22E218482D0800F089B9 /* AppDelegate.m */,
 				2C8D23AF184AA43400F089B9 /* AuthViewController.h */,
@@ -195,26 +225,12 @@
 				2C8D23FC184C0ABE00F089B9 /* RootNavigationController.h */,
 				2C8D23FD184C0ABE00F089B9 /* RootNavigationController.m */,
 				2C8D23F7184AAACB00F089B9 /* Main Storyboard.storyboard */,
-				2C8D2400184C0C0A00F089B9 /* CABLConfig.h */,
-				2C8D2401184C0C0A00F089B9 /* CABLConfig.m */,
 				2C8D2403184C4C3400F089B9 /* CalendarsViewController.h */,
 				2C8D2404184C4C3400F089B9 /* CalendarsViewController.m */,
-				2C8D2409184C715E00F089B9 /* CABLResourceList.h */,
-				2C8D240A184C715E00F089B9 /* CABLResourceList.m */,
-				2CF2E11B184DABF3001C5835 /* CABLResource.h */,
-				2CF2E11C184DABF3001C5835 /* CABLResource.m */,
 				2CA0481C1852EC2400BC95C4 /* SelectionViewController.h */,
 				2CA0481D1852EC2400BC95C4 /* SelectionViewController.m */,
-				2CA0481F1852EEC900BC95C4 /* ClockButton.h */,
-				2CA048201852EEC900BC95C4 /* ClockButton.m */,
-				2CA048221853021400BC95C4 /* CurrentTimeView.h */,
-				2CA048231853021400BC95C4 /* CurrentTimeView.m */,
-				2C44603918557186001FFA74 /* CABLFreeList.h */,
-				2C44603A18557186001FFA74 /* CABLFreeList.m */,
 				2C44603C1855A5B8001FFA74 /* LocationsControllerViewController.h */,
 				2C44603D1855A5B8001FFA74 /* LocationsControllerViewController.m */,
-				2C44603F1855A810001FFA74 /* CABLLocations.h */,
-				2C4460401855A810001FFA74 /* CABLLocations.m */,
 			);
 			name = Sources;
 			path = CalBrowser;
