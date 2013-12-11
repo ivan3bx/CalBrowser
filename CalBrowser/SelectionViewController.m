@@ -132,6 +132,10 @@
     }
 }
 
+#pragma mark -
+#pragma mark SWRevealViewControllerDelegate methods
+#pragma mark -
+
 - (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position
 {
     if (position == FrontViewPositionRight) {
@@ -141,6 +145,11 @@
         [self.currentTimeBtn setEnabled:YES];
         [self.nextTimeBtn setEnabled:YES];
     }
+}
+
+- (BOOL)revealControllerPanGestureShouldBegin:(SWRevealViewController *)revealController
+{
+    return !(self.currentTimeBtn.isTouchInside || self.nextTimeBtn.isTouchInside);
 }
 
 @end
