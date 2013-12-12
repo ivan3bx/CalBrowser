@@ -22,6 +22,15 @@ extern NSUInteger const kMeetingLengthInMinutes;
 +(CABLConfig *)sharedInstance;
 
 @property(nonatomic, readwrite) NXOAuth2Account *currentAccount;
+
+/*
+ * Location preferences
+ */
+@property(nonatomic, readwrite) NSString *currentRegion;
+@property(nonatomic, readwrite) NSString *currentCity;
+@property(nonatomic, readwrite) NSString *currentLocation;
+@property(nonatomic, readwrite) NSNumber *currentFloor;
+
 @property(nonatomic, readwrite) NSString *appsDomainName;
 @property(nonatomic, readwrite) NSString *databasePath;
 @property(nonatomic, readonly) NSString *appsDomainConfigPath;

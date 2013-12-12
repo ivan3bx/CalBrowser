@@ -51,7 +51,16 @@ typedef void(^ErrorHandler)(NSError *error);
         //
         // Load a new request for free/busy
         //
-        NSString *resourceNamePrefix = @"__REPLACE ME__"; // TODO: To be configuration-driven
+        NSString *location = [CABLConfig sharedInstance].currentLocation;
+        NSNumber *floor = [CABLConfig sharedInstance].currentFloor;
+        
+        NSString *resourceNamePrefix;
+        if ([CABLConfig sharedInstance].currentFloor) {
+            resourceNamePrefix = [NSString stringWithFormat:@"%@-%@", location, floor];
+        } else {
+            resourceNamePrefix = location;
+        }
+        NSLog(@"Searching with prefix: '%@'", resourceNamePrefix);
         NSArray *resources = [CABLResource findAllByNamePrefix:resourceNamePrefix];
         if (resources.count == 0) {
             NSLog(@"WARN: No resources found for prefix: '%@'.", resourceNamePrefix);

@@ -11,6 +11,11 @@
 @interface CABLLocations : NSObject
 
 /*
+ * An ordered array of regions
+ */
+-(NSArray *)regions;
+
+/*
  * Format: ABC1-4CA-Name
  *         [Location]-[Floor#]?[Extra]?-[Resource Name]
  * Rules:
@@ -19,13 +24,13 @@
  *  - If secondary prefix exists and starts with a number, that
  *    number is presumed to be a floor number.
  */
-@property (nonatomic, readonly) NSArray *cityNames;
+-(NSArray *)citiesForRegion:(NSString *)regionName;
 
 /*
  * Cities are logical groupings of several locations,
  * such as ajoining buildings.
  */
--(NSArray *)locationsForCity:(NSString *)name;
+-(NSArray *)locationsForCity:(NSString *)cityName;
 
 /*
  * A given location may have a set of floor #'s associated

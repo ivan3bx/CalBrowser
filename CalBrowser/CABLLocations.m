@@ -11,8 +11,9 @@
 #import "CABLConfig.h"
 
 @interface CABLLocations() {
-    NSDictionary *_cityData;
-    NSArray *_cityNames;
+    NSDictionary *_locationData;
+    NSDictionary *_locationsByCity;
+    NSArray *_regionNames;
 }
 @end
 
@@ -28,23 +29,27 @@
         NSDictionary *domainConfig = [NSJSONSerialization JSONObjectWithData:configData
                                                                      options:NSJSONReadingAllowFragments
                                                                        error:&error];
-        _cityData = domainConfig[@"cities"];
+        _locationData = domainConfig[@"regions"];
+        _regionNames  = domainConfig[@"regionSort"];
     }
     return self;
 }
 
--(NSArray *)cityNames
+-(NSArray *)regions
 {
-    if (!_cityNames) {
-        NSMutableArray *names = [[NSMutableArray alloc] init];
-        [_cityData enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSArray *locations, BOOL *stop) {
-            [names addObject:name];
-        }];
-        _cityNames = [names sortedArrayUsingComparator:^NSComparisonResult(NSString *s1, NSString *s2) {
+    return _regionNames;
+}
+
+-(NSArray *)citiesForRegion:(NSString *)regionName
+{
+    NSArray *result;
+    if (regionName) {
+        NSArray *allCityNames = [_locationData[regionName] allKeys];
+        result = [allCityNames sortedArrayUsingComparator:^NSComparisonResult(NSString *s1, NSString *s2) {
             return [s1 compare:s2];
         }];
     }
-    return _cityNames;
+    return result;
 }
 
 /*
@@ -53,7 +58,17 @@
  */
 -(NSArray *)locationsForCity:(NSString *)name
 {
-    return [_cityData[name] copy];
+    if (_locationsByCity == nil) {
+        NSMutableDictionary *results = [[NSMutableDictionary alloc] init];
+        for (NSString *regionName in [_locationData allKeys]) {
+            NSDictionary *allCitiesInRegion = _locationData[regionName];
+            [allCitiesInRegion enumerateKeysAndObjectsUsingBlock:^(NSString *cityName, NSArray *locations, BOOL *stop) {
+                results[cityName] = locations;
+            }];
+        }
+        _locationsByCity = results;
+    }
+    return _locationsByCity[name];
 }
 
 /*

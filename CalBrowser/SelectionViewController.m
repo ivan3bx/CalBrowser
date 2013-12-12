@@ -9,6 +9,7 @@
 #import <SWRevealViewController/SWRevealViewController.h>
 #import "SelectionViewController.h"
 #import "CalendarsViewController.h"
+#import "CABLConfig.h"
 
 @interface SelectionViewController () <SWRevealViewControllerDelegate> {
     NSTimer *timer;
@@ -32,12 +33,13 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"View will appear..");
     [self.currentTimeBtn setEnabled:YES];
-    [self.nextTimeBtn setEnabled:YES];
-
     [self.currentTimeBtn drawCircleButton];
+
+    [self.nextTimeBtn setEnabled:YES];
     [self.nextTimeBtn drawCircleButton];
+    
+    [self.locationNameLabel setText:[CABLConfig sharedInstance].currentCity];
 }
 
 - (void)configureLocationSidebar
@@ -139,11 +141,18 @@
 - (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position
 {
     if (position == FrontViewPositionRight) {
+        //
+        // This view will slide out
+        //
         [self.currentTimeBtn setEnabled:NO];
         [self.nextTimeBtn setEnabled:NO];
     } else {
+        //
+        // This view will slide back in
+        //
         [self.currentTimeBtn setEnabled:YES];
         [self.nextTimeBtn setEnabled:YES];
+        [self.locationNameLabel setText:[CABLConfig sharedInstance].currentCity];
     }
 }
 

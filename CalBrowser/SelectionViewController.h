@@ -11,6 +11,7 @@
 #import "CurrentTimeView.h"
 
 @interface SelectionViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *locationNameLabel;
 @property (weak, nonatomic) IBOutlet ClockButton *currentTimeBtn;
 @property (weak, nonatomic) IBOutlet ClockButton *nextTimeBtn;
 @property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;

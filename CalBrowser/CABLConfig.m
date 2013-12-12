@@ -8,9 +8,13 @@
 
 #import "CABLConfig.h"
 
-NSString *const  kDefaultAccount  = @"OAuthCredentials";
-NSString *const  kAppsDomainKey   = @"GoogleAppsDomainKey";
-NSString *const  kDatabasePathKey = @"CABLDatabasePath";
+NSString *const  kDefaultAccount      = @"OAuthCredentials";
+NSString *const  kDefaultRegionName   = @"DefaultRegionName";
+NSString *const  kDefaultCityName     = @"DefaultCityName";
+NSString *const  kDefaultLocationName = @"DefaultLocationName";
+NSString *const  kDefaultFloorNumber  = @"DefaultFloorNumber";
+NSString *const  kAppsDomainKey       = @"GoogleAppsDomainKey";
+NSString *const  kDatabasePathKey     = @"CABLDatabasePath";
 NSUInteger const kMeetingLengthInMinutes = 30;
 /*
  * Paths and important configuration values
@@ -43,8 +47,9 @@ CABLConfig *INSTANCE;
     self = [super init];
     if (self) {
         prefs = [NSUserDefaults standardUserDefaults];
-        [prefs registerDefaults:@{kDefaultAccount : @"",
-                                  kDatabasePathKey : [NSString stringWithFormat:kDatabaseFilePath, NSHomeDirectory()]
+        [prefs registerDefaults:@{kDefaultAccount  : @"",
+                                  kDatabasePathKey : [NSString stringWithFormat:kDatabaseFilePath, NSHomeDirectory()],
+                                  kDefaultCityName : @"Chicago" // Chicago.. always Chicago..
                                   }
          ];
     }
@@ -71,6 +76,48 @@ CABLConfig *INSTANCE;
 {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:account];
     [prefs setObject:data forKey:kDefaultAccount];
+}
+
+- (NSString *)currentRegion
+{
+    return [prefs stringForKey:kDefaultRegionName];
+}
+
+- (void)setCurrentRegion:(NSString *)currentRegion
+{
+    [prefs setObject:currentRegion forKey:kDefaultRegionName];
+}
+
+- (NSString *)currentCity
+{
+    NSLog(@"** GET current city: %@", [prefs stringForKey:kDefaultCityName]);
+    return [prefs stringForKey:kDefaultCityName];
+}
+
+- (void)setCurrentCity:(NSString *)currentCity
+{
+    NSLog(@"** SET current city: %@", currentCity);
+    [prefs setObject:currentCity forKey:kDefaultCityName];
+}
+
+- (NSString *)currentLocation
+{
+    return [prefs stringForKey:kDefaultLocationName];
+}
+
+- (void)setCurrentLocation:(NSString *)currentLocation
+{
+    [prefs setObject:currentLocation forKey:kDefaultLocationName];
+}
+
+- (NSNumber *)currentFloor
+{
+    return [prefs objectForKey:kDefaultFloorNumber];
+}
+
+- (void)setCurrentFloor:(NSNumber *)currentFloor
+{
+    [prefs setObject:currentFloor forKey:kDefaultFloorNumber];
 }
 
 - (NSString *)databasePath

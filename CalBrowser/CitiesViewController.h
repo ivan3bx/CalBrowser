@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "CABLLocations.h"
 
-@interface LocationsControllerViewController : UITableViewController
+@interface CitiesViewController : UITableViewController
 @property (nonatomic,readonly) CABLLocations *locations;
 @end
