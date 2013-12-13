@@ -8,6 +8,7 @@
 
 #import "RootNavigationController.h"
 #import "CABLConfig.h"
+#import "CABLResourceList.h"
 
 @interface RootNavigationController () {
     NSTimer *refreshTimer;
@@ -124,9 +125,16 @@
                         [self registerRefreshAccessToken];
                         
                         //
-                        // Dismiss the auth controller
+                        // Load the list of locations before dismissing
                         //
-                        [self dismissViewControllerAnimated:YES completion:nil];
+                        [CABLResourceList loadResourceList:^(NSArray *resources) {
+                            NSLog(@"Loaded resources");
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                        } error:^(NSError *error) {
+                            NSLog(@"Error loading resources");
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                        }];
+                         
                     }];
 }
 
