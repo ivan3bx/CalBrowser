@@ -11,8 +11,8 @@
 #import "CABLConfig.h"
 
 
-typedef void(^SuccessHandler)(NSArray *);
-typedef void(^ErrorHandler)(NSError *);
+typedef void(^SuccessHandler)(NSArray *resources);
+typedef void(^ErrorHandler)(NSError *error);
 
 @interface CABLResourceList() <NSXMLParserDelegate> {
     NSMutableArray *_entries;
