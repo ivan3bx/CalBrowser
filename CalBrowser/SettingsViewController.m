@@ -31,14 +31,14 @@
     NSString *loc = _config.currentLocation;
     NSNumber *floor = _config.currentFloor;
     
-    if ([_locations locationsForCity:city].count == 1) {
+    if ([_locations floorNumbersForLocation:loc].count == 1) {
         //
-        // Simple city has one location
+        // Simple location has one floor
         //
-        self.locationLabel.text = city;
+        self.locationLabel.text = [NSString stringWithFormat:@"%@ - (%@)", city, loc];
     } else {
         //
-        // Not so simple ; specify the location
+        // Not so simple ; specify the floor
         //
         self.locationLabel.text = [NSString stringWithFormat:@"%@ - (%@-%@)", city, loc, floor];
     }

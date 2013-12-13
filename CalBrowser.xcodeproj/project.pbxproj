@@ -17,6 +17,7 @@
 		2C4460411855A810001FFA74 /* CABLLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4460401855A810001FFA74 /* CABLLocations.m */; };
 		2C5BDF50184D905800C02B37 /* CABLResourceListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5BDF4F184D905800C02B37 /* CABLResourceListTest.m */; };
 		2C5BDF52184D94CE00C02B37 /* resource_input.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2C5BDF51184D94CE00C02B37 /* resource_input.xml */; };
+		2C700AEE185B8ACD0042424A /* CABLMeeting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C700AED185B8ACD0042424A /* CABLMeeting.m */; };
 		2C8D22D318482D0800F089B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8D22D218482D0800F089B9 /* Foundation.framework */; };
 		2C8D22D518482D0800F089B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8D22D418482D0800F089B9 /* CoreGraphics.framework */; };
 		2C8D22D718482D0800F089B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8D22D618482D0800F089B9 /* UIKit.framework */; };
@@ -87,6 +88,8 @@
 		2C4460401855A810001FFA74 /* CABLLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CABLLocations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2C5BDF4F184D905800C02B37 /* CABLResourceListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CABLResourceListTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2C5BDF51184D94CE00C02B37 /* resource_input.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = resource_input.xml; sourceTree = "<group>"; };
+		2C700AEC185B8ACD0042424A /* CABLMeeting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABLMeeting.h; sourceTree = "<group>"; };
+		2C700AED185B8ACD0042424A /* CABLMeeting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CABLMeeting.m; sourceTree = "<group>"; };
 		2C8D22CF18482D0800F089B9 /* CalBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8D22D218482D0800F089B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C8D22D418482D0800F089B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -166,6 +169,8 @@
 				2C8D2400184C0C0A00F089B9 /* CABLConfig.h */,
 				2C8D2401184C0C0A00F089B9 /* CABLConfig.m */,
 				2C8D2409184C715E00F089B9 /* CABLResourceList.h */,
+				2C700AEC185B8ACD0042424A /* CABLMeeting.h */,
+				2C700AED185B8ACD0042424A /* CABLMeeting.m */,
 				2C8D240A184C715E00F089B9 /* CABLResourceList.m */,
 				2CF2E11B184DABF3001C5835 /* CABLResource.h */,
 				2CF2E11C184DABF3001C5835 /* CABLResource.m */,
@@ -462,6 +467,7 @@
 				2C4460411855A810001FFA74 /* CABLLocations.m in Sources */,
 				2C8D22E318482D0800F089B9 /* AppDelegate.m in Sources */,
 				2C44603B18557186001FFA74 /* CABLFreeList.m in Sources */,
+				2C700AEE185B8ACD0042424A /* CABLMeeting.m in Sources */,
 				2C0EE0D91859B3A3005773CF /* FloorsViewController.m in Sources */,
 				2C8D23B2184AA43400F089B9 /* AuthViewController.m in Sources */,
 				2C8D2405184C4C3400F089B9 /* CalendarsViewController.m in Sources */,

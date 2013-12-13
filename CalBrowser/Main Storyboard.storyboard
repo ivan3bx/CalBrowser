@@ -139,7 +139,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="B9E-dO-6cL" kind="push" trigger="accessoryAction" id="XYX-gv-l9a"/>
+                                    <segue destination="B9E-dO-6cL" kind="push" id="jLE-77-GaK"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

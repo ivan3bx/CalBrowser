@@ -12,7 +12,9 @@
 #import "CABLResource.h"
 #import "CABLConfig.h"
 
-@interface CitiesViewController ()
+@interface CitiesViewController () {
+    CABLConfig *_config;
+}
 
 @end
 
@@ -21,6 +23,7 @@
 - (void)awakeFromNib
 {
     _locations = [[CABLLocations alloc] init];
+    _config = [CABLConfig sharedInstance];
 }
 
 - (void)viewDidLoad
@@ -35,16 +38,11 @@
     //
     // Select the current city
     //
-    NSString *regionName = [CABLConfig sharedInstance].currentRegion;
-    NSString *cityName   = [CABLConfig sharedInstance].currentCity;
+    NSString *regionName = _config.currentRegion;
+    NSString *cityName   = _config.currentCity;
     NSIndexPath *path = [NSIndexPath indexPathForRow:[[self.locations citiesForRegion:regionName] indexOfObject:cityName]
                                            inSection:[[self.locations regions] indexOfObject:regionName]];
     [self.tableView selectRowAtIndexPath:path animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-}
-
-- (NSString *)cityNameForRegion:(NSString *)region atIndex:(NSUInteger)index
-{
-    return [self.locations citiesForRegion:region][index];
 }
 
 #pragma mark -
@@ -70,19 +68,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"Cell";
-
-    NSString *region = self.locations.regions[indexPath.section];
-    NSString *cityName = [self cityNameForRegion:region
-                                         atIndex:indexPath.row];
-    BOOL isMultiLocation = [self.locations locationsForCity:cityName].count > 1;
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier
                                                             forIndexPath:indexPath];
+
+    NSString *cityName = [self cityForIndexPath:indexPath];
     cell.textLabel.text = cityName;
 
-    if (isMultiLocation) {
-        NSString *value =  [NSString stringWithFormat:@"%i locations",
-                            [self.locations locationsForCity:cityName].count];
+    if ([self isMultiLocationForPath:indexPath]) {
+        NSString *value =  [NSString stringWithFormat:@"%lu locations",
+                            (unsigned long)[self.locations locationsForCity:cityName].count];
         cell.detailTextLabel.text = value;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {
@@ -95,23 +89,16 @@
 #pragma mark -
 #pragma mark UITableViewDelegate methods
 #pragma mark -
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-}
 
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *region = self.locations.regions[indexPath.section];
-    NSString *cityName = [self cityNameForRegion:region atIndex:indexPath.row];
-    [[CABLConfig sharedInstance] setCurrentCity:cityName];
-    
-    if ([self isMultiLocation:[tableView cellForRowAtIndexPath:indexPath]]) {
-        [[CABLConfig sharedInstance] setCurrentLocation:@"UNDEFINED"]; // We will segue to location selector
-        [[CABLConfig sharedInstance] setCurrentFloor:nil];
-    } else {
-        [[CABLConfig sharedInstance] setCurrentLocation:[[self.locations locationsForCity:cityName] firstObject]];
-        [[CABLConfig sharedInstance] setCurrentFloor:nil];
-    }
+    NSString *cityName        = [self cityForIndexPath:indexPath];
+    NSString *defaultLocation = [self locationsForIndexPath:indexPath].firstObject;
+
+    _config.currentCity       = cityName;
+    _config.currentLocation   = defaultLocation;
+    _config.currentFloor      = nil;
+
     return indexPath;
 }
 
@@ -121,21 +108,48 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(UITableViewCell *)sender
 {
-    if ([self isMultiLocation:sender]) {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    if ([self isMultiLocationForPath:indexPath] || [self isMultiFloorSingleLocationForPath:indexPath]) {
+        //
+        // Do we need to proceed forward?
+        //
         return YES;
     } else {
-        // Presume we have one location and should use it
+        //
+        // Presume we have one location and floor, and we should use it
+        //
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         return NO;
     }
 }
 
--(BOOL)isMultiLocation:(UITableViewCell *)cell
-{
-    NSString *region = self.locations.regions[[self.tableView indexPathForCell:cell].section];
-    NSString *cityName = [self cityNameForRegion:region
-                                         atIndex:[self.tableView indexPathForCell:cell].row];
-    return [self.locations locationsForCity:cityName].count > 1;
 
+-(BOOL)isMultiLocationForPath:(NSIndexPath *)indexPath
+{
+    return [self locationsForIndexPath:indexPath].count > 1;
 }
+
+-(BOOL)isMultiFloorSingleLocationForPath:(NSIndexPath *)indexPath
+{
+    NSArray *locations = [self locationsForIndexPath:indexPath];
+    NSArray *firstLocationFloors = [self.locations floorNumbersForLocation:locations.firstObject];
+
+    return locations.count == 1 && firstLocationFloors.count > 1;
+}
+
+-(NSString *)regionForIndexPath:(NSIndexPath *)indexPath
+{
+    return self.locations.regions[indexPath.section];
+}
+
+-(NSString *)cityForIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.locations citiesForRegion:[self regionForIndexPath:indexPath]][indexPath.row];
+}
+
+-(NSArray *)locationsForIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.locations locationsForCity:[self cityForIndexPath:indexPath]];
+}
+
 @end

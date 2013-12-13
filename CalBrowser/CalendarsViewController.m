@@ -13,7 +13,10 @@
 #import "CABLResource.h"
 #import "CABLFreeList.h"
 
-@interface CalendarsViewController ()
+@interface CalendarsViewController () {
+    CABLConfig *_config;
+}
+
 @property(nonatomic,readwrite) NSArray *rooms;
 @property(nonatomic,readwrite) NSDate *startTime;
 @property(nonatomic,readwrite) NSDate *endTime;
@@ -22,9 +25,27 @@
 
 @implementation CalendarsViewController
 
+-(void)viewDidLoad
+{
+    _config = [CABLConfig sharedInstance];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
+    //
+    // Set the title
+    //
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.dateFormat = @"h:mm";
+    
+    NSString *title = [NSString stringWithFormat:@"%@-%@",
+                       [format stringFromDate:self.startTime],
+                       [format stringFromDate:self.endTime]];
+    self.navigationItem.title = title;
+    
+    //
     // Start loading list of available rooms
+    //
     CABLFreeList *freeList = [[CABLFreeList alloc] initWithRange:self.startTime
                                                           ending:self.endTime];
     [freeList load:^(CABLFreeList *freeList) {
@@ -32,7 +53,7 @@
         // Block responds to an instance with data
         //
         self.rooms = freeList.freeResources;
-        [(UITableView *)self.view reloadData];
+        [self.tableView reloadData];
     } error:^(NSError *error) {
         //
         // Handle network or data errors
@@ -69,8 +90,9 @@
     CABLResource *entry = self.rooms[indexPath.row];
     
     // Strip out the location
-    NSString *loc = [CABLConfig sharedInstance].currentLocation;
-    cell.textLabel.text = [entry.name substringFromIndex:[entry.name rangeOfString:loc].length + 1];
+    NSString *loc = [NSString stringWithFormat:@"%@-", _config.currentLocation];
+    NSRange range = [entry.name rangeOfString:loc];
+    cell.textLabel.text = [entry.name substringFromIndex:range.length];
     return cell;
 }
 

@@ -90,13 +90,11 @@ CABLConfig *INSTANCE;
 
 - (NSString *)currentCity
 {
-    NSLog(@"** GET current city: %@", [prefs stringForKey:kDefaultCityName]);
     return [prefs stringForKey:kDefaultCityName];
 }
 
 - (void)setCurrentCity:(NSString *)currentCity
 {
-    NSLog(@"** SET current city: %@", currentCity);
     [prefs setObject:currentCity forKey:kDefaultCityName];
 }
 

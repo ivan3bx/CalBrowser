@@ -127,9 +127,8 @@ typedef void(^ErrorHandler)(NSError *error);
                                @"message"    : @"Calendar resource list failed to load any data"};
         if (self.errorHandler) {
             self.errorHandler([NSError errorWithDomain:@"CalBrowser" code:1 userInfo:dict]);
-        } else {
-            NSLog(@"%@", dict);
         }
+        [connection cancel];
     }
 }
 

@@ -55,7 +55,7 @@
     // Because we're taking over whatever was configured in the storyboard,
     // This needs to allocate the backbar button & its title.
     UINavigationItem *currentItem = [[UINavigationItem alloc] initWithTitle:self.navigationItem.title];
-    currentItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Set Time"
+    currentItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Meeting"
                                                                      style:UIBarButtonItemStyleBordered
                                                                     target:self.navigationController
                                                                     action:@selector(popViewControllerAnimated:)];
