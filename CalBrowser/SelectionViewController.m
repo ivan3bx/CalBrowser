@@ -90,7 +90,7 @@
     if (sender == self.currentTimeBtn) {
         [dest setMeetingStartAt:self.currentTimeBtn.selectedDate];
     } else if (sender == self.nextTimeBtn) {
-        [dest setMeetingStartAt:self.currentTimeBtn.selectedDate];
+        [dest setMeetingStartAt:self.nextTimeBtn.selectedDate];
     }
 }
 
