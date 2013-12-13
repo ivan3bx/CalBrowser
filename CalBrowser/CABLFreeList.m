@@ -187,9 +187,11 @@ typedef void(^ErrorHandler)(NSError *error);
         [results enumerateKeysAndObjectsUsingBlock:^(NSString     *resourceEmail,
                                                      NSDictionary *resourceAvailability,
                                                      BOOL         *stop) {
-            NSArray *busyBlocks = resourceAvailability[@"busy"];
+
+            NSArray *busyBlocks   = resourceAvailability[@"busy"];
+            NSArray *errorEntries = resourceAvailability[@"errors"];
             
-            if (busyBlocks.count == 0) {
+            if (errorEntries.count == 0 && busyBlocks.count == 0) {
                 //
                 // Absence of entries in this array == not booked, and therefore 'free'
                 //
