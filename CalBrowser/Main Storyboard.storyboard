@@ -250,7 +250,7 @@
             </objects>
             <point key="canvasLocation" x="647" y="1574"/>
         </scene>
-        <!--Floors View Controller-->
+        <!--Floors View Controller - Floor-->
         <scene sceneID="Pxv-Sb-GGj">
             <objects>
                 <tableViewController id="t23-BF-L6w" customClass="FloorsViewController" sceneMemberID="viewController">
@@ -273,7 +273,7 @@
                             <outlet property="delegate" destination="t23-BF-L6w" id="dR9-Py-x5g"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="UZg-ks-HgO"/>
+                    <navigationItem key="navigationItem" title="Floor" id="UZg-ks-HgO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBh-ye-nmr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
