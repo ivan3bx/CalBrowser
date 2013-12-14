@@ -33,10 +33,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.currentTimeBtn setEnabled:YES];
     [self.currentTimeBtn drawCircleButton];
-
-    [self.nextTimeBtn setEnabled:YES];
     [self.nextTimeBtn drawCircleButton];
     
     [self.locationNameLabel setText:[CABLConfig sharedInstance].currentCity];
