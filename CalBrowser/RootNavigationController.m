@@ -8,7 +8,7 @@
 
 #import "RootNavigationController.h"
 #import "CABLConfig.h"
-#import "CABLResourceList.h"
+#import "CABLResourceLoader.h"
 
 @interface RootNavigationController () {
     NSTimer *refreshTimer;
@@ -127,7 +127,8 @@
                         //
                         // Load the list of locations before dismissing
                         //
-                        [CABLResourceList loadResourceList:^(NSArray *resources) {
+                        CABLResourceLoader *loader = [[CABLResourceLoader alloc] init];
+                        [loader loadResources:^(NSArray *resources) {
                             NSLog(@"Loaded resources");
                             [self dismissViewControllerAnimated:YES completion:nil];
                         } error:^(NSError *error) {

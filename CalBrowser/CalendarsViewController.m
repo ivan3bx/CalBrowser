@@ -9,7 +9,7 @@
 #import "CalendarsViewController.h"
 #import "CABLConfig.h"
 #import "NXOAuth2.h"
-#import "CABLResourceList.h"
+#import "CABLResourceLoader.h"
 #import "CABLResource.h"
 #import "CABLFreeList.h"
 

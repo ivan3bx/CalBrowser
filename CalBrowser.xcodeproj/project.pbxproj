@@ -15,9 +15,10 @@
 		2C44603B18557186001FFA74 /* CABLFreeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C44603A18557186001FFA74 /* CABLFreeList.m */; };
 		2C44603E1855A5B8001FFA74 /* CitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C44603D1855A5B8001FFA74 /* CitiesViewController.m */; };
 		2C4460411855A810001FFA74 /* CABLLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4460401855A810001FFA74 /* CABLLocations.m */; };
-		2C5BDF50184D905800C02B37 /* CABLResourceListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5BDF4F184D905800C02B37 /* CABLResourceListTest.m */; };
+		2C5BDF50184D905800C02B37 /* CABLResourceLoaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5BDF4F184D905800C02B37 /* CABLResourceLoaderTest.m */; };
 		2C5BDF52184D94CE00C02B37 /* resource_input.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2C5BDF51184D94CE00C02B37 /* resource_input.xml */; };
 		2C700AEE185B8ACD0042424A /* CABLMeeting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C700AED185B8ACD0042424A /* CABLMeeting.m */; };
+		2C700AF1185CDB2A0042424A /* CABLResourceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C700AF0185CDB2A0042424A /* CABLResourceParser.m */; };
 		2C8D22D318482D0800F089B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8D22D218482D0800F089B9 /* Foundation.framework */; };
 		2C8D22D518482D0800F089B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8D22D418482D0800F089B9 /* CoreGraphics.framework */; };
 		2C8D22D718482D0800F089B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8D22D618482D0800F089B9 /* UIKit.framework */; };
@@ -37,7 +38,7 @@
 		2C8D2402184C0C0A00F089B9 /* CABLConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D2401184C0C0A00F089B9 /* CABLConfig.m */; };
 		2C8D2405184C4C3400F089B9 /* CalendarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D2404184C4C3400F089B9 /* CalendarsViewController.m */; };
 		2C8D2408184C6B0600F089B9 /* apps-domain.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D2407184C6B0600F089B9 /* apps-domain.json */; };
-		2C8D240B184C715E00F089B9 /* CABLResourceList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D240A184C715E00F089B9 /* CABLResourceList.m */; };
+		2C8D240B184C715E00F089B9 /* CABLResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D240A184C715E00F089B9 /* CABLResourceLoader.m */; };
 		2CA0481E1852EC2400BC95C4 /* SelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA0481D1852EC2400BC95C4 /* SelectionViewController.m */; };
 		2CA048211852EEC900BC95C4 /* ClockButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA048201852EEC900BC95C4 /* ClockButton.m */; };
 		2CA048241853021400BC95C4 /* CurrentTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA048231853021400BC95C4 /* CurrentTimeView.m */; };
@@ -86,10 +87,12 @@
 		2C44603D1855A5B8001FFA74 /* CitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CitiesViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2C44603F1855A810001FFA74 /* CABLLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CABLLocations.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2C4460401855A810001FFA74 /* CABLLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CABLLocations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		2C5BDF4F184D905800C02B37 /* CABLResourceListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CABLResourceListTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C5BDF4F184D905800C02B37 /* CABLResourceLoaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CABLResourceLoaderTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2C5BDF51184D94CE00C02B37 /* resource_input.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = resource_input.xml; sourceTree = "<group>"; };
 		2C700AEC185B8ACD0042424A /* CABLMeeting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABLMeeting.h; sourceTree = "<group>"; };
 		2C700AED185B8ACD0042424A /* CABLMeeting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CABLMeeting.m; sourceTree = "<group>"; };
+		2C700AEF185CDB2A0042424A /* CABLResourceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABLResourceParser.h; sourceTree = "<group>"; };
+		2C700AF0185CDB2A0042424A /* CABLResourceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CABLResourceParser.m; sourceTree = "<group>"; };
 		2C8D22CF18482D0800F089B9 /* CalBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8D22D218482D0800F089B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C8D22D418482D0800F089B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -117,8 +120,8 @@
 		2C8D2403184C4C3400F089B9 /* CalendarsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CalendarsViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2C8D2404184C4C3400F089B9 /* CalendarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CalendarsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2C8D2407184C6B0600F089B9 /* apps-domain.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "apps-domain.json"; sourceTree = "<group>"; };
-		2C8D2409184C715E00F089B9 /* CABLResourceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CABLResourceList.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		2C8D240A184C715E00F089B9 /* CABLResourceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CABLResourceList.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C8D2409184C715E00F089B9 /* CABLResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CABLResourceLoader.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C8D240A184C715E00F089B9 /* CABLResourceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CABLResourceLoader.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2CA0481C1852EC2400BC95C4 /* SelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SelectionViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2CA0481D1852EC2400BC95C4 /* SelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SelectionViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2CA0481F1852EEC900BC95C4 /* ClockButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ClockButton.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -168,16 +171,18 @@
 			children = (
 				2C8D2400184C0C0A00F089B9 /* CABLConfig.h */,
 				2C8D2401184C0C0A00F089B9 /* CABLConfig.m */,
-				2C8D2409184C715E00F089B9 /* CABLResourceList.h */,
 				2C700AEC185B8ACD0042424A /* CABLMeeting.h */,
 				2C700AED185B8ACD0042424A /* CABLMeeting.m */,
-				2C8D240A184C715E00F089B9 /* CABLResourceList.m */,
 				2CF2E11B184DABF3001C5835 /* CABLResource.h */,
 				2CF2E11C184DABF3001C5835 /* CABLResource.m */,
 				2C44603918557186001FFA74 /* CABLFreeList.h */,
 				2C44603A18557186001FFA74 /* CABLFreeList.m */,
 				2C44603F1855A810001FFA74 /* CABLLocations.h */,
 				2C4460401855A810001FFA74 /* CABLLocations.m */,
+				2C8D2409184C715E00F089B9 /* CABLResourceLoader.h */,
+				2C8D240A184C715E00F089B9 /* CABLResourceLoader.m */,
+				2C700AEF185CDB2A0042424A /* CABLResourceParser.h */,
+				2C700AF0185CDB2A0042424A /* CABLResourceParser.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -280,7 +285,7 @@
 			children = (
 				2C8D22F218482D0900F089B9 /* Supporting Files */,
 				2C5BDF51184D94CE00C02B37 /* resource_input.xml */,
-				2C5BDF4F184D905800C02B37 /* CABLResourceListTest.m */,
+				2C5BDF4F184D905800C02B37 /* CABLResourceLoaderTest.m */,
 				2CF2E11E184DBAF0001C5835 /* CABLResourceTest.m */,
 				2C2776A81854511E00D063FE /* ClockButtonTest.m */,
 			);
@@ -468,6 +473,7 @@
 				2C8D22E318482D0800F089B9 /* AppDelegate.m in Sources */,
 				2C44603B18557186001FFA74 /* CABLFreeList.m in Sources */,
 				2C700AEE185B8ACD0042424A /* CABLMeeting.m in Sources */,
+				2C700AF1185CDB2A0042424A /* CABLResourceParser.m in Sources */,
 				2C0EE0D91859B3A3005773CF /* FloorsViewController.m in Sources */,
 				2C8D23B2184AA43400F089B9 /* AuthViewController.m in Sources */,
 				2C8D2405184C4C3400F089B9 /* CalendarsViewController.m in Sources */,
@@ -479,7 +485,7 @@
 				2C0EE0D01859899D005773CF /* LocationsViewController.m in Sources */,
 				2CA048241853021400BC95C4 /* CurrentTimeView.m in Sources */,
 				2C8D2402184C0C0A00F089B9 /* CABLConfig.m in Sources */,
-				2C8D240B184C715E00F089B9 /* CABLResourceList.m in Sources */,
+				2C8D240B184C715E00F089B9 /* CABLResourceLoader.m in Sources */,
 				2C8D23FE184C0ABE00F089B9 /* RootNavigationController.m in Sources */,
 				2CA048211852EEC900BC95C4 /* ClockButton.m in Sources */,
 			);
@@ -490,7 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C2776A91854511E00D063FE /* ClockButtonTest.m in Sources */,
-				2C5BDF50184D905800C02B37 /* CABLResourceListTest.m in Sources */,
+				2C5BDF50184D905800C02B37 /* CABLResourceLoaderTest.m in Sources */,
 				2CF2E11F184DBAF0001C5835 /* CABLResourceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

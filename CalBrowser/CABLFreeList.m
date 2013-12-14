@@ -9,7 +9,7 @@
 #import <NXOAuth2.h>
 #import "CABLConfig.h"
 #import "CABLFreeList.h"
-#import "CABLResourceList.h"
+#import "CABLResourceLoader.h"
 #import "CABLResource.h"
 
 typedef void(^SuccessHandler)(CABLFreeList *freeList);
@@ -47,7 +47,8 @@ typedef void(^ErrorHandler)(NSError *error);
     //
     // First let's make sure resources have been loaded
     //
-    [CABLResourceList loadResourceList:^(NSArray *data) {
+    CABLResourceLoader *loader = [[CABLResourceLoader alloc] init];
+    [loader loadResources:^(NSArray *data) {
         //
         // Load a new request for free/busy
         //
