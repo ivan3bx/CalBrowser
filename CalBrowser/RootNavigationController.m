@@ -9,6 +9,7 @@
 #import "RootNavigationController.h"
 #import "CABLConfig.h"
 #import "CABLResourceLoader.h"
+#import "CABLUser.h"
 
 @interface RootNavigationController () {
     NSTimer *refreshTimer;
@@ -28,9 +29,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NXOAuth2Account *account = [[CABLConfig sharedInstance] currentAccount];
+    CABLUser *user = [CABLConfig sharedInstance].currentAccount;
     
-    if (account == nil) {
+    if (user == nil) {
         [self forceAuthentication];
     }
 
@@ -44,28 +45,20 @@
 
 - (void)timerRefreshAccessToken:(NSTimer *)timer
 {
-    NXOAuth2Account *account = [CABLConfig sharedInstance].currentAccount;
-    NSURL *url = [NSURL URLWithString:@"https://www.googleapis.com/calendar/v3/users/me/settings/timezone"];
-    
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [NXOAuth2Request performMethod:@"GET"
-                        onResource:url usingParameters:nil
-                       withAccount:account sendProgressHandler:nil
-                   responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
-                       if (error) {
-                           //
-                           // Display the authenticate view
-                           //
-                           [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-                           [self forceAuthentication];
-                       } else {
-                           //
-                           // Update the account & its access token
-                           //
-                           [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-                           [[CABLConfig sharedInstance] setCurrentAccount:account];
-                       }
-                   }];
+    CABLUser *user = [CABLConfig sharedInstance].currentAccount;
+    [user getJSON:@"https://www.googleapis.com/calendar/v3/users/me/settings/timezone"
+       parameters:nil
+        onSuccess:^(NSDictionary *data) {
+            //
+            // Update the account & its access token
+            //
+            [[CABLConfig sharedInstance] setCurrentAccount:user];
+        } onError:^(NSError *error) {
+            //
+            // Display the authenticate view
+            //
+            [self forceAuthentication];
+        }];
 }
 
 -(void)registerRefreshAccessToken
@@ -76,7 +69,7 @@
     //
     [refreshTimer invalidate];
     
-    NXOAuth2Account *account = [[CABLConfig sharedInstance] currentAccount];
+    NXOAuth2Account *account = [[CABLConfig sharedInstance] currentAccount].account;
     if (!account) {
         NSLog(@"Account not registered");
         return;
@@ -115,27 +108,36 @@
                         NXOAuth2Account *account = notification.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
                         
                         //
-                        // Store the account for later
-                        //
-                        [CABLConfig sharedInstance].currentAccount = account;
-                        
-                        //
                         // Register to refresh access token
                         //
                         [self registerRefreshAccessToken];
                         
+                        
                         //
-                        // Load the list of locations before dismissing
+                        // Load the user's data
                         //
-                        CABLResourceLoader *loader = [[CABLResourceLoader alloc] init];
-                        [loader loadResources:^(NSArray *resources) {
-                            NSLog(@"Loaded resources");
-                            [self dismissViewControllerAnimated:YES completion:nil];
-                        } error:^(NSError *error) {
-                            NSLog(@"Error loading resources");
-                            [self dismissViewControllerAnimated:YES completion:nil];
+                        CABLUser *user = [[CABLUser alloc] initWithAccount:account];
+                        [user loadInfo:^(CABLUser *success) {
+                            //
+                            // Save this user
+                            //
+                            [[CABLConfig sharedInstance] setCurrentAccount:user];
+
+                            //
+                            // Load the list of locations before dismissing
+                            //
+                            CABLResourceLoader *loader = [[CABLResourceLoader alloc] init];
+                            [loader loadResources:^(NSArray *resources) {
+                                NSLog(@"Loaded resources");
+                                [self dismissViewControllerAnimated:YES completion:nil];
+                            } error:^(NSError *error) {
+                                NSLog(@"Error loading resources");
+                                [self dismissViewControllerAnimated:YES completion:nil];
+                            }];
+
+                        } onError:^(NSError *error) {
+                            NSLog(@"Error on authentication: %@", error);
                         }];
-                         
                     }];
 }
 

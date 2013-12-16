@@ -19,7 +19,6 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"View loaded!");
     [super viewDidLoad];
     [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:@"Calendar"
                                    withPreparedAuthorizationURLHandler:^(NSURL *preparedURL){

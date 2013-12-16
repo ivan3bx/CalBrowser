@@ -11,12 +11,12 @@
 #import "CABLFreeList.h"
 #import "CABLResourceLoader.h"
 #import "CABLResource.h"
+#import "CABLUser.h"
 
 typedef void(^SuccessHandler)(CABLFreeList *freeList);
 typedef void(^ErrorHandler)(NSError *error);
 
 @interface CABLFreeList() {
-    NSMutableArray *_entries;
     NSMutableData *_data;
 }
 
@@ -45,47 +45,16 @@ typedef void(^ErrorHandler)(NSError *error);
     self.errorHandler = onError;
     
     //
-    // First let's make sure resources have been loaded
+    // Load a new request for free/busy
     //
-    CABLResourceLoader *loader = [[CABLResourceLoader alloc] init];
-    [loader loadResources:^(NSArray *data) {
-        //
-        // Load a new request for free/busy
-        //
-        NSString *location = [CABLConfig sharedInstance].currentLocation;
-        NSNumber *floor = [CABLConfig sharedInstance].currentFloor;
-        
-        NSString *resourceNamePrefix;
-        if ([CABLConfig sharedInstance].currentFloor) {
-            resourceNamePrefix = [NSString stringWithFormat:@"%@-%@", location, floor];
-        } else {
-            resourceNamePrefix = location;
-        }
-        NSLog(@"Searching with prefix: '%@'", resourceNamePrefix);
-        NSArray *resources = [CABLResource findAllByNamePrefix:resourceNamePrefix];
-        if (resources.count == 0) {
-            NSLog(@"WARN: No resources found for prefix: '%@'.", resourceNamePrefix);
-        }
-        
-        NSURL *url;
-        NXOAuth2Request *request;
-        
-        url = [NSURL URLWithString:@"https://www.googleapis.com/calendar/v3/freeBusy"];
-        request =  [[NXOAuth2Request alloc] initWithResource:url
-                                                      method:@"POST"
-                                                  parameters:nil];
-        request.account = [[CABLConfig sharedInstance] currentAccount];
-        [self load:[[request signedURLRequest] mutableCopy] forResources:resources];
-    } error:^(NSError *error) {
-        self.errorHandler(error);
-    }];
+    NSString *resourceNamePrefix = [self resolveResourcePrefix];
+    NSArray *resources = [CABLResource findAllByNamePrefix:resourceNamePrefix];
+    [self load:@"https://www.googleapis.com/calendar/v3/freeBusy" forResources:resources];
 }
 
--(void)load:(NSMutableURLRequest *)urlRequest forResources:(NSArray *)resources
+-(void)load:(NSString *)urlString forResources:(NSArray *)resources
 {
-    NSDictionary *dict;
     NSDateFormatter *format;
-    
     format = [[NSDateFormatter alloc] init];
     format.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
     
@@ -96,112 +65,54 @@ typedef void(^ErrorHandler)(NSError *error);
     for (CABLResource *resource in resources) {
         [items addObject:@{@"id" : resource.email}];
     }
-
-    //
-    // Construct the body itself
-    //
-    dict = @{@"timeMin"              : [format stringFromDate:self.startTime],
-             @"timeMax"              : [format stringFromDate:self.endTime],
-             @"timeZone"             : [[NSTimeZone systemTimeZone] name],
-             @"calendarExpansionMax" : @80,
-             @"items"                : items };
-
-    //    dict = @{@"timeMin"            : @"2013-12-09T16:30:00-06:00",
-    //           @"timeMax"              : @"2013-12-09T17:00:00-06:00",
-    //           @"timeZone"             : [[NSTimeZone systemTimeZone] name],
-    //           @"calendarExpansionMax" : @80,
-    //           @"items"                : items };
     
-    //
-    // Encode body as JSON and connect
-    //
-    NSError *error;
-    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];
-    if (!error) {
-        [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [urlRequest setHTTPBody:bodyData];
+    CABLUser *user = [CABLConfig sharedInstance].currentAccount;
+    
+    [user postJSON:urlString
+              body:@{@"timeMin"              : [format stringFromDate:self.startTime],
+                     @"timeMax"              : [format stringFromDate:self.endTime],
+                     @"timeZone"             : [[NSTimeZone systemTimeZone] name],
+                     @"calendarExpansionMax" : @80,
+                     @"items"                : items}
+         onSuccess:^(NSDictionary *data) {
+             //
+             // Process results!
+             //
+             _freeResources = [[NSMutableArray alloc] init];
 
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-        [NSURLConnection connectionWithRequest:urlRequest delegate:self];
+             data = data[@"calendars"];
+             [data enumerateKeysAndObjectsUsingBlock:^(NSString     *resourceEmail,
+                                                       NSDictionary *resourceAvailability,
+                                                       BOOL         *stop) {
+                 NSArray *busyBlocks   = resourceAvailability[@"busy"];
+                 NSArray *errorEntries = resourceAvailability[@"errors"];
+                 
+                 if (errorEntries.count == 0 && busyBlocks.count == 0) {
+                     //
+                     // Absence of entries in this array == not booked, and therefore 'free'
+                     //
+                     [(NSMutableArray *)_freeResources addObject:[CABLResource findByEmail:resourceEmail]];
+                 }
+             }];
+             self.successHandler(self);
+         } onError:^(NSError *error) {
+             self.errorHandler(error);
+         }];
+}
+
+-(NSString *)resolveResourcePrefix
+{
+    NSString *location = [CABLConfig sharedInstance].currentLocation;
+    NSNumber *floor = [CABLConfig sharedInstance].currentFloor;
+    
+    NSString *result;
+    if ([CABLConfig sharedInstance].currentFloor) {
+        result = [NSString stringWithFormat:@"%@-%@", location, floor];
     } else {
-        [NSException raise:NSGenericException format:@"Invalid POST data [%@]", error.userInfo];
+        result = location;
     }
-}
-
--(NSArray *)freeResources
-{
-    return [_entries copy];
-}
-
-#pragma mark -
-#pragma mark NSURLConnectionDelegate methods
-#pragma mark -
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
-{
-    if (response.statusCode != 200) {
-        NSDictionary *dict = @{@"statusCode" : [NSNumber numberWithInt:(int)response.statusCode],
-                               @"message"    : @"Free List failed to load any data"};
-        if (self.errorHandler) {
-            self.errorHandler([NSError errorWithDomain:@"CalBrowser" code:1 userInfo:dict]);
-        } else {
-            NSLog(@"%@", dict);
-        }
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    if (_data == nil) {
-        _data = [NSMutableData dataWithData:data];
-    } else {
-        [_data appendData:data];
-    }
-}
-
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-
-    // Parse _data
-    NSError *error;
-    NSDictionary *results = [NSJSONSerialization JSONObjectWithData:_data
-                                                            options:NSJSONReadingAllowFragments
-                                                              error:&error][@"calendars"];
-    if (error) {
-        //
-        // Handle the error
-        //
-        self.errorHandler(error);
-    } else if (results == nil) {
-        //
-        // Empty data?
-        //
-        NSLog(@"FreeList returned empty calendar data. %@", [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding]);
-        self.successHandler(self);
-    } else {
-        //
-        // Process results!
-        //
-        _entries = [[NSMutableArray alloc] init];
-        [results enumerateKeysAndObjectsUsingBlock:^(NSString     *resourceEmail,
-                                                     NSDictionary *resourceAvailability,
-                                                     BOOL         *stop) {
-
-            NSArray *busyBlocks   = resourceAvailability[@"busy"];
-            NSArray *errorEntries = resourceAvailability[@"errors"];
-            
-            if (errorEntries.count == 0 && busyBlocks.count == 0) {
-                //
-                // Absence of entries in this array == not booked, and therefore 'free'
-                //
-                [_entries addObject:[CABLResource findByEmail:resourceEmail]];
-            }
-        }];
-        
-        self.successHandler(self);
-    }
+    NSLog(@"Searching with prefix: '%@'", result);
+    return result;
 }
 
 @end

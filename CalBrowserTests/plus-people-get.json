@@ -1,0 +1,24 @@
+{
+    "displayName": "",
+    "domain": "example.com",
+    "emails": [
+               {
+               "type": "account",
+               "value": "foo@example.com"
+               }
+               ],
+    "etag": "\"z42GBODeSfK773webqCuJQuYEu0/mRSYBarKHsdN5721afV1RSXYPag\"",
+    "id": "7777776",
+    "image": {
+        "url": "https://someURL/photo.jpg?sz=50"
+    },
+    "isPlusUser": false,
+    "kind": "plus#person",
+    "language": "en",
+    "name": {
+        "familyName": "Smith",
+        "givenName": "Bob"
+    },
+    "objectType": "person",
+    "verified": false
+}

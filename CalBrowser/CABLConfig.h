@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NXOAuth2.h"
+#import "CABLUser.h"
 
 /*
  * User defaults
@@ -21,7 +21,7 @@ extern NSUInteger const kMeetingLengthInMinutes;
 
 +(CABLConfig *)sharedInstance;
 
-@property(nonatomic, readwrite) NXOAuth2Account *currentAccount;
+@property(nonatomic, readwrite) CABLUser *currentAccount;
 
 /*
  * Location preferences

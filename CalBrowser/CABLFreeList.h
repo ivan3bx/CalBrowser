@@ -22,5 +22,5 @@
  */
 -(void)load:(void (^)(CABLFreeList *freeList))onSuccess error:(void (^)(NSError *error))onError;
 
-@property(nonatomic,readonly) NSArray *freeResources;
+@property(nonatomic,readonly,copy) NSArray *freeResources;
 @end

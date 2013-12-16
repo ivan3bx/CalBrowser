@@ -9,6 +9,7 @@
 #import "CABLResourceLoader.h"
 #import "CABLResource.h"
 #import "CABLConfig.h"
+#import "CABLUser.h"
 #import "CABLResourceParser.h"
 
 
@@ -66,20 +67,20 @@ typedef void(^ErrorHandler)(NSError *error);
     }
 
     [CABLResource reset];
+
+    self.successHandler = onSuccess;
+    self.errorHandler = onError;
     
     if (_appDomain) {
         //
         // Fetch from the network
         //
-        [self loadFromNetwork:onSuccess handleError:onError];
+        [self loadFromNetwork];
     } else {
         //
         // Fetch from static data
         //
-        [_parser parseWithData:_data];
-        [self save];
-        _data = nil;
-        onSuccess([CABLResource findAll]);
+        [self loadFromData];
     }
 }
 
@@ -91,99 +92,58 @@ typedef void(^ErrorHandler)(NSError *error);
     return [CABLResource numberOfEntries] > 0;
 }
 
--(void)loadFromNetwork:(SuccessHandler)onSuccess handleError:(ErrorHandler)onError
+-(void)loadFromData
 {
-    self.successHandler = onSuccess;
-    self.errorHandler = onError;
-    
-    NSString *const BASE_URL    = @"https://apps-apis.google.com/a/feeds/calendar/resource/2.0";
-    NSString *urlStringWithDomain = [NSString stringWithFormat:@"%@/%@/", BASE_URL, _appDomain];
-    [self load:[self createRequest:urlStringWithDomain]];
+    [_parser parseWithData:_data];
+    [self save];
+
+    _data = nil;
+    self.successHandler([CABLResource findAll]);
 }
 
--(NSURLRequest *)createRequest:(NSString *)urlString
+-(void)loadFromNetwork
 {
-    NXOAuth2Request *signedReq;
-    signedReq = [[NXOAuth2Request alloc] initWithResource:[NSURL URLWithString:urlString]
-                                                   method:@"GET"
-                                               parameters:nil];
-    
-    //
-    // Associate current user's account with this request
-    //
-    signedReq.account = [CABLConfig sharedInstance].currentAccount;
-    
-    //
-    // Append content-type (since this API is XML)
-    //
-    NSMutableURLRequest *xmlRequest = [signedReq.signedURLRequest mutableCopy];
-    [xmlRequest addValue:@"application/atom+xml" forHTTPHeaderField:@"Content-type"];
-    return xmlRequest;
+    NSString *baseURL    = @"https://apps-apis.google.com/a/feeds/calendar/resource/2.0";
+    [self doLoadFromNetwork:[NSString stringWithFormat:@"%@/%@/", baseURL, _appDomain]];
 }
 
--(void)load:(NSURLRequest *)request
+-(void)doLoadFromNetwork:(NSString *)urlString
 {
-    [NSURLConnection connectionWithRequest:request delegate:self];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    CABLUser *user = [CABLConfig sharedInstance].currentAccount;
+    
+    [user getXML:urlString
+      parameters:nil
+       onSuccess:^(NSData *data) {
+           //
+           // Parse any data
+           //
+           [_parser parseWithData:data];
+           [self save];
+           
+           if ([_parser hasMoreData]) {
+               //
+               // Load more
+               //
+               [self doLoadFromNetwork:[_parser nextURI]];
+           } else {
+               //
+               // Completed
+               //
+               self.successHandler([CABLResource findAll]);
+           }
+       } onError:^(NSError *error) {
+           self.errorHandler(error);
+       }];
 }
 
 /*
- * Save anything we parsed
+ * Save anything we have parsed
  */
 -(void)save
 {
     for (NSDictionary *dict in [_parser entries]) {
         CABLResource *resource = [[CABLResource alloc] initWithData:dict];
         [resource save];
-    }
-}
-
-#pragma mark -
-#pragma mark NSURLConnectionDelegate methods
-#pragma mark -
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
-{
-    if (response.statusCode != 200) {
-        NSDictionary *dict = @{@"statusCode" : [NSNumber numberWithInt:(int)response.statusCode],
-                               @"message"    : @"Calendar resource list failed to load any data"};
-        if (self.errorHandler) {
-            self.errorHandler([NSError errorWithDomain:@"CalBrowser" code:1 userInfo:dict]);
-        }
-        [connection cancel];
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    if (_data == nil) {
-        _data = [NSMutableData dataWithData:data];
-    } else {
-        [_data appendData:data];
-    }
-}
-
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    
-    //
-    // Parse any data
-    //
-    [_parser parseWithData:_data];
-    _data = nil;
-    
-    [self save];
-    
-    //
-    // Load more, or complete
-    //
-    if ([_parser hasMoreData]) {
-        NSURLRequest *nextReq = [self createRequest:[_parser nextURI]];
-        [self load:nextReq];
-    } else {
-        self.successHandler([CABLResource findAll]);
     }
 }
 

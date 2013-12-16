@@ -62,17 +62,22 @@ CABLConfig *INSTANCE;
     return [bundle pathForResource:@"apps-domain" ofType:@"json"];
 }
 
-- (NXOAuth2Account *)currentAccount
+- (CABLUser *)currentAccount
 {
     id data = [prefs objectForKey:kDefaultAccount];
+
     if ([data isKindOfClass:[NSData class]]) {
-        return [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    } else {
-        return nil;
+        data = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     }
+
+    if ([data isKindOfClass:[CABLUser class]]) {
+        return data;
+    }
+    
+    return nil;
 }
 
-- (void)setCurrentAccount:(NXOAuth2Account *)account
+- (void)setCurrentAccount:(CABLUser *)account
 {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:account];
     [prefs setObject:data forKey:kDefaultAccount];

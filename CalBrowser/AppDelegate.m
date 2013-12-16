@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "NXOAuth2.h"
 #import "CABLConfig.h"
+#import "CABLUser.h"
 
 @implementation AppDelegate
 
@@ -52,7 +53,10 @@
         NSString *redirectURI = @"http://localhost/oauth.callback";
         NSSet *scope = [NSSet setWithObjects:
                         @"https://www.googleapis.com/auth/calendar.readonly",
-                        @"https://apps-apis.google.com/a/feeds/calendar/resource/", nil];
+                        @"https://apps-apis.google.com/a/feeds/calendar/resource/",
+                        @"https://www.googleapis.com/auth/userinfo.email",
+                        @"https://www.googleapis.com/auth/userinfo.profile",
+                        nil];
         
         [[NXOAuth2AccountStore sharedStore] setClientID:clientId
                                                  secret:clientSecret
