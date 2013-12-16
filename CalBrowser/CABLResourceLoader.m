@@ -89,7 +89,8 @@ typedef void(^ErrorHandler)(NSError *error);
  */
 - (BOOL)shouldFetchFromCache
 {
-    return [CABLResource numberOfEntries] > 0;
+    NSUInteger cacheCount = [CABLResource numberOfEntries];
+    return cacheCount > 0;
 }
 
 -(void)loadFromData

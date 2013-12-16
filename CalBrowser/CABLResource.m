@@ -104,19 +104,6 @@
     return result;
 }
 
-+(NSArray *)reloadWithData:(NSArray *)data
-{
-    NSMutableArray *savedEntries = [NSMutableArray array];
-
-    [CABLResource reset];
-    [data enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
-        CABLResource *resource = [[CABLResource alloc] initWithData:obj];
-        [savedEntries addObject:resource];
-        [resource save];
-    }];
-    return savedEntries;
-}
-
 +(void)reset
 {
     FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];

@@ -25,6 +25,7 @@
     [self registerRefreshAccessToken];
     [self registerFailedToAuthorize];
     [self registerDidAuthorize];
+    [self loadResourceData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -37,6 +38,20 @@
 
 }
 
+/*
+ * TODO: loading resource data should be moved to a higher-level initialization
+ * mechanism (maybe create a queue with init routines that should complete before
+ * the root view controller can do its thing
+ */
+-(void)loadResourceData
+{
+    CABLResourceLoader *loader = [[CABLResourceLoader alloc] init];
+    [loader loadResources:^(NSArray *resources) {
+        NSLog(@"Loaded resources");
+    } error:^(NSError *error) {
+        NSLog(@"Error loading resources");
+    }];
+}
 -(void)forceAuthentication
 {
     [[CABLConfig sharedInstance] setCurrentAccount:nil];

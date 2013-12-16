@@ -54,13 +54,4 @@
  */
 +(NSArray *)findAllByNamePrefix:(NSString *)arg;
 
-/*
- * Reloads the entire contents from the given data
- * replacing any existing data in the repository with this set
- *
- * Arg: an array of NSDict instances (see 'initWithData:')
- * Ret: an array of CABLResource objects
- */
-+(NSArray *)reloadWithData:(NSArray *)data;
-
 @end
