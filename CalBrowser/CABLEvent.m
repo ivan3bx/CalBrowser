@@ -7,6 +7,15 @@
 //
 
 #import "CABLEvent.h"
+#import "CABLConfig.h"
+#import <FMDB/FMDatabase.h>
+
+typedef void(^SuccessHandler)(CABLEvent *event);
+typedef void(^ErrorHandler)(NSError *error);
+
+@interface CABLEvent() {
+}
+@end
 
 @implementation CABLEvent
 
@@ -23,9 +32,159 @@
     return self;
 }
 
--(void)save:(void (^)(CABLEvent *))onSuccess error:(void (^)(NSError *))onError
+-(id)initWithPersistedEventId:(NSString *)eventId
 {
+    self = [super init];
+    if (self) {
+        [self loadDataWithEventId:eventId];
+    }
+    return self;
+}
+
+-(void)pushToServer:(void (^)(CABLEvent *theEvent))onSuccess error:(void (^)(NSError *theError))onError
+{
+    NSDateFormatter *format;
+    format = [[NSDateFormatter alloc] init];
+    format.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
+
+    NSDictionary *body = @{ @"attendees" : @[@{@"email" : self.meetingRoom.email}],
+                            @"start"     : @{@"dateTime" : [format stringFromDate:self.start]},
+                            @"end"       : @{@"dateTime" : [format stringFromDate:self.end]},
+                            @"location"  : self.meetingRoom.name,
+                            @"summary"   : @"Instant Meeting!"};
+
+    NSString *calendarId = self.meetingOwner.primaryCalendarId;
+    NSString *url = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events", calendarId];
     
+    [self.meetingOwner postJSON:url
+                           body:body onSuccess:^(NSDictionary *data) {
+                               //
+                               // Handle successful push
+                               //
+                               [self parseResponse:data];
+                               onSuccess(self);
+                           } onError:^(NSError *error) {
+                               //
+                               // Handle errors
+                               //
+                               onError(error);
+                           }
+     ];
+}
+
+-(void)updateFromServer:(void (^)(CABLEvent *theEvent))onSuccess error:(void (^)(NSError *theError))onError
+{
+    NSString *calendarId = self.meetingOwner.primaryCalendarId;
+    NSString *url = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events/%@", calendarId, self.eventId];
+    [self.meetingOwner getJSON:url parameters:@{@"fields" : @"attendees(email,responseStatus),status,updated"}
+                     onSuccess:^(NSDictionary *data) {
+                         [self parseTimestampsFromResponse:data];
+                         [self parseStatusFromResponse:data];
+                         onSuccess(self);
+                     } onError:^(NSError *error) {
+                         onError(error);
+                     }
+     ];
+}
+
+-(BOOL)save
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
+    db.logsErrors = YES;
+    
+    if ([db open]) {
+        NSString *updateQuery = @"INSERT INTO events \
+                                  (eventId, createdAt, updatedAt, \
+                                   title, ownerEmail, \
+                                   roomEmail, start, end) \
+                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        BOOL result = [db executeUpdate:updateQuery
+                   withArgumentsInArray:@[self.eventId, self.createdAt, self.updatedAt,
+                                          self.title, self.meetingOwner.emailAddress,
+                                          self.meetingRoom.email, self.start, self.end]];
+        [db close];
+        return result;
+    }
+    return NO;
+}
+
+-(void)loadDataWithEventId:(NSString *)theId
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
+    db.logsErrors = YES;
+    
+    if ([db open]) {
+        FMResultSet *rs = [db executeQueryWithFormat:@"SELECT eventId, createdAt, updatedAt, \
+                                                        title, ownerEmail, \
+                                                        roomEmail, start, end) \
+                                                       FROM events WHERE eventId = ?", theId];
+        if ([rs next]) {
+            _eventId = [rs stringForColumnIndex:0];
+            _createdAt = [rs dateForColumnIndex:1];
+            _updatedAt = [rs dateForColumnIndex:2];
+            _title = [rs stringForColumnIndex:3];
+            _meetingOwner = [[CABLConfig sharedInstance] currentAccount];
+            _meetingRoom = [CABLResource findByEmail:[rs stringForColumnIndex:5]];
+            _start = [rs dateForColumnIndex:6];
+            _end = [rs dateForColumnIndex:7];
+            
+        }
+    }
+}
+
+-(void)parseResponse:(NSDictionary *)data
+{
+    _eventId   = data[@"id"];
+    _title     = data[@"summary"];
+    
+    [self parseTimestampsFromResponse:data];
+    [self parseStatusFromResponse:data];
+}
+
+-(void)parseTimestampsFromResponse:(NSDictionary *)data
+{
+    NSDateFormatter *format;
+    format = [[NSDateFormatter alloc] init];
+    format.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ";
+    
+    if (data[@"created"]) {
+        _createdAt = [format dateFromString:data[@"created"]];
+    }
+    
+    if (data[@"updated"]) {
+        _updatedAt = [format dateFromString:data[@"updated"]];
+    }
+}
+
+-(void)parseStatusFromResponse:(NSDictionary *)data
+{
+    NSDictionary *attendeeData;
+    for (NSDictionary *obj in data[@"attendees"]) {
+        if ([obj[@"email"] isEqualToString:self.meetingRoom.email]) {
+            attendeeData = obj;
+        }
+    }
+
+    NSString *attendeeStatus = attendeeData[@"responseStatus"];
+    NSString *eventStatus = data[@"status"];
+    
+
+    if ([attendeeStatus isEqualToString:@"needsAction"]) {
+        // Pending if the room hasn't accepted
+        _status = ResponsePending;
+    } else if ([attendeeStatus isEqualToString:@"declined"]) {
+        // Declined if the room declined
+        _status = ResponseDeclined;
+    } else if ([attendeeStatus isEqualToString:@"accepted"]) {
+        // Accepted if the room accepted
+        _status = ResponseAccepted;
+    } else if ([eventStatus isEqualToString:@"cancelled"]) {
+        // Canceled if the user deleted this meeting
+        _status = ResponseCanceled;
+    } else {
+        _status = ResponseUnknown;
+    }
 }
 
 @end
