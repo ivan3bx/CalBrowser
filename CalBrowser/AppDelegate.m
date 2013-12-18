@@ -52,7 +52,7 @@
         // Ignore whatever's there
         NSString *redirectURI = @"http://localhost/oauth.callback";
         NSSet *scope = [NSSet setWithObjects:
-                        @"https://www.googleapis.com/auth/calendar.readonly",
+                        @"https://www.googleapis.com/auth/calendar",
                         @"https://apps-apis.google.com/a/feeds/calendar/resource/",
                         @"https://www.googleapis.com/auth/userinfo.email",
                         @"https://www.googleapis.com/auth/userinfo.profile",
