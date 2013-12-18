@@ -24,7 +24,7 @@
     [super setUp];
     NSMutableDictionary *data =
     data = [NSMutableDictionary dictionaryWithDictionary:@{@"resourceId"         : @"foo1",
-                                                           @"resourceCommonName" : @"foo2",
+                                                           @"resourceCommonName" : @"LOC-2-Room Name-Extra Info",
                                                            @"resourceEmail"      : @"foo@email.com",
                                                            @"resourceDescription": @"foo4",
                                                            @"resourceType"       : @"foo5"}];
@@ -47,11 +47,17 @@
     XCTAssertEqual(1U, [CABLResource numberOfEntries]);
 }
 
+- (void)testNameAndShortName
+{
+    XCTAssertEqualObjects(@"LOC-2-Room Name-Extra Info", resource1.name);
+    XCTAssertEqualObjects(@"Room Name", resource1.shortName);
+}
+
 - (void)testFindAllByPrefix
 {
     XCTAssertTrue([resource1 save]);
     XCTAssertTrue([resource2 save]);
-    NSArray *arr = [CABLResource findAllByNamePrefix:@"f"];
+    NSArray *arr = [CABLResource findAllByNamePrefix:@"LOC"];
     XCTAssertEqual(1U, arr.count, @"Expected to find one resource by prefix");
 }
 
@@ -59,7 +65,7 @@
 {
     XCTAssertTrue([resource1 save]);
     CABLResource *testInstance = [CABLResource findByEmail:@"foo@email.com"];
-    XCTAssertEqualObjects(@"foo2", testInstance.name, @"Expected to find a resource by email address");
+    XCTAssertEqualObjects(@"foo1", testInstance.internalID, @"Expected to find a resource by email address");
 }
 
 - (void)testFindAll

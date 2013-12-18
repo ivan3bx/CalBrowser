@@ -13,6 +13,7 @@
 @property(nonatomic,readonly) NSString *email;
 @property(nonatomic,readonly) NSString *internalID;
 @property(nonatomic,readonly) NSString *name;
+@property(nonatomic,readonly) NSString *shortName;
 @property(nonatomic,readonly) NSString *optionalDescription;
 @property(nonatomic,readonly) NSString *resourceType;
 

@@ -133,6 +133,23 @@
     return _data[@"resourceCommonName"];
 }
 
+-(NSString *)shortName
+{
+    NSString *result;
+    NSArray *components = [self.name componentsSeparatedByString:@"-"];
+    
+    switch (components.count) {
+        case 4:
+            result = components[2];
+            break;
+        default:
+            result = self.name;
+            break;
+    }
+    
+    return [result stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+}
+
 -(NSString *)optionalDescription
 {
     return _data[@"resourceDescription"];
