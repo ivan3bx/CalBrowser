@@ -32,6 +32,12 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
+    if (self.rooms.count > 0) {
+        return;
+    }
+    
     //
     // Set the title
     //
@@ -66,6 +72,7 @@
 {
     self.startTime = startTime;
     self.endTime   = [startTime dateByAddingTimeInterval:(kMeetingLengthInMinutes * 60)];
+    self.rooms = nil;
 }
 
 #pragma mark -
@@ -95,5 +102,16 @@
     cell.textLabel.text = [entry.name substringFromIndex:range.length];
     return cell;
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSDate *start = self.startTime;
+    NSDate *end   = self.endTime;
+    
+    NSIndexPath *path = [self.tableView indexPathForCell:sender];
+    CABLResource *room = self.rooms[path.row];
+    NSLog(@"Next should create meeting [start:%@] [end:%@] [room: %@]", start, end, room.shortName);
+}
+
 
 @end
