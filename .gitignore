@@ -1,6 +1,7 @@
 Pods
 CalBrowser/clientConfig.json
 CalBrowser/apps-domain.json
+CalBrowser/Maps/**
 **/.DS_Store
 **/xcuserdata
 */project.xcworkspace
