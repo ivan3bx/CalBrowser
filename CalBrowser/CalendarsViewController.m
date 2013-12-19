@@ -7,6 +7,7 @@
 //
 
 #import "CalendarsViewController.h"
+#import "EventViewController.h"
 #import "CABLConfig.h"
 #import "NXOAuth2.h"
 #import "CABLResourceLoader.h"
@@ -111,6 +112,11 @@
     NSIndexPath *path = [self.tableView indexPathForCell:sender];
     CABLResource *room = self.rooms[path.row];
     NSLog(@"Next should create meeting [start:%@] [end:%@] [room: %@]", start, end, room.shortName);
+    
+    EventViewController *destController = segue.destinationViewController;
+    destController.start = start;
+    destController.end = end;
+    destController.resource = room;
 }
 
 
