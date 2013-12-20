@@ -48,6 +48,7 @@
 		2CF2E11D184DABF3001C5835 /* CABLResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E11C184DABF3001C5835 /* CABLResource.m */; };
 		2CF2E11F184DBAF0001C5835 /* CABLResourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2E11E184DBAF0001C5835 /* CABLResourceTest.m */; };
 		2CF2E121184DBD00001C5835 /* resources_template.db in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2E120184DBD00001C5835 /* resources_template.db */; };
+		2CFDF48218643C2000191B5E /* RoomTickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFDF48118643C2000191B5E /* RoomTickerView.m */; };
 		480D38A69EE84F0CA1FA33F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0CECBAE01E7417B8BC01B24 /* libPods.a */; };
 		9029189898C54BA080AACCE2 /* libPods-CalBrowserTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63838D431343475FAEDF0AD6 /* libPods-CalBrowserTests.a */; };
 /* End PBXBuildFile section */
@@ -140,6 +141,8 @@
 		2CF2E11C184DABF3001C5835 /* CABLResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CABLResource.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2CF2E11E184DBAF0001C5835 /* CABLResourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CABLResourceTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2CF2E120184DBD00001C5835 /* resources_template.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = resources_template.db; sourceTree = "<group>"; };
+		2CFDF48018643C2000191B5E /* RoomTickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomTickerView.h; sourceTree = "<group>"; };
+		2CFDF48118643C2000191B5E /* RoomTickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomTickerView.m; sourceTree = "<group>"; };
 		63838D431343475FAEDF0AD6 /* libPods-CalBrowserTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CalBrowserTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF59B2528894136BB671C19 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8E0E1A56C3D940AABF7B1E91 /* Pods-CalBrowserTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalBrowserTests.xcconfig"; path = "Pods/Pods-CalBrowserTests.xcconfig"; sourceTree = "<group>"; };
@@ -204,6 +207,8 @@
 				2CA048201852EEC900BC95C4 /* ClockButton.m */,
 				2CA048221853021400BC95C4 /* CurrentTimeView.h */,
 				2CA048231853021400BC95C4 /* CurrentTimeView.m */,
+				2CFDF48018643C2000191B5E /* RoomTickerView.h */,
+				2CFDF48118643C2000191B5E /* RoomTickerView.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -484,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C4460411855A810001FFA74 /* CABLLocations.m in Sources */,
+				2CFDF48218643C2000191B5E /* RoomTickerView.m in Sources */,
 				2C8D22E318482D0800F089B9 /* AppDelegate.m in Sources */,
 				2C44603B18557186001FFA74 /* CABLFreeList.m in Sources */,
 				2CDA65111861802400E84AB4 /* EventViewController.m in Sources */,
