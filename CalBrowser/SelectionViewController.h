@@ -12,8 +12,20 @@
 
 @interface SelectionViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *locationNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
+
+//
+// Subview & components for selecting a time
+//
+@property (weak, nonatomic) IBOutlet UIView *selectTimeSubview;
 @property (weak, nonatomic) IBOutlet ClockButton *currentTimeBtn;
 @property (weak, nonatomic) IBOutlet ClockButton *nextTimeBtn;
-@property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
+
+//
+// Subview & components for displaying a meeting
+@property (weak, nonatomic) IBOutlet UIView *displayMeetingSubview;
+@property (weak, nonatomic) IBOutlet UILabel *displayMeetingRoom;
+@property (weak, nonatomic) IBOutlet UILabel *displayMeetingTime;
+- (IBAction)cancelMeeting:(id)sender;
 
 @end

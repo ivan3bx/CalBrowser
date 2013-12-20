@@ -10,6 +10,7 @@
 #import "SelectionViewController.h"
 #import "CalendarsViewController.h"
 #import "CABLConfig.h"
+#import "CABLEvent.h"
 
 @interface SelectionViewController () <SWRevealViewControllerDelegate> {
     NSTimer *timer;
@@ -37,6 +38,85 @@
     [self.nextTimeBtn drawCircleButton];
     
     [self.locationNameLabel setText:[CABLConfig sharedInstance].currentCity];
+    
+    //
+    // Which subview do we display?
+    //
+    CABLEvent *currentEvent = [CABLEvent findEventStartingAt:self.currentTimeBtn.selectedDate];
+    CABLEvent *nextEvent = [CABLEvent findEventStartingAt:self.nextTimeBtn.selectedDate];
+
+    if (currentEvent == nil && nextEvent == nil) {
+        //
+        // Show time view
+        //
+        [self.displayMeetingSubview setHidden:YES];
+        [self.selectTimeSubview setHidden:NO];
+    } else {
+        //
+        // Show active meeting view
+        //
+        [self.selectTimeSubview setHidden:YES];
+        [self.displayMeetingSubview setHidden:NO];
+
+        //
+        // TODO: replace with serialized CABLEvent & move to a custom subview
+        //
+        CABLEvent *theEvent = (currentEvent) ? currentEvent : nextEvent;
+
+        self.displayMeetingRoom.text = theEvent.meetingRoom.shortName;
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"h:mm"];
+        [dateFormatter setLocale:[NSLocale currentLocale]];
+
+        self.displayMeetingTime.text = [NSString stringWithFormat:@"%@ - %@",
+                                        [dateFormatter stringFromDate:theEvent.start],
+                                        [dateFormatter stringFromDate:theEvent.end]];
+    }
+}
+
+- (IBAction)cancelMeeting:(id)sender
+{
+    CABLEvent *currentEvent = [CABLEvent findEventStartingAt:self.currentTimeBtn.selectedDate];
+    CABLEvent *nextEvent = [CABLEvent findEventStartingAt:self.nextTimeBtn.selectedDate];
+    
+    if (currentEvent) {
+        [currentEvent cancelOnServer:^(CABLEvent *theEvent) {
+            [theEvent remove];
+            NSLog(@"Removed meeting!");
+        } error:^(NSError *theError) {
+            NSLog(@"Error removing meeting: %@", theError);
+        }];
+    } else if (nextEvent) {
+        [nextEvent cancelOnServer:^(CABLEvent *theEvent) {
+            [theEvent remove];
+            NSLog(@"Removed meeting!");
+        } error:^(NSError *theError) {
+            NSLog(@"Error removing meeting: %@", theError);
+        }];
+    }
+    
+    
+    [self swapViewsFrom:self.displayMeetingSubview to:self.selectTimeSubview];
+}
+
+-(void)swapViewsFrom:(UIView *)fromView to:(UIView *)toView
+{
+    [toView setHidden:NO];
+
+    CGPoint originalCenter = fromView.center;
+    [UIView animateWithDuration:0.5
+                          delay:0.1
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         fromView.center = CGPointMake(originalCenter.x,
+                                                       originalCenter.y + 400);
+                     }
+                     completion:^(BOOL finished) {
+                         fromView.center = originalCenter;
+                         [fromView setHidden:YES];
+                     }
+     ];
 }
 
 - (void)configureLocationSidebar

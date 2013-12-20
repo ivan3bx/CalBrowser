@@ -17,6 +17,7 @@
 
 - (IBAction)createEvent:(id)sender
 {
+    [sender setEnabled:NO];
     CABLEvent *event = [[CABLEvent alloc] init];
     event.start = self.start;
     event.end = self.end;
@@ -28,10 +29,13 @@
     //
     [event pushToServer:^(CABLEvent *theEvent) {
         NSLog(@"Successfully created event: %@", theEvent.eventId);
+        [event save];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [sender setEnabled:YES];
     } error:^(NSError *theError) {
         NSLog(@"Error: %@", theError);
+        [sender setEnabled:YES];
     }];
-
 }
 
 #pragma mark -
@@ -40,7 +44,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -65,9 +69,7 @@
     UITableViewCell *cell;
     
     if (indexPath.section == 2) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"MapCell" forIndexPath:indexPath];
-        cell.textLabel.textColor = [UIColor redColor];
-        cell.textLabel.text = @"Map It";
+        cell = [tableView dequeueReusableCellWithIdentifier:@"CreateCell" forIndexPath:indexPath];
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
