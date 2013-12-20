@@ -173,6 +173,27 @@
     [NSURLConnection connectionWithRequest:signedRequest delegate:self];
 }
 
+-(void)deleteResource:(NSString *)urlString
+            onSuccess:(void(^)())onSuccess
+              onError:(CABLErrorHandler)onError
+{
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [NXOAuth2Request performMethod:@"DELETE" onResource:url usingParameters:nil
+                       withAccount:_account sendProgressHandler:nil
+                   responseHandler:^(NSURLResponse *rsp, NSData *data, NSError *error) {
+                       [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                       if (!error) {
+                           onSuccess();
+                       } else {
+                           NSLog(@"Error loading URL: %@", url);
+                           onError(error);
+                       }
+                   }
+     ];
+}
+
 #pragma mark -
 #pragma mark NSURLConnectionDelegate methods
 #pragma mark -

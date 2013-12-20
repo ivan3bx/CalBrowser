@@ -46,4 +46,8 @@ typedef void(^CABLErrorHandler)(NSError *error);
       onSuccess:(CABLJSONHandler)success
         onError:(CABLErrorHandler)error;
 
+-(void)deleteResource:(NSString *)urlString
+            onSuccess:(void(^)())onSuccess
+              onError:(CABLErrorHandler)onError;
+
 @end

@@ -51,8 +51,16 @@ typedef NS_ENUM(NSUInteger, EventResponseStatus) {
 -(void)updateFromServer:(void (^)(CABLEvent *theEvent))onSuccess
                   error:(void (^)(NSError *theError))onError;
 
+-(void)cancelOnServer:(void (^)(CABLEvent *theEvent))onSuccess
+                error:(void (^)(NSError *theError))onError;
+
 #pragma mark - Persisting to the local database
 
 -(BOOL)save;
+-(BOOL)remove;
+
+#pragma mark - Querying the local database
+
++(CABLEvent *)findEventStartingAt:(NSDate *)startDate;
 
 @end

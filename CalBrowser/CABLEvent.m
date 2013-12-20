@@ -109,16 +109,66 @@ typedef void(^ErrorHandler)(NSError *error);
     return NO;
 }
 
+-(BOOL)remove
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
+    db.logsErrors = YES;
+    
+    if ([db open]) {
+        NSString *deleteQuery = @"DELETE FROM events WHERE eventId = ?";
+        BOOL result = [db executeUpdate:deleteQuery withArgumentsInArray:@[self.eventId]];
+        [db close];
+        return result;
+    }
+    return NO;
+}
+
++(CABLEvent *)findEventStartingAt:(NSDate *)startDate
+{
+    CABLEvent *eventResponse;
+    FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
+    if ([db open]) {
+        NSString *query = @"SELECT eventId from events WHERE start = (?)";
+        FMResultSet *res = [db executeQuery:query, startDate];
+
+        if([res next]) {
+            NSString *eventId = [res stringForColumn:@"eventId"];
+            eventResponse = [[CABLEvent alloc] initWithPersistedEventId:eventId];
+        }
+        [db close];
+    }
+    return eventResponse;
+}
+
+-(void)cancelOnServer:(void (^)(CABLEvent *theEvent))onSuccess error:(void (^)(NSError *theError))onError
+{
+    NSString *calendarId = self.meetingOwner.primaryCalendarId;
+    NSString *urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events/%@",
+                           calendarId, self.eventId];
+
+    [self.meetingOwner deleteResource:urlString
+                            onSuccess:^ {
+                                FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
+                                db.logsErrors = YES;
+                                [self remove];
+                                onSuccess(self);
+                            } onError:^(NSError *error) {
+                                onError(error);
+                            }
+     ];
+
+}
+
 -(void)loadDataWithEventId:(NSString *)theId
 {
     FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
     db.logsErrors = YES;
     
     if ([db open]) {
-        FMResultSet *rs = [db executeQueryWithFormat:@"SELECT eventId, createdAt, updatedAt, \
-                                                        title, ownerEmail, \
-                                                        roomEmail, start, end) \
-                                                       FROM events WHERE eventId = ?", theId];
+        FMResultSet *rs = [db executeQuery:@"SELECT eventId, createdAt, updatedAt, \
+                                                    title, ownerEmail, \
+                                                    roomEmail, start, end \
+                                                    FROM events WHERE eventId = ?", theId];
         if ([rs next]) {
             _eventId = [rs stringForColumnIndex:0];
             _createdAt = [rs dateForColumnIndex:1];
@@ -130,6 +180,7 @@ typedef void(^ErrorHandler)(NSError *error);
             _end = [rs dateForColumnIndex:7];
             
         }
+        [db close];
     }
 }
 
