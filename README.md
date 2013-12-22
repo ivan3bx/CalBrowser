@@ -33,6 +33,31 @@ but over time will model the essential aspects of calendar interactions
 		-> CalBrowser/
 		    -> apps-domain.json
 
+If your domain configuration follows Google's recommended [naming strategy](https://developers.google.com/admin-sdk/calendar-resource/#developing_a_naming_strategy_for_your_calendar_resources), add extra metadata to sort locations such as this sample apps-domain.json:
+
+    {
+        "domain" : "example.com",
+        "regions" : {
+            "North America" : {
+                "Chicago"       : ["CHI1"],
+                "New York"      : ["NYC"]
+            },
+            "South America" : {
+                "São Paulo"     : ["SP1"]
+            },
+            "Europe" : {
+                "London"        : ["LND1"],
+                "Paris"         : ["PAR1"]
+            }
+        },
+        "regionSort" : [
+            "Europe",
+            "North America",
+            "South America"
+        ]
+    }
+
+
 6. Build and run.  The app delegate will check and verify that the client configuration is correct.
 
 ### What does it do?
