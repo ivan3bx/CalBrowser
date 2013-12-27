@@ -89,6 +89,13 @@ typedef void(^ErrorHandler)(NSError *error);
 
 -(BOOL)save
 {
+    if (self.createdAt == nil) {
+        _createdAt = [NSDate new];
+    }
+    
+    if (self.updatedAt == nil) {
+        _updatedAt = [NSDate new];
+    }
     FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
     db.logsErrors = YES;
     
@@ -131,6 +138,23 @@ typedef void(^ErrorHandler)(NSError *error);
         NSString *query = @"SELECT eventId from events WHERE start = (?)";
         FMResultSet *res = [db executeQuery:query, startDate];
 
+        if([res next]) {
+            NSString *eventId = [res stringForColumn:@"eventId"];
+            eventResponse = [[CABLEvent alloc] initWithPersistedEventId:eventId];
+        }
+        [db close];
+    }
+    return eventResponse;
+}
+
++(CABLEvent *)findEventWithin:(NSDate *)start and:(NSDate *)end
+{
+    CABLEvent *eventResponse;
+    FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
+    if ([db open]) {
+        NSString *query = @"SELECT eventId from events WHERE start BETWEEN (?) AND (?) OR end BETWEEN (?) AND (?)";
+        FMResultSet *res = [db executeQuery:query, start, end, start, end];
+        
         if([res next]) {
             NSString *eventId = [res stringForColumn:@"eventId"];
             eventResponse = [[CABLEvent alloc] initWithPersistedEventId:eventId];

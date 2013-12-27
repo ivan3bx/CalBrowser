@@ -29,10 +29,10 @@ typedef NS_ENUM(NSUInteger, EventResponseStatus) {
 
 #pragma mark - Response attributes
 
-@property (nonatomic, readonly) NSString *eventId;
+@property (nonatomic) NSString *eventId;
 @property (nonatomic, readonly) NSDate   *createdAt;
 @property (nonatomic, readonly) NSDate   *updatedAt;
-@property (nonatomic, readonly) NSString *title;
+@property (nonatomic) NSString *title;
 @property (nonatomic, readonly) NSString *location;
 @property (nonatomic, readonly) enum EventResponseStatus status;
 
@@ -62,5 +62,5 @@ typedef NS_ENUM(NSUInteger, EventResponseStatus) {
 #pragma mark - Querying the local database
 
 +(CABLEvent *)findEventStartingAt:(NSDate *)startDate;
-
++(CABLEvent *)findEventWithin:(NSDate *)start and:(NSDate *)end;
 @end
