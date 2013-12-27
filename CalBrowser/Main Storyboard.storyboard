@@ -19,182 +19,56 @@
             <point key="canvasLocation" x="-1511" y="524"/>
         </scene>
         <!--Selection View Controller - Instant Meeting-->
-        <scene sceneID="OcK-t3-sDE">
+        <scene sceneID="7Cn-GH-HeE">
             <objects>
-                <viewController storyboardIdentifier="selectionViewController" id="Q9l-FA-ojw" customClass="SelectionViewController" sceneMemberID="viewController">
+                <viewController id="dGB-Qp-lWn" customClass="SelectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kiv-9H-yeB"/>
-                        <viewControllerLayoutGuide type="bottom" id="Fmh-Db-aFm"/>
+                        <viewControllerLayoutGuide type="top" id="q2m-Hr-Tq4"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yc8-hG-Klg"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vSG-5G-GfQ">
+                    <view key="view" contentMode="scaleToFill" id="YnA-d3-Yhz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Foo-n5-mqU" customClass="CurrentTimeView">
-                                <rect key="frame" x="0.0" y="103" width="320" height="160"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="11:35" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRt-S9-hHx">
-                                        <rect key="frame" x="20" y="45" width="280" height="70"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="86"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="current time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sI-6E-G7j">
-                                        <rect key="frame" x="62" y="119" width="196" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="14"/>
-                                        <color key="textColor" red="0.24182659646739135" green="0.24182659646739135" blue="0.24182659646739135" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AKC-iI-HVQ" userLabel="ClockContainer">
+                                <rect key="frame" x="0.0" y="95" width="320" height="169"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="MlD-ck-rDR"/>
-                                    <constraint firstAttribute="height" constant="160" id="nL2-nN-YhS"/>
+                                    <constraint firstAttribute="height" constant="169" id="0ri-gL-nz1"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ibe-cU-Q8W" userLabel="Select Time View">
-                                <rect key="frame" x="0.0" y="271" width="320" height="277"/>
+                                <connections>
+                                    <segue destination="8bJ-bm-aKl" kind="embed" id="r4p-Uq-fPm"/>
+                                </connections>
+                            </containerView>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6V-gJ-73k" userLabel="ActionContainer">
+                                <rect key="frame" x="0.0" y="280" width="320" height="277"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbo-xP-WVF" customClass="ClockButton">
-                                        <rect key="frame" x="40" y="128" width="110" height="110"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="110" id="DHO-LL-Bjx"/>
-                                            <constraint firstAttribute="width" constant="110" id="Dg3-RW-SIf"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
-                                        <state key="normal" title="11:30">
-                                            <color key="titleColor" red="0.15294118225574493" green="0.64705884456634521" blue="0.70980393886566162" alpha="1" colorSpace="deviceRGB"/>
-                                        </state>
-                                        <state key="selected">
-                                            <color key="titleColor" red="0.15294118230000001" green="0.64705884459999996" blue="0.70980393890000004" alpha="1" colorSpace="deviceRGB"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" red="0.15294118230000001" green="0.64705884459999996" blue="0.70980393890000004" alpha="1" colorSpace="deviceRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="6uD-Qt-iy0" kind="push" id="iGN-Rh-OXB"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4j9-zd-spu" customClass="ClockButton">
-                                        <rect key="frame" x="170" y="130" width="110" height="110"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="110" id="Th2-ne-Eqf"/>
-                                            <constraint firstAttribute="height" constant="110" id="hUm-IJ-sPs"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                        <state key="normal" title="12:00">
-                                            <color key="titleColor" red="0.66274511814117432" green="0.66274511814117432" blue="0.66274511814117432" alpha="1" colorSpace="deviceRGB"/>
-                                        </state>
-                                        <state key="selected">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="6uD-Qt-iy0" kind="push" id="vWz-g3-fDR"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start time..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fr-lc-9fM">
-                                        <rect key="frame" x="105" y="76" width="110" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="110" id="TUS-j7-mbi"/>
-                                            <constraint firstAttribute="height" constant="21" id="UZK-zx-kdg"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="23"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.97237273185483875" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="wbo-xP-WVF" firstAttribute="top" secondItem="4fr-lc-9fM" secondAttribute="bottom" constant="31" id="0np-kr-enm"/>
-                                    <constraint firstItem="4j9-zd-spu" firstAttribute="leading" secondItem="wbo-xP-WVF" secondAttribute="trailing" constant="20" id="2zq-YY-6se"/>
-                                    <constraint firstItem="4fr-lc-9fM" firstAttribute="top" secondItem="Ibe-cU-Q8W" secondAttribute="top" constant="76" id="AFx-3u-l71"/>
-                                    <constraint firstItem="wbo-xP-WVF" firstAttribute="leading" secondItem="Ibe-cU-Q8W" secondAttribute="leading" constant="40" id="FFI-Cx-qrx"/>
-                                    <constraint firstAttribute="bottom" secondItem="4j9-zd-spu" secondAttribute="bottom" constant="37" id="TGa-Th-S2k"/>
-                                    <constraint firstAttribute="trailing" secondItem="4j9-zd-spu" secondAttribute="trailing" constant="40" id="TxL-6L-1Rv"/>
-                                    <constraint firstItem="4fr-lc-9fM" firstAttribute="centerX" secondItem="Ibe-cU-Q8W" secondAttribute="centerX" id="VSJ-AT-UE8"/>
-                                    <constraint firstAttribute="bottom" secondItem="wbo-xP-WVF" secondAttribute="bottom" constant="39" id="c1W-cC-RzU"/>
-                                    <constraint firstAttribute="centerY" secondItem="4fr-lc-9fM" secondAttribute="centerY" constant="52" id="s7w-6O-li6"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SE5-iY-8gx" userLabel="Meeting View">
-                                <rect key="frame" x="0.0" y="271" width="320" height="277"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="is yours" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXj-Rk-xI2">
-                                        <rect key="frame" x="204" y="58" width="76" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" white="0.75425277217741937" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The Conference Room" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1lm-QS-81C">
-                                        <rect key="frame" x="20" y="20" width="280" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="29"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kUe-uv-Y54">
-                                        <rect key="frame" x="40" y="224" width="240" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                        <state key="normal" title="Cancel Meeting">
-                                            <color key="titleColor" red="0.97237271070480347" green="0.20102378227024476" blue="0.1576547767221628" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="cancelMeeting:" destination="Q9l-FA-ojw" eventType="touchUpInside" id="tPv-1r-bsu"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="11:35 - 12:05" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAP-KW-YgY">
-                                        <rect key="frame" x="139" y="87" width="141" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-ThinItalic" family="Helvetica Neue" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.96887600806451613" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="Hnt-Rb-Z4j" kind="embed" id="ein-BQ-Cdn"/>
+                                </connections>
+                            </containerView>
                         </subviews>
-                        <color key="backgroundColor" red="0.97254908084869385" green="0.97254908084869385" blue="0.97254908084869385" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.9647059440612793" green="0.9647059440612793" blue="0.9647059440612793" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="Ibe-cU-Q8W" firstAttribute="trailing" secondItem="Foo-n5-mqU" secondAttribute="trailing" id="7r3-lu-uAq"/>
-                            <constraint firstItem="Foo-n5-mqU" firstAttribute="top" secondItem="kiv-9H-yeB" secondAttribute="bottom" constant="39" id="8Ix-gh-I2c"/>
-                            <constraint firstItem="Ibe-cU-Q8W" firstAttribute="leading" secondItem="vSG-5G-GfQ" secondAttribute="leading" id="LIx-r2-0FB"/>
-                            <constraint firstItem="SE5-iY-8gx" firstAttribute="leading" secondItem="Ibe-cU-Q8W" secondAttribute="leading" id="LPa-wT-L8y"/>
-                            <constraint firstItem="SE5-iY-8gx" firstAttribute="top" secondItem="Foo-n5-mqU" secondAttribute="bottom" constant="8" symbolic="YES" id="N0m-7l-sFN"/>
-                            <constraint firstAttribute="bottom" secondItem="Ibe-cU-Q8W" secondAttribute="bottom" constant="20" symbolic="YES" id="Quk-Ux-Y39"/>
-                            <constraint firstItem="SE5-iY-8gx" firstAttribute="bottom" secondItem="Ibe-cU-Q8W" secondAttribute="bottom" id="VuW-zz-vUf"/>
-                            <constraint firstAttribute="trailing" secondItem="Ibe-cU-Q8W" secondAttribute="trailing" id="Zvo-qC-l7h"/>
-                            <constraint firstItem="Ibe-cU-Q8W" firstAttribute="leading" secondItem="Foo-n5-mqU" secondAttribute="leading" id="ae1-2S-DDF"/>
-                            <constraint firstItem="SE5-iY-8gx" firstAttribute="trailing" secondItem="Ibe-cU-Q8W" secondAttribute="trailing" id="ciy-B6-h4w"/>
-                            <constraint firstItem="Ibe-cU-Q8W" firstAttribute="top" secondItem="vSG-5G-GfQ" secondAttribute="top" constant="271" id="mZc-rX-qP0"/>
+                            <constraint firstItem="o6V-gJ-73k" firstAttribute="top" secondItem="AKC-iI-HVQ" secondAttribute="bottom" constant="16" id="6dj-eW-N6y"/>
+                            <constraint firstAttribute="trailing" secondItem="AKC-iI-HVQ" secondAttribute="trailing" id="B7X-NJ-qNf"/>
+                            <constraint firstItem="AKC-iI-HVQ" firstAttribute="leading" secondItem="YnA-d3-Yhz" secondAttribute="leading" id="GeW-kE-lX3"/>
+                            <constraint firstItem="Yc8-hG-Klg" firstAttribute="top" secondItem="o6V-gJ-73k" secondAttribute="bottom" constant="11" id="H47-jm-H3P"/>
+                            <constraint firstItem="o6V-gJ-73k" firstAttribute="leading" secondItem="YnA-d3-Yhz" secondAttribute="leading" id="OZf-JC-UoD"/>
+                            <constraint firstAttribute="centerX" secondItem="o6V-gJ-73k" secondAttribute="centerX" id="Pwe-yf-gmL"/>
+                            <constraint firstAttribute="centerY" secondItem="o6V-gJ-73k" secondAttribute="centerY" constant="-134.5" id="dD5-Zg-a42"/>
+                            <constraint firstAttribute="centerX" secondItem="AKC-iI-HVQ" secondAttribute="centerX" id="mTY-Vd-rvs"/>
+                            <constraint firstAttribute="trailing" secondItem="o6V-gJ-73k" secondAttribute="trailing" id="mii-sN-mUL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Instant Meeting" id="cCF-oS-KkT">
-                        <barButtonItem key="backBarButtonItem" title="Start" id="Dxy-Oe-B9S"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Instant Meeting" id="JWE-eX-wii"/>
                     <connections>
-                        <outlet property="_sidebarButton" destination="cCF-oS-KkT" id="A0w-cR-ccb"/>
-                        <outlet property="currentTimeBtn" destination="wbo-xP-WVF" id="9Pq-XP-Gg1"/>
-                        <outlet property="currentTimeLabel" destination="VRt-S9-hHx" id="OXi-Ul-AfY"/>
-                        <outlet property="displayMeetingRoom" destination="1lm-QS-81C" id="4XL-rR-77o"/>
-                        <outlet property="displayMeetingSubview" destination="SE5-iY-8gx" id="FDj-Ak-qXS"/>
-                        <outlet property="displayMeetingTime" destination="zAP-KW-YgY" id="4HW-Tj-83I"/>
-                        <outlet property="locationNameLabel" destination="2sI-6E-G7j" id="c7b-OT-fQS"/>
-                        <outlet property="nextTimeBtn" destination="4j9-zd-spu" id="Fxf-LM-G1o"/>
-                        <outlet property="selectTimeSubview" destination="Ibe-cU-Q8W" id="uyr-Qn-Wq0"/>
+                        <segue destination="6uD-Qt-iy0" kind="push" identifier="calendar" id="Qii-xc-o3o"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xcu-RT-Hy7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qwI-Gj-tyX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-266" y="706"/>
         </scene>
@@ -230,7 +104,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9jj-DX-w2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="225" y="706"/>
+            <point key="canvasLocation" x="288" y="-166"/>
         </scene>
         <!--Event View Controller - Confirm-->
         <scene sceneID="3Hy-cB-fp9">
@@ -316,7 +190,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Vr-AG-umA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="691" y="706"/>
+            <point key="canvasLocation" x="825" y="-166"/>
         </scene>
         <!--View Controller - Map-->
         <scene sceneID="HaS-0l-bc4">
@@ -335,7 +209,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L0B-NV-Afd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1100" y="706"/>
+            <point key="canvasLocation" x="1332" y="-166"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PMC-u5-hdx">
@@ -543,7 +417,7 @@
                     </navigationBar>
                     <connections>
                         <segue destination="gmy-3A-uLW" kind="modal" identifier="authorize" id="FiU-VI-tW8"/>
-                        <segue destination="Q9l-FA-ojw" kind="relationship" relationship="rootViewController" id="hyZ-yp-cjm"/>
+                        <segue destination="dGB-Qp-lWn" kind="relationship" relationship="rootViewController" id="Tsu-I0-sGR"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IIG-9M-Izo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -579,7 +453,236 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tUb-rv-chM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-266" y="-77"/>
+            <point key="canvasLocation" x="-266" y="-166"/>
+        </scene>
+        <!--Selection Clock View Controller-->
+        <scene sceneID="dcH-BI-bzm">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="8bJ-bm-aKl" customClass="SelectionClockViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jfh-AL-UnX"/>
+                        <viewControllerLayoutGuide type="bottom" id="w7q-k0-HSu"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" id="gpE-YS-6gQ" customClass="CurrentTimeView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="169"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11:35" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoX-va-Iu0">
+                                <rect key="frame" x="20" y="24" width="280" height="99"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="5nA-A2-ayx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="86"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="current time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jx3-rW-Ay2">
+                                <rect key="frame" x="192" y="127" width="66" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.24182659649999999" green="0.24182659649999999" blue="0.24182659649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Jx3-rW-Ay2" firstAttribute="top" secondItem="IoX-va-Iu0" secondAttribute="bottom" constant="4" id="5pX-kl-LSv"/>
+                            <constraint firstItem="Jx3-rW-Ay2" firstAttribute="trailing" secondItem="IoX-va-Iu0" secondAttribute="trailing" constant="-42" id="SnK-bt-o3n"/>
+                            <constraint firstAttribute="centerX" secondItem="IoX-va-Iu0" secondAttribute="centerX" id="iSC-1d-21B"/>
+                            <constraint firstAttribute="centerY" secondItem="IoX-va-Iu0" secondAttribute="centerY" constant="10.5" id="oGO-1d-bNw"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="currentTimeLabel" destination="IoX-va-Iu0" id="gzO-BQ-xzS"/>
+                        <outlet property="locationNameLabel" destination="Jx3-rW-Ay2" id="xyg-8x-qZ5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8uN-Cm-Bb9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="288" y="683"/>
+        </scene>
+        <!--Selection Action Meeting View Controller-->
+        <scene sceneID="gb0-MP-ccf">
+            <objects>
+                <viewController storyboardIdentifier="meetingId" automaticallyAdjustsScrollViewInsets="NO" id="WF7-bI-QHS" customClass="SelectionActionMeetingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x8p-aH-cFS"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bwh-vF-9ZY"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="IyW-D8-VXt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="277"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11:35 - 12:05" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9U-Z6-kx3">
+                                <rect key="frame" x="139" y="131" width="141" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="141" id="rR7-h3-euH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-ThinItalic" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Conference Room" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gGX-bv-R5b">
+                                <rect key="frame" x="20" y="64" width="280" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="29"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="is yours" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9l-Jq-YU0">
+                                <rect key="frame" x="204" y="102" width="76" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="76" id="7lT-px-gzz"/>
+                                    <constraint firstAttribute="height" constant="21" id="BXD-If-da9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.75425277219999998" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fl-lq-UaT">
+                                <rect key="frame" x="40" y="208" width="240" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="7ws-h5-AuT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="Cancel Meeting">
+                                    <color key="titleColor" red="0.97237271069999998" green="0.20102378230000001" blue="0.1576547767" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelMeeting:" destination="WF7-bI-QHS" eventType="touchUpInside" id="8RV-AM-T2l"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96862751245498657" green="0.96862751245498657" blue="0.96862751245498657" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="L9U-Z6-kx3" secondAttribute="trailing" constant="40" id="E4d-JW-a2Q"/>
+                            <constraint firstItem="L9U-Z6-kx3" firstAttribute="top" secondItem="T9l-Jq-YU0" secondAttribute="bottom" constant="8" symbolic="YES" id="J7r-ta-m6I"/>
+                            <constraint firstAttribute="bottom" secondItem="7fl-lq-UaT" secondAttribute="bottom" constant="31" id="LtY-sk-KVY"/>
+                            <constraint firstItem="T9l-Jq-YU0" firstAttribute="trailing" secondItem="L9U-Z6-kx3" secondAttribute="trailing" id="XID-aQ-2Ka"/>
+                            <constraint firstItem="gGX-bv-R5b" firstAttribute="top" secondItem="x8p-aH-cFS" secondAttribute="bottom" constant="64" id="g5a-7k-ySO"/>
+                            <constraint firstItem="T9l-Jq-YU0" firstAttribute="top" secondItem="gGX-bv-R5b" secondAttribute="bottom" constant="3" id="k0b-iP-BYh"/>
+                            <constraint firstAttribute="trailing" secondItem="7fl-lq-UaT" secondAttribute="trailing" constant="40" id="mZK-Bf-F64"/>
+                            <constraint firstItem="gGX-bv-R5b" firstAttribute="leading" secondItem="IyW-D8-VXt" secondAttribute="leading" constant="20" id="qG1-1j-j9m"/>
+                            <constraint firstAttribute="trailing" secondItem="gGX-bv-R5b" secondAttribute="trailing" constant="20" id="tMl-8O-8oC"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="GSP-MF-rdJ"/>
+                    <connections>
+                        <outlet property="displayMeetingRoom" destination="gGX-bv-R5b" id="ect-8d-q0y"/>
+                        <outlet property="displayMeetingTime" destination="L9U-Z6-kx3" id="3Jz-2S-rjl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GC9-oz-w49" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1231" y="948"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GQ4-9m-AmP">
+            <objects>
+                <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="Hnt-Rb-Z4j" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="V8Z-ag-eUm">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="EqZ-wk-2dJ" kind="relationship" relationship="rootViewController" id="gBQ-QH-scl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qpt-p2-2QG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="288" y="948"/>
+        </scene>
+        <!--Selection Action Start View Controller-->
+        <scene sceneID="4hn-Y0-dBV">
+            <objects>
+                <viewController storyboardIdentifier="startId" automaticallyAdjustsScrollViewInsets="NO" id="EqZ-wk-2dJ" customClass="SelectionActionStartViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gDj-Rv-OO0"/>
+                        <viewControllerLayoutGuide type="bottom" id="f9f-bD-wnE"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gp1-u1-TSu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="277"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egh-ho-RX8" customClass="ClockButton">
+                                <rect key="frame" x="40" y="145" width="110" height="110"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="DM9-OY-ZPa"/>
+                                    <constraint firstAttribute="height" constant="110" id="ni0-Lu-uTM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
+                                <state key="normal" title="11:30">
+                                    <color key="titleColor" red="0.15294118230000001" green="0.64705884459999996" blue="0.70980393890000004" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" red="0.15294118230000001" green="0.64705884459999996" blue="0.70980393890000004" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.15294118230000001" green="0.64705884459999996" blue="0.70980393890000004" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectStartTime:" destination="EqZ-wk-2dJ" eventType="touchUpInside" id="5CN-Nq-3yu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i62-VQ-4Vf" customClass="ClockButton">
+                                <rect key="frame" x="170" y="147" width="110" height="110"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="4EZ-4P-Ts6"/>
+                                    <constraint firstAttribute="height" constant="110" id="a9W-qq-vJz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="12:00">
+                                    <color key="titleColor" red="0.66274511810000003" green="0.66274511810000003" blue="0.66274511810000003" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectStartTime:" destination="EqZ-wk-2dJ" eventType="touchUpInside" id="ieg-RZ-SDs"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start time..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt9-zd-YPz">
+                                <rect key="frame" x="105" y="93" width="110" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="CUQ-ye-ERD"/>
+                                    <constraint firstAttribute="height" constant="21" id="z08-DR-DKg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="23"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96862751250000001" green="0.96862751250000001" blue="0.96862751250000001" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="i62-VQ-4Vf" secondAttribute="trailing" constant="40" id="6h8-0f-Fio"/>
+                            <constraint firstItem="f9f-bD-wnE" firstAttribute="top" secondItem="i62-VQ-4Vf" secondAttribute="bottom" constant="20" id="JBV-j0-HSd"/>
+                            <constraint firstItem="f9f-bD-wnE" firstAttribute="top" secondItem="egh-ho-RX8" secondAttribute="bottom" constant="22" id="LXZ-xI-voU"/>
+                            <constraint firstItem="egh-ho-RX8" firstAttribute="leading" secondItem="gp1-u1-TSu" secondAttribute="leading" constant="40" id="QVd-lS-jz9"/>
+                            <constraint firstAttribute="centerX" secondItem="qt9-zd-YPz" secondAttribute="centerX" id="hOG-aa-EWa"/>
+                            <constraint firstItem="f9f-bD-wnE" firstAttribute="top" secondItem="qt9-zd-YPz" secondAttribute="bottom" constant="163" id="ldj-hJ-jOh"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Tfj-ud-Qwp"/>
+                    <connections>
+                        <outlet property="currentTimeBtn" destination="egh-ho-RX8" id="c1A-e9-f6M"/>
+                        <outlet property="nextTimeBtn" destination="i62-VQ-4Vf" id="Pyv-PM-nGq"/>
+                        <outlet property="startTimeLabel" destination="qt9-zd-YPz" id="ubn-Ov-s1d"/>
+                        <segue destination="WF7-bI-QHS" kind="push" identifier="booked" id="Bm5-qq-IoQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="22d-dd-noz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="756" y="948"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -587,7 +690,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="vWz-g3-fDR"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -11,10 +11,10 @@
 #import "CalendarsViewController.h"
 #import "CABLConfig.h"
 #import "CABLEvent.h"
+#import "NSDate+Additions.h"
 
 @interface SelectionViewController () <SWRevealViewControllerDelegate> {
     NSTimer *timer;
-    BOOL flashSeparator;
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
@@ -25,79 +25,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self updateClocks];
     [self configureLocationSidebar];
-    timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self
-                                           selector:@selector(updateClocks)
-                                           userInfo:nil repeats:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didSelectStartTime:)
+                                                 name:@"didSelectStartTime" object:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+-(void)didSelectStartTime:(NSNotification *)notification
 {
-    [self.currentTimeBtn drawCircleButton];
-    [self.nextTimeBtn drawCircleButton];
-    
-    [self.locationNameLabel setText:[CABLConfig sharedInstance].currentCity];
-    
-    //
-    // Which subview do we display?
-    //
-    CABLEvent *currentEvent = [CABLEvent findEventStartingAt:self.currentTimeBtn.selectedDate];
-    CABLEvent *nextEvent = [CABLEvent findEventStartingAt:self.nextTimeBtn.selectedDate];
-
-    if (currentEvent == nil && nextEvent == nil) {
-        //
-        // Show time view
-        //
-        [self.displayMeetingSubview setHidden:YES];
-        [self.selectTimeSubview setHidden:NO];
-    } else {
-        //
-        // Show active meeting view
-        //
-        [self.selectTimeSubview setHidden:YES];
-        [self.displayMeetingSubview setHidden:NO];
-
-        //
-        // TODO: replace with serialized CABLEvent & move to a custom subview
-        //
-        CABLEvent *theEvent = (currentEvent) ? currentEvent : nextEvent;
-
-        self.displayMeetingRoom.text = theEvent.meetingRoom.shortName;
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"h:mm"];
-        [dateFormatter setLocale:[NSLocale currentLocale]];
-
-        self.displayMeetingTime.text = [NSString stringWithFormat:@"%@ - %@",
-                                        [dateFormatter stringFromDate:theEvent.start],
-                                        [dateFormatter stringFromDate:theEvent.end]];
-    }
-}
-
-- (IBAction)cancelMeeting:(id)sender
-{
-    CABLEvent *currentEvent = [CABLEvent findEventStartingAt:self.currentTimeBtn.selectedDate];
-    CABLEvent *nextEvent = [CABLEvent findEventStartingAt:self.nextTimeBtn.selectedDate];
-    
-    if (currentEvent) {
-        [currentEvent cancelOnServer:^(CABLEvent *theEvent) {
-            [theEvent remove];
-            NSLog(@"Removed meeting!");
-        } error:^(NSError *theError) {
-            NSLog(@"Error removing meeting: %@", theError);
-        }];
-    } else if (nextEvent) {
-        [nextEvent cancelOnServer:^(CABLEvent *theEvent) {
-            [theEvent remove];
-            NSLog(@"Removed meeting!");
-        } error:^(NSError *theError) {
-            NSLog(@"Error removing meeting: %@", theError);
-        }];
-    }
-    
-    
-    [self swapViewsFrom:self.displayMeetingSubview to:self.selectTimeSubview];
+    [self performSegueWithIdentifier:@"calendar" sender:notification];
 }
 
 -(void)swapViewsFrom:(UIView *)fromView to:(UIView *)toView
@@ -161,35 +97,10 @@
  */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    CalendarsViewController *dest;
-    dest = (CalendarsViewController *)segue.destinationViewController;
-    
-    if (sender == self.currentTimeBtn) {
-        [dest setMeetingStartAt:self.currentTimeBtn.selectedDate];
-    } else if (sender == self.nextTimeBtn) {
-        [dest setMeetingStartAt:self.nextTimeBtn.selectedDate];
+    id dest = segue.destinationViewController;
+    if ([dest isKindOfClass:[CalendarsViewController class]]) {
+        [(CalendarsViewController *)dest setMeetingStartAt:[sender userInfo][@"startTime"]];
     }
-}
-
-- (void)updateClocks
-{
-    NSDate *now = [NSDate new];
-    
-    //
-    // Update current time
-    //
-    flashSeparator = !flashSeparator;
-    NSString *dateFormat = (flashSeparator) ? @"h:mm" : @"h mm";
-
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:dateFormat];
-    self.currentTimeLabel.text = [formatter stringFromDate:now];
-    
-    //
-    // Update current / next buttons
-    //
-    [self.currentTimeBtn setTimeForPreviousHalfHourFrom:now];
-    [self.nextTimeBtn setTimeForNextHalfHourFrom:now];
 }
 
 #pragma mark -
@@ -221,21 +132,21 @@
         //
         // This view will slide out
         //
-        [self.currentTimeBtn setEnabled:NO];
-        [self.nextTimeBtn setEnabled:NO];
+//        [self.currentTimeBtn setEnabled:NO];
+//        [self.nextTimeBtn setEnabled:NO];
     } else {
         //
         // This view will slide back in
         //
-        [self.currentTimeBtn setEnabled:YES];
-        [self.nextTimeBtn setEnabled:YES];
-        [self.locationNameLabel setText:[CABLConfig sharedInstance].currentCity];
+//        [self.currentTimeBtn setEnabled:YES];
+//        [self.nextTimeBtn setEnabled:YES];
     }
 }
 
 - (BOOL)revealControllerPanGestureShouldBegin:(SWRevealViewController *)revealController
 {
-    return !(self.currentTimeBtn.isTouchInside || self.nextTimeBtn.isTouchInside);
+    return YES;
+//    return !(self.currentTimeBtn.isTouchInside || self.nextTimeBtn.isTouchInside);
 }
 
 @end

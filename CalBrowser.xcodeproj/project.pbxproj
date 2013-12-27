@@ -39,6 +39,12 @@
 		2C8D2405184C4C3400F089B9 /* CalendarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D2404184C4C3400F089B9 /* CalendarsViewController.m */; };
 		2C8D2408184C6B0600F089B9 /* apps-domain.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D2407184C6B0600F089B9 /* apps-domain.json */; };
 		2C8D240B184C715E00F089B9 /* CABLResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D240A184C715E00F089B9 /* CABLResourceLoader.m */; };
+		2C9B9FD2186CC1CC00779111 /* SelectionClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9B9FD1186CC1CC00779111 /* SelectionClockViewController.m */; };
+		2C9B9FD8186D243200779111 /* SelectionActionStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9B9FD7186D243200779111 /* SelectionActionStartViewController.m */; };
+		2C9B9FDB186D244000779111 /* SelectionActionMeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9B9FDA186D244000779111 /* SelectionActionMeetingViewController.m */; };
+		2C9B9FDD186D300700779111 /* CABLEventTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9B9FDC186D300700779111 /* CABLEventTest.m */; };
+		2C9B9FDF186D391700779111 /* CABLModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9B9FDE186D391700779111 /* CABLModelTest.m */; };
+		2C9B9FE3186D47D600779111 /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9B9FE2186D47D600779111 /* NSDate+Additions.m */; };
 		2CA0481E1852EC2400BC95C4 /* SelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA0481D1852EC2400BC95C4 /* SelectionViewController.m */; };
 		2CA048211852EEC900BC95C4 /* ClockButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA048201852EEC900BC95C4 /* ClockButton.m */; };
 		2CA048241853021400BC95C4 /* CurrentTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA048231853021400BC95C4 /* CurrentTimeView.m */; };
@@ -126,6 +132,17 @@
 		2C8D2407184C6B0600F089B9 /* apps-domain.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "apps-domain.json"; sourceTree = "<group>"; };
 		2C8D2409184C715E00F089B9 /* CABLResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CABLResourceLoader.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2C8D240A184C715E00F089B9 /* CABLResourceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CABLResourceLoader.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C9B9FD0186CC1CC00779111 /* SelectionClockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionClockViewController.h; sourceTree = "<group>"; };
+		2C9B9FD1186CC1CC00779111 /* SelectionClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionClockViewController.m; sourceTree = "<group>"; };
+		2C9B9FD6186D243200779111 /* SelectionActionStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionActionStartViewController.h; sourceTree = "<group>"; };
+		2C9B9FD7186D243200779111 /* SelectionActionStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionActionStartViewController.m; sourceTree = "<group>"; };
+		2C9B9FD9186D244000779111 /* SelectionActionMeetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionActionMeetingViewController.h; sourceTree = "<group>"; };
+		2C9B9FDA186D244000779111 /* SelectionActionMeetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionActionMeetingViewController.m; sourceTree = "<group>"; };
+		2C9B9FDC186D300700779111 /* CABLEventTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CABLEventTest.m; sourceTree = "<group>"; };
+		2C9B9FDE186D391700779111 /* CABLModelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CABLModelTest.m; sourceTree = "<group>"; };
+		2C9B9FE0186D396800779111 /* CABLModelTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABLModelTest.h; sourceTree = "<group>"; };
+		2C9B9FE1186D47D600779111 /* NSDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Additions.h"; sourceTree = "<group>"; };
+		2C9B9FE2186D47D600779111 /* NSDate+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Additions.m"; sourceTree = "<group>"; };
 		2CA0481C1852EC2400BC95C4 /* SelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SelectionViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2CA0481D1852EC2400BC95C4 /* SelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SelectionViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2CA0481F1852EEC900BC95C4 /* ClockButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ClockButton.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -196,6 +213,8 @@
 				2C700AF0185CDB2A0042424A /* CABLResourceParser.m */,
 				2CC09B21185E179B00DE10FA /* CABLUser.h */,
 				2CC09B22185E179B00DE10FA /* CABLUser.m */,
+				2C9B9FE1186D47D600779111 /* NSDate+Additions.h */,
+				2C9B9FE2186D47D600779111 /* NSDate+Additions.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -265,8 +284,6 @@
 				2C8D23F7184AAACB00F089B9 /* Main Storyboard.storyboard */,
 				2C8D2403184C4C3400F089B9 /* CalendarsViewController.h */,
 				2C8D2404184C4C3400F089B9 /* CalendarsViewController.m */,
-				2CA0481C1852EC2400BC95C4 /* SelectionViewController.h */,
-				2CA0481D1852EC2400BC95C4 /* SelectionViewController.m */,
 				2C0EE0D41859A3AC005773CF /* SettingsViewController.h */,
 				2C0EE0D51859A3AC005773CF /* SettingsViewController.m */,
 				2C44603C1855A5B8001FFA74 /* CitiesViewController.h */,
@@ -277,6 +294,14 @@
 				2C0EE0D81859B3A3005773CF /* FloorsViewController.m */,
 				2CDA650F1861802400E84AB4 /* EventViewController.h */,
 				2CDA65101861802400E84AB4 /* EventViewController.m */,
+				2CA0481C1852EC2400BC95C4 /* SelectionViewController.h */,
+				2CA0481D1852EC2400BC95C4 /* SelectionViewController.m */,
+				2C9B9FD0186CC1CC00779111 /* SelectionClockViewController.h */,
+				2C9B9FD1186CC1CC00779111 /* SelectionClockViewController.m */,
+				2C9B9FD6186D243200779111 /* SelectionActionStartViewController.h */,
+				2C9B9FD7186D243200779111 /* SelectionActionStartViewController.m */,
+				2C9B9FD9186D244000779111 /* SelectionActionMeetingViewController.h */,
+				2C9B9FDA186D244000779111 /* SelectionActionMeetingViewController.m */,
 			);
 			name = Sources;
 			path = CalBrowser;
@@ -302,10 +327,13 @@
 			children = (
 				2C8D22F218482D0900F089B9 /* Supporting Files */,
 				2C5BDF51184D94CE00C02B37 /* resource_input.xml */,
+				2CC09B24185EEB4700DE10FA /* plus-people-get.json */,
+				2C2776A81854511E00D063FE /* ClockButtonTest.m */,
 				2C5BDF4F184D905800C02B37 /* CABLResourceLoaderTest.m */,
 				2CF2E11E184DBAF0001C5835 /* CABLResourceTest.m */,
-				2C2776A81854511E00D063FE /* ClockButtonTest.m */,
-				2CC09B24185EEB4700DE10FA /* plus-people-get.json */,
+				2C9B9FDC186D300700779111 /* CABLEventTest.m */,
+				2C9B9FDE186D391700779111 /* CABLModelTest.m */,
+				2C9B9FE0186D396800779111 /* CABLModelTest.h */,
 			);
 			path = CalBrowserTests;
 			sourceTree = "<group>";
@@ -491,12 +519,14 @@
 				2C4460411855A810001FFA74 /* CABLLocations.m in Sources */,
 				2CFDF48218643C2000191B5E /* RoomTickerView.m in Sources */,
 				2C8D22E318482D0800F089B9 /* AppDelegate.m in Sources */,
+				2C9B9FDB186D244000779111 /* SelectionActionMeetingViewController.m in Sources */,
 				2C44603B18557186001FFA74 /* CABLFreeList.m in Sources */,
 				2CDA65111861802400E84AB4 /* EventViewController.m in Sources */,
 				2C700AEE185B8ACD0042424A /* CABLEvent.m in Sources */,
 				2C700AF1185CDB2A0042424A /* CABLResourceParser.m in Sources */,
 				2C0EE0D91859B3A3005773CF /* FloorsViewController.m in Sources */,
 				2C8D23B2184AA43400F089B9 /* AuthViewController.m in Sources */,
+				2C9B9FE3186D47D600779111 /* NSDate+Additions.m in Sources */,
 				2C8D2405184C4C3400F089B9 /* CalendarsViewController.m in Sources */,
 				2CF2E11D184DABF3001C5835 /* CABLResource.m in Sources */,
 				2C44603E1855A5B8001FFA74 /* CitiesViewController.m in Sources */,
@@ -508,7 +538,9 @@
 				2C8D2402184C0C0A00F089B9 /* CABLConfig.m in Sources */,
 				2C8D240B184C715E00F089B9 /* CABLResourceLoader.m in Sources */,
 				2C8D23FE184C0ABE00F089B9 /* RootNavigationController.m in Sources */,
+				2C9B9FD8186D243200779111 /* SelectionActionStartViewController.m in Sources */,
 				2CC09B23185E179B00DE10FA /* CABLUser.m in Sources */,
+				2C9B9FD2186CC1CC00779111 /* SelectionClockViewController.m in Sources */,
 				2CA048211852EEC900BC95C4 /* ClockButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,6 +551,8 @@
 			files = (
 				2C2776A91854511E00D063FE /* ClockButtonTest.m in Sources */,
 				2C5BDF50184D905800C02B37 /* CABLResourceLoaderTest.m in Sources */,
+				2C9B9FDF186D391700779111 /* CABLModelTest.m in Sources */,
+				2C9B9FDD186D300700779111 /* CABLEventTest.m in Sources */,
 				2CF2E11F184DBAF0001C5835 /* CABLResourceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
