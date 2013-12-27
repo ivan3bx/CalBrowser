@@ -12,4 +12,9 @@
 
 @interface SelectionViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+
+- (IBAction)showPreferences:(id)sender;
+
 @end

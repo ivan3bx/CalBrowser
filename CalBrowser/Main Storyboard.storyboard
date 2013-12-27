@@ -63,8 +63,30 @@
                             <constraint firstAttribute="trailing" secondItem="o6V-gJ-73k" secondAttribute="trailing" id="mii-sN-mUL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Instant Meeting" id="JWE-eX-wii"/>
+                    <navigationItem key="navigationItem" title="Instant Meeting" id="JWE-eX-wii">
+                        <barButtonItem key="leftBarButtonItem" id="8Va-EA-OmQ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="JnV-s6-M49">
+                                <rect key="frame" x="16" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="≡">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="≡">
+                                            <attributes>
+                                                <color key="NSColor" red="0.16275092334074917" green="0.67852040804816904" blue="0.75936226222826086" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="30" name="Courier"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="showPreferences:" destination="dGB-Qp-lWn" eventType="touchUpInside" id="neC-WT-mYo"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="bottomView" destination="o6V-gJ-73k" id="DkJ-nk-xMO"/>
+                        <outlet property="topView" destination="AKC-iI-HVQ" id="H1x-ue-PQb"/>
                         <segue destination="6uD-Qt-iy0" kind="push" identifier="calendar" id="Qii-xc-o3o"/>
                     </connections>
                 </viewController>
