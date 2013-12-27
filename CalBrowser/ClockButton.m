@@ -7,6 +7,7 @@
 //
 
 #import "ClockButton.h"
+#import "NSDate+Additions.h"
 
 @interface ClockButton ()
 
@@ -20,16 +21,7 @@
  */
 -(void)setTimeForPreviousHalfHourFrom:(NSDate *)referenceDate
 {
-    NSDateComponents *components = [self componentsFromDate:referenceDate];
-
-    if ([components minute] < 25) {
-        components.minute = 0;
-    } else if ([components minute] < 55) {
-        components.minute = 30;
-    } else {
-        components.minute = 0;
-        components.hour = components.hour + 1;
-    }
+    NSDateComponents *components = [[referenceDate dateForCurrentHalfHour] componentsFromDate];
     [self setTitleFromDateComponents:components];
     
     NSCalendar *cal = [NSCalendar currentCalendar];
@@ -41,17 +33,7 @@
  */
 -(void)setTimeForNextHalfHourFrom:(NSDate *)referenceDate
 {
-    NSDateComponents *components = [self componentsFromDate:referenceDate];
-    
-    if ([components minute] < 25) {
-        components.minute = 30;
-    } else if ([components minute] < 55) {
-        components.minute = 00;
-        components.hour = components.hour + 1;
-    } else {
-        components.minute = 30;
-        components.hour = components.hour + 1;
-    }
+    NSDateComponents *components = [[referenceDate dateForNextHalfHour] componentsFromDate];
     [self setTitleFromDateComponents:components];
     
     NSCalendar *cal = [NSCalendar currentCalendar];
@@ -77,18 +59,6 @@
     NSString *stringValue = [dateFormatter stringFromDate:outputDate];
     [self setTitle:stringValue forState:UIControlStateNormal];
     [self setTitle:stringValue forState:UIControlStateHighlighted];
-}
-
--(NSDateComponents *)componentsFromDate:(NSDate *)date
-{
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    return [calendar components:
-            NSTimeZoneCalendarUnit
-            | NSYearCalendarUnit
-            | NSMonthCalendarUnit
-            | NSDayCalendarUnit
-            | NSHourCalendarUnit
-            | NSMinuteCalendarUnit fromDate:date];
 }
 
 - (void)drawCircleButton
