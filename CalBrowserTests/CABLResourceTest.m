@@ -7,10 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "CABLConfig.h"
-#import "CABLResource.h"
+#import "CABLModelTest.h"
 
-@interface CABLResourceTest : XCTestCase {
+@interface CABLResourceTest : CABLModelTest {
     CABLResource *resource1;
     CABLResource *resource2;
 }
@@ -37,14 +36,13 @@
 
 - (void)tearDown
 {
-    [super tearDown];
-    [CABLResource reset];
+    [super tearDownWith:@"DELETE from resources"];
 }
 
 - (void)testSave
 {
     XCTAssertTrue([resource1 save], @"Expected resource to be saved");
-    XCTAssertEqual(1U, [CABLResource numberOfEntries]);
+    XCTAssertEqual((NSUInteger)1, [CABLResource numberOfEntries]);
 }
 
 - (void)testNameAndShortName
@@ -58,7 +56,7 @@
     XCTAssertTrue([resource1 save]);
     XCTAssertTrue([resource2 save]);
     NSArray *arr = [CABLResource findAllByNamePrefix:@"LOC"];
-    XCTAssertEqual(1U, arr.count, @"Expected to find one resource by prefix");
+    XCTAssertEqual((NSUInteger)1, arr.count, @"Expected to find one resource by prefix");
 }
 
 - (void)testFindByEmail

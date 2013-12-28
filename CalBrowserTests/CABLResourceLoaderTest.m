@@ -10,9 +10,9 @@
 #import <OCMock/OCMock.h>
 
 #import "CABLResourceLoader.h"
-#import "CABLResource.h"
+#import "CABLModelTest.h"
 
-@interface CABLResourceLoaderTest : XCTestCase {
+@interface CABLResourceLoaderTest : CABLModelTest {
     CABLResourceLoader *list;
     NSData *data;
 }
@@ -27,17 +27,20 @@
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *path = [bundle pathForResource:@"resource_input" ofType:@"xml"];
     
-    [CABLResource reset];
-
     data = [NSData dataWithContentsOfFile:path];
     list = [[CABLResourceLoader alloc] initWithData:data];
+}
+
+-(void)tearDown
+{
+    [super tearDownWith:@"DELETE from resources"];
 }
 
 - (void)testEmptyList
 {
     list = [[CABLResourceLoader alloc] initWithData:nil];
     [list loadResources:^(NSArray *resources) {
-        XCTAssertEqual(0U, resources.count);
+        XCTAssertEqual((NSUInteger)0, resources.count);
     } error:^(NSError *error) {
         XCTFail(@"Expected loadResources to return empty results");
     }];
