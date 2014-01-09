@@ -14,6 +14,7 @@
     CABLConfig *_config;
     CABLLocations *_locations;
 }
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @end
 
 @implementation SettingsViewController
@@ -23,6 +24,32 @@
     [super viewDidLoad];
 	_config = [CABLConfig sharedInstance];
     _locations = [[CABLLocations alloc] init];
+    
+    [self addParallaxEffect:self.backgroundImage];
+}
+
+-(void)addParallaxEffect:(UIImageView *)imageView
+{
+    // Set vertical effect
+    UIInterpolatingMotionEffect *verticalMotionEffect =
+    [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y"
+                                                    type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+    verticalMotionEffect.minimumRelativeValue = @(-15);
+    verticalMotionEffect.maximumRelativeValue = @(15);
+    
+    // Set horizontal effect
+    UIInterpolatingMotionEffect *horizontalMotionEffect =
+    [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x"
+                                                    type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+    horizontalMotionEffect.minimumRelativeValue = @(-15);
+    horizontalMotionEffect.maximumRelativeValue = @(10);
+    
+    // Create group to combine both
+    UIMotionEffectGroup *group = [UIMotionEffectGroup new];
+    group.motionEffects = @[horizontalMotionEffect, verticalMotionEffect];
+    
+    // Add both effects to your view
+    [imageView addMotionEffect:group];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -35,12 +62,12 @@
         //
         // Simple location has one floor
         //
-        self.locationLabel.text = [NSString stringWithFormat:@"%@ - (%@)", city, loc];
+        self.editLocationButton.titleLabel.text = [NSString stringWithFormat:@"%@ - (%@)", city, loc];
     } else {
         //
         // Not so simple ; specify the floor
         //
-        self.locationLabel.text = [NSString stringWithFormat:@"%@ - (%@-%@)", city, loc, floor];
+        self.editLocationButton.titleLabel.text = [NSString stringWithFormat:@"%@ - (%@-%@)", city, loc, floor];
     }
 }
 

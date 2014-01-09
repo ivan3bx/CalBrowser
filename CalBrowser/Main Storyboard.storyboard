@@ -371,6 +371,7 @@
         <!--Settings View Controller-->
         <scene sceneID="zAR-Db-avx">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aja-mY-MSE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="LaS-IS-Iqd" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ujG-eJ-QGb"/>
@@ -380,23 +381,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ze5-9I-4Yp">
-                                <rect key="frame" x="20" y="83" width="113" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="building" translatesAutoresizingMaskIntoConstraints="NO" id="WtE-ub-zNY" propertyAccessControl="none">
+                                <rect key="frame" x="-12" y="-13" width="345" height="593"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location :" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ze5-9I-4Yp">
+                                <rect key="frame" x="15" y="64" width="85" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chicago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwA-fI-7ek">
-                                <rect key="frame" x="38" y="112" width="208" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTq-kb-iTS">
-                                <rect key="frame" x="20" y="141" width="113" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KTq-kb-iTS">
+                                <rect key="frame" x="108" y="64" width="136" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Edit Location">
+                                <state key="normal" title="Chicago">
+                                    <color key="titleColor" red="0.68597384940105832" green="0.77050504430856204" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -408,17 +409,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="KgG-x4-AeX"/>
                     <connections>
-                        <outlet property="locationLabel" destination="OwA-fI-7ek" id="td3-cc-mop"/>
+                        <outlet property="backgroundImage" destination="WtE-ub-zNY" id="jwN-u0-xqt"/>
+                        <outlet property="editLocationButton" destination="KTq-kb-iTS" id="5zh-mD-4bx"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aja-mY-MSE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-344" y="1574"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pGE-ZI-lya">
             <objects>
-                <navigationController definesPresentationContext="YES" id="xG1-37-iMC" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="xG1-37-iMC" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jTI-On-e99">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -707,6 +708,9 @@
             <point key="canvasLocation" x="756" y="948"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="building" width="640" height="960"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
