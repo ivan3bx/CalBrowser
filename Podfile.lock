@@ -7,20 +7,17 @@ PODS:
   - NXOAuth2Client (1.2.4)
   - OCMock (2.2.1)
   - SWRevealViewController (1.0.8)
-  - UIImage+PDF (1.1.2)
 
 DEPENDENCIES:
   - FMDB (~> 2.1)
   - NXOAuth2Client (~> 1.2.4)
   - OCMock (~> 2.2.1)
   - SWRevealViewController (~> 1.0.8)
-  - UIImage+PDF (~> 1.1.2)
 
 SPEC CHECKSUMS:
   FMDB: 3fd5aaf632ca4ed39e3f101e0398504e6d5b0918
   NXOAuth2Client: 4666d0d73ba7689181ef4597e1b1beda3978c724
   OCMock: 80e4cfbc71a0e1bd28caf10a9fda27da7c4c8402
   SWRevealViewController: 5688d9d017e228c9edd92db359f670d8c47ab8e6
-  UIImage+PDF: c24950d1769642fbb40c073ef31af146566188a9
 
 COCOAPODS: 0.28.0
