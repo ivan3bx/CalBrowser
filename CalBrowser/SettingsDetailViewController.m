@@ -15,6 +15,8 @@
 }
 @property (weak, nonatomic) IBOutlet UITableViewCell *accountCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *locationCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *instructionsCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *versionCell;
 
 @end
 
@@ -23,25 +25,18 @@
 -(void)viewDidLoad
 {
     _config = [CABLConfig sharedInstance];
-}
+    
+    UIView *darkGrayView = [[UIView alloc] init];
+    darkGrayView.backgroundColor = [UIColor darkGrayColor];
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if (sender == self.locationCell) {
-        //
-        // Dismiss the revealView with a delay
-        //
-        double delayInSeconds = 0.5;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW,
-                                                (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self.revealViewController revealToggleAnimated:NO];
-        });
-    }
+    self.instructionsCell.selectedBackgroundView = darkGrayView;
+    self.accountCell.selectedBackgroundView = darkGrayView;
+    self.locationCell.selectedBackgroundView = darkGrayView;
 }
 
 -(IBAction)returnToSettingsHome:(UIStoryboardSegue *)segue {
     NSLog(@"Returned to: %@ from: %@", segue.destinationViewController, segue.sourceViewController);
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -50,9 +45,9 @@
     self.locationCell.detailTextLabel.text = _config.currentCity;
 }
 
--(IBAction)dismissAboutModal:(id)sender
+- (IBAction)signOut:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"Implement sign-out");
 }
 
 #pragma mark -
@@ -61,6 +56,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView cellForRowAtIndexPath:indexPath].selected = NO;
+}
+
+-(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    if (selectedCell == self.versionCell) {
+        return NO;
+    }
+    return YES;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

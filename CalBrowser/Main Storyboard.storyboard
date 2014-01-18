@@ -403,6 +403,9 @@
                                                         <color key="titleColor" red="0.68163844527608852" green="0.88205564421141058" blue="0.88589079483695654" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="signOut:" destination="ygV-Fh-NPO" eventType="touchUpInside" id="ZRe-aQ-zzH"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -418,7 +421,9 @@
                     </tableView>
                     <connections>
                         <outlet property="accountCell" destination="Nhe-M9-CGh" id="WDg-8K-c4i"/>
+                        <outlet property="instructionsCell" destination="Ehu-uK-d6v" id="57p-aZ-CeQ"/>
                         <outlet property="locationCell" destination="Qpj-nZ-gSK" id="ZQf-tT-ByD"/>
+                        <outlet property="versionCell" destination="L3U-S1-aYz" id="dh1-Sa-Zkk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubc-Zf-iRw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -452,7 +457,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2YL-Jt-F9s">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2YL-Jt-F9s">
                                 <rect key="frame" x="20" y="78" width="280" height="391"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
