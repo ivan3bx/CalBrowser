@@ -26,31 +26,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didSelectStartTime:)
                                                  name:@"didSelectStartTime" object:nil];
+    self.revealViewController.rearViewRevealWidth = 280;
 }
 
 -(void)didSelectStartTime:(NSNotification *)notification
 {
     [self performSegueWithIdentifier:@"calendar" sender:notification];
 }
-
-//-(void)swapViewsFrom:(UIView *)fromView to:(UIView *)toView
-//{
-//    [toView setHidden:NO];
-//
-//    CGPoint originalCenter = fromView.center;
-//    [UIView animateWithDuration:0.5
-//                          delay:0.1
-//                        options:UIViewAnimationOptionCurveEaseOut
-//                     animations:^{
-//                         fromView.center = CGPointMake(originalCenter.x,
-//                                                       originalCenter.y + 400);
-//                     }
-//                     completion:^(BOOL finished) {
-//                         fromView.center = originalCenter;
-//                         [fromView setHidden:YES];
-//                     }
-//     ];
-//}
 
 - (void)configureLocationSidebar
 {
@@ -85,11 +67,13 @@
         // This view will slide out
         //
         self.bottomView.userInteractionEnabled = NO;
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     } else {
         //
         // This view will slide back in
         //
         self.bottomView.userInteractionEnabled = YES;
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     }
 }
 

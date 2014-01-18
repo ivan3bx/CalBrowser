@@ -45,6 +45,11 @@
     [self.tableView selectRowAtIndexPath:path animated:NO scrollPosition:UITableViewScrollPositionMiddle];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+}
+
 #pragma mark -
 #pragma mark UITableViewDataSource methods
 #pragma mark -

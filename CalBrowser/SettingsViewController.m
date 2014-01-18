@@ -52,23 +52,4 @@
     [imageView addMotionEffect:group];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    NSString *city = _config.currentCity;
-    NSString *loc = _config.currentLocation;
-    NSNumber *floor = _config.currentFloor;
-    
-    if ([_locations floorNumbersForLocation:loc].count == 1) {
-        //
-        // Simple location has one floor
-        //
-        self.editLocationButton.titleLabel.text = [NSString stringWithFormat:@"%@ - (%@)", city, loc];
-    } else {
-        //
-        // Not so simple ; specify the floor
-        //
-        self.editLocationButton.titleLabel.text = [NSString stringWithFormat:@"%@ - (%@-%@)", city, loc, floor];
-    }
-}
-
 @end
