@@ -160,6 +160,7 @@
     signedRequest = [[originalRequest signedURLRequest] mutableCopy];
     [signedRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [signedRequest setHTTPBody:bodyData];
+    [signedRequest setTimeoutInterval:30.0];
 
     //
     // Start to process this request
@@ -240,6 +241,13 @@
             _errorHandler(error);
         }
     }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"Error loading connection: %@", error);
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    _errorHandler(error);
 }
 
 #pragma mark -
