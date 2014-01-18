@@ -9,6 +9,8 @@
 #import <SWRevealViewController/SWRevealViewController.h>
 #import "SelectionViewController.h"
 #import "CalendarsViewController.h"
+#import "CABLConfig.h"
+#import "CABLUser.h"
 
 @interface SelectionViewController () <SWRevealViewControllerDelegate> {
     NSTimer *timer;
@@ -27,6 +29,12 @@
                                              selector:@selector(didSelectStartTime:)
                                                  name:@"didSelectStartTime" object:nil];
     self.revealViewController.rearViewRevealWidth = 280;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self checkLoggedInState];
 }
 
 -(void)didSelectStartTime:(NSNotification *)notification
@@ -74,6 +82,15 @@
         //
         self.bottomView.userInteractionEnabled = YES;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    }
+    
+    [self checkLoggedInState];
+}
+
+-(void)checkLoggedInState
+{
+    if ([[CABLConfig sharedInstance] currentAccount] == nil) {
+        [self.navigationController performSegueWithIdentifier:@"authorize" sender:self];
     }
 }
 

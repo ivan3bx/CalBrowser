@@ -27,6 +27,7 @@ typedef void(^CABLErrorHandler)(NSError *error);
  */
 -(id)initWithAccount:(NXOAuth2Account *)account;
 -(void)loadInfo:(void (^)(CABLUser *success))successBlock onError:(void (^)(NSError *error))errorBlock;
+-(void)signOut;
 
 /*
  * Authenticated network access

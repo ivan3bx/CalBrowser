@@ -28,16 +28,6 @@
     [self loadResourceData];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    CABLUser *user = [CABLConfig sharedInstance].currentAccount;
-    
-    if (user == nil) {
-        [self forceAuthentication];
-    }
-
-}
-
 /*
  * TODO: loading resource data should be moved to a higher-level initialization
  * mechanism (maybe create a queue with init routines that should complete before
@@ -121,6 +111,11 @@
                         // Access the account that authorized
                         //
                         NXOAuth2Account *account = notification.userInfo[NXOAuth2AccountStoreNewAccountUserInfoKey];
+                        
+                        if (account == nil) {
+                            // This must be a logout notification
+                            return;
+                        }
                         
                         //
                         // Register to refresh access token

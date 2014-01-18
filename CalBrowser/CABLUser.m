@@ -67,6 +67,17 @@
      ];
 }
 
+-(void)signOut
+{
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
+    
+    [[NXOAuth2AccountStore sharedStore] removeAccount:self.account];
+    _account = nil;
+}
 
 -(void)getJSON:(NSString *)urlString
     parameters:(NSDictionary *)params

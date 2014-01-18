@@ -34,7 +34,8 @@
     self.locationCell.selectedBackgroundView = darkGrayView;
 }
 
--(IBAction)returnToSettingsHome:(UIStoryboardSegue *)segue {
+-(IBAction)returnToSettingsHome:(UIStoryboardSegue *)segue
+{
     NSLog(@"Returned to: %@ from: %@", segue.destinationViewController, segue.sourceViewController);
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
@@ -45,9 +46,12 @@
     self.locationCell.detailTextLabel.text = _config.currentCity;
 }
 
-- (IBAction)signOut:(id)sender
+-(IBAction)signOut:(id)sender
 {
-    NSLog(@"Implement sign-out");
+    [[_config currentAccount] signOut];
+    [_config setCurrentAccount:nil];
+    
+    [self.revealViewController revealToggleAnimated:NO];
 }
 
 #pragma mark -

@@ -404,7 +404,7 @@
                                                         <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="signOut:" destination="ygV-Fh-NPO" eventType="touchUpInside" id="ZRe-aQ-zzH"/>
+                                                        <action selector="signOut:" destination="ygV-Fh-NPO" eventType="touchUpInside" id="ozk-DT-56H"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -657,7 +657,7 @@ First select a start time, then choose a suitable location from one that is avai
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="gmy-3A-uLW" kind="modal" identifier="authorize" id="FiU-VI-tW8"/>
+                        <segue destination="gmy-3A-uLW" kind="modal" identifier="authorize" modalTransitionStyle="crossDissolve" animates="NO" id="FiU-VI-tW8"/>
                         <segue destination="dGB-Qp-lWn" kind="relationship" relationship="rootViewController" id="Tsu-I0-sGR"/>
                     </connections>
                 </navigationController>
