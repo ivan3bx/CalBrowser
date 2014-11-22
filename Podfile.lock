@@ -1,23 +1,23 @@
 PODS:
-  - FMDB (2.1):
-    - FMDB/standard (= 2.1)
-  - FMDB/common (2.1)
-  - FMDB/standard (2.1):
+  - FMDB (2.4):
+    - FMDB/standard (= 2.4)
+  - FMDB/common (2.4)
+  - FMDB/standard (2.4):
     - FMDB/common
-  - NXOAuth2Client (1.2.4)
-  - OCMock (2.2.1)
-  - SWRevealViewController (1.0.8)
+  - NXOAuth2Client (1.2.8)
+  - OCMock (2.2.4)
+  - SWRevealViewController (2.3.0)
 
 DEPENDENCIES:
-  - FMDB (~> 2.1)
-  - NXOAuth2Client (~> 1.2.4)
+  - FMDB (~> 2.4)
+  - NXOAuth2Client (~> 1.2.8)
   - OCMock (~> 2.2.1)
-  - SWRevealViewController (~> 1.0.8)
+  - SWRevealViewController (~> 2.3.0)
 
 SPEC CHECKSUMS:
-  FMDB: 2a4025247d22fb28865db84c744706385f806d7d
-  NXOAuth2Client: fb53355e2d6f81aed5f6d6db19b6c79f284899f7
-  OCMock: 0647d3c53ce945e6f1dbaf072a66848aeb376a40
-  SWRevealViewController: 7c54748aaaf378e580351e5bd066c6cd0e0e9c81
+  FMDB: 0b2fa25e5264ef177973c0cb8c02c711107979aa
+  NXOAuth2Client: fa81be68c9ce628202028ae037c9c92cfbb37865
+  OCMock: 6db79185520e24f9f299548f2b8b07e41d881bd5
+  SWRevealViewController: f6d80638b8e12323e87ac79562345403a799cb77
 
 COCOAPODS: 0.35.0

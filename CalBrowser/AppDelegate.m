@@ -58,12 +58,17 @@
                         @"https://www.googleapis.com/auth/userinfo.profile",
                         nil];
         
+        NSURL *authorizationURL = [NSURL URLWithString:authorizationURI];
+        NSURL *redirectURL = [NSURL URLWithString:redirectURI];
+        NSURL *tokenURL = [NSURL URLWithString:tokenURI];
+
         [[NXOAuth2AccountStore sharedStore] setClientID:clientId
                                                  secret:clientSecret
                                                   scope:scope
-                                       authorizationURL:[NSURL URLWithString:authorizationURI]
-                                               tokenURL:[NSURL URLWithString:tokenURI]
-                                            redirectURL:[NSURL URLWithString:redirectURI]
+                                       authorizationURL:authorizationURL
+                                               tokenURL:tokenURL
+                                            redirectURL:redirectURL
+                                          keyChainGroup:@"CalBrowser"
                                          forAccountType:@"Calendar"];
     }
 }

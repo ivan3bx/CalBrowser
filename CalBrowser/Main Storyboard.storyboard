@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9Fg-bC-qnj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9Fg-bC-qnj">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
     </dependencies>
     <scenes>
         <!--Reveal View Controller-->
@@ -10,15 +11,15 @@
                 <viewController id="9Fg-bC-qnj" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="0tm-Wq-Q56"/>
                     <connections>
-                        <segue destination="SJa-7z-fOW" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegue" id="TPW-t5-OcV"/>
-                        <segue destination="Hd1-uz-Oom" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegue" id="rwS-6E-RA3"/>
+                        <segue destination="SJa-7z-fOW" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="TPW-t5-OcV"/>
+                        <segue destination="Hd1-uz-Oom" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="rwS-6E-RA3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Yj-Bp-byt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1511" y="524"/>
         </scene>
-        <!--Selection View Controller - Instant Meeting-->
+        <!--Instant Meeting-->
         <scene sceneID="7Cn-GH-HeE">
             <objects>
                 <viewController id="dGB-Qp-lWn" customClass="SelectionViewController" sceneMemberID="viewController">
@@ -32,7 +33,6 @@
                         <subviews>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AKC-iI-HVQ" userLabel="ClockContainer">
                                 <rect key="frame" x="0.0" y="95" width="320" height="169"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="169" id="0ri-gL-nz1"/>
@@ -43,7 +43,6 @@
                             </containerView>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6V-gJ-73k" userLabel="ActionContainer">
                                 <rect key="frame" x="0.0" y="280" width="320" height="277"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="Hnt-Rb-Z4j" kind="embed" id="ein-BQ-Cdn"/>
@@ -94,7 +93,7 @@
             </objects>
             <point key="canvasLocation" x="-266" y="706"/>
         </scene>
-        <!--Calendars View Controller - Room-->
+        <!--Room-->
         <scene sceneID="FtP-dr-7hn">
             <objects>
                 <tableViewController id="6uD-Qt-iy0" customClass="CalendarsViewController" sceneMemberID="viewController">
@@ -128,7 +127,7 @@
             </objects>
             <point key="canvasLocation" x="288" y="-166"/>
         </scene>
-        <!--Event View Controller - Confirm-->
+        <!--Confirm-->
         <scene sceneID="3Hy-cB-fp9">
             <objects>
                 <tableViewController id="B9E-dO-6cL" customClass="EventViewController" sceneMemberID="viewController">
@@ -181,7 +180,6 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MY6-Ee-BlI">
                                             <rect key="frame" x="111" y="7" width="98" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="98" id="YB0-8R-7oC"/>
                                             </constraints>
@@ -214,7 +212,7 @@
             </objects>
             <point key="canvasLocation" x="825" y="-166"/>
         </scene>
-        <!--View Controller - Map-->
+        <!--Map-->
         <scene sceneID="HaS-0l-bc4">
             <objects>
                 <viewController id="8nf-91-k56" sceneMemberID="viewController">
@@ -247,11 +245,9 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.5499999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="building" translatesAutoresizingMaskIntoConstraints="NO" id="V5M-7n-bDC">
                                 <rect key="frame" x="-10" y="-11" width="340" height="590"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qXy-eX-fPV">
                                 <rect key="frame" x="0.0" y="52" width="280" height="464"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="ygV-Fh-NPO" kind="embed" id="A2Z-1J-nmj"/>
@@ -397,7 +393,6 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QWL-5g-wPS">
                                                     <rect key="frame" x="20" y="7" width="240" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <state key="normal" title="Sign Out">
                                                         <color key="titleColor" red="0.68163844527608852" green="0.88205564421141058" blue="0.88589079483695654" alpha="1" colorSpace="calibratedRGB"/>
@@ -439,16 +434,14 @@
                         <viewControllerLayoutGuide type="bottom" id="iWL-H4-8zI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="51p-u3-Y2e">
-                        <rect key="frame" x="0.0" y="0.0" width="280" height="464"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.55000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="building" translatesAutoresizingMaskIntoConstraints="NO" id="Hr2-tg-Lbf">
                                 <rect key="frame" x="-10" y="-11" width="300" height="486"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instant Meeting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfa-aw-FbX">
-                                <rect key="frame" x="20" y="-84" width="240" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="20" y="20" width="280" height="35"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="20G-c4-ENl"/>
@@ -458,8 +451,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2YL-Jt-F9s">
-                                <rect key="frame" x="20" y="-26" width="240" height="391"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="20" y="78" width="280" height="391"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="391" id="dPu-DP-mFv"/>
@@ -475,8 +467,7 @@ First select a start time, then choose a suitable location from one that is avai
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tHc-tB-B2B">
-                                <rect key="frame" x="40" y="373" width="200" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="40" y="477" width="240" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Dismiss">
                                     <color key="titleColor" red="0.68163844529999995" green="0.88205564420000004" blue="0.88589079479999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -523,12 +514,12 @@ First select a start time, then choose a suitable location from one that is avai
             </objects>
             <point key="canvasLocation" x="462" y="2268"/>
         </scene>
-        <!--Cities View Controller - City-->
+        <!--City-->
         <scene sceneID="42N-oz-BFr">
             <objects>
                 <tableViewController id="TTE-dj-JlE" customClass="CitiesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Reu-8h-yRT">
-                        <rect key="frame" x="0.0" y="0.0" width="280" height="464"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -579,12 +570,12 @@ First select a start time, then choose a suitable location from one that is avai
             </objects>
             <point key="canvasLocation" x="953" y="2268"/>
         </scene>
-        <!--Floors View Controller - Floor-->
+        <!--Floor-->
         <scene sceneID="Pxv-Sb-GGj">
             <objects>
                 <tableViewController id="t23-BF-L6w" customClass="FloorsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="f3F-rw-7sn">
-                        <rect key="frame" x="0.0" y="0.0" width="280" height="464"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -608,12 +599,12 @@ First select a start time, then choose a suitable location from one that is avai
             </objects>
             <point key="canvasLocation" x="1908" y="2268"/>
         </scene>
-        <!--Locations View Controller - Location-->
+        <!--Location-->
         <scene sceneID="FQy-JR-FWj">
             <objects>
                 <tableViewController id="yJK-NX-ab3" customClass="LocationsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="iDx-J2-ZZQ">
-                        <rect key="frame" x="0.0" y="0.0" width="280" height="464"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -679,7 +670,6 @@ First select a start time, then choose a suitable location from one that is avai
                         <subviews>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ah-V3-Nrp">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="gmy-3A-uLW" id="aZw-gP-tZT"/>
@@ -710,7 +700,6 @@ First select a start time, then choose a suitable location from one that is avai
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11:35" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoX-va-Iu0">
                                 <rect key="frame" x="20" y="24" width="280" height="99"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="5nA-A2-ayx"/>
                                 </constraints>
@@ -719,7 +708,6 @@ First select a start time, then choose a suitable location from one that is avai
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="current time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jx3-rW-Ay2">
                                 <rect key="frame" x="192" y="127" width="66" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" red="0.24182659649999999" green="0.24182659649999999" blue="0.24182659649999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -757,7 +745,6 @@ First select a start time, then choose a suitable location from one that is avai
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11:35 - 12:05" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9U-Z6-kx3">
                                 <rect key="frame" x="139" y="131" width="141" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="141" id="rR7-h3-euH"/>
                                 </constraints>
@@ -766,14 +753,12 @@ First select a start time, then choose a suitable location from one that is avai
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Conference Room" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gGX-bv-R5b">
                                 <rect key="frame" x="20" y="64" width="280" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="29"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="is yours" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9l-Jq-YU0">
                                 <rect key="frame" x="204" y="102" width="76" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="76" id="7lT-px-gzz"/>
                                     <constraint firstAttribute="height" constant="21" id="BXD-If-da9"/>
@@ -784,7 +769,6 @@ First select a start time, then choose a suitable location from one that is avai
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fl-lq-UaT">
                                 <rect key="frame" x="40" y="208" width="240" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="7ws-h5-AuT"/>
                                 </constraints>
@@ -851,7 +835,6 @@ First select a start time, then choose a suitable location from one that is avai
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egh-ho-RX8" customClass="ClockButton">
                                 <rect key="frame" x="40" y="145" width="110" height="110"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="DM9-OY-ZPa"/>
                                     <constraint firstAttribute="height" constant="110" id="ni0-Lu-uTM"/>
@@ -872,7 +855,6 @@ First select a start time, then choose a suitable location from one that is avai
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i62-VQ-4Vf" customClass="ClockButton">
                                 <rect key="frame" x="170" y="147" width="110" height="110"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="4EZ-4P-Ts6"/>
                                     <constraint firstAttribute="height" constant="110" id="a9W-qq-vJz"/>
@@ -893,7 +875,6 @@ First select a start time, then choose a suitable location from one that is avai
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start time..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt9-zd-YPz">
                                 <rect key="frame" x="105" y="93" width="110" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="CUQ-ye-ERD"/>
                                     <constraint firstAttribute="height" constant="21" id="z08-DR-DKg"/>
