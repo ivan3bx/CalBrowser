@@ -33,5 +33,4 @@ extern NSUInteger const kMeetingLengthInMinutes;
 
 @property(nonatomic, readwrite) NSString *appsDomainName;
 @property(nonatomic, readwrite) NSString *databasePath;
-@property(nonatomic, readonly) NSString *appsDomainConfigPath;
 @end

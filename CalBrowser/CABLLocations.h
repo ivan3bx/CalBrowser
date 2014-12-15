@@ -15,6 +15,8 @@
  */
 -(NSArray *)regions;
 
+-(BOOL)save;
+
 /*
  * Format: ABC1-4CA-Name
  *         [Location]-[Floor#]?[Extra]?-[Resource Name]

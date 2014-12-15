@@ -18,7 +18,6 @@
 {
     [self registerUserDefaults];
     [self registerOAuthClient];
-    [self registerAppsDomain];
     [self updateDatabase];
 }
 
@@ -70,39 +69,6 @@
                                             redirectURL:redirectURL
                                           keyChainGroup:@"CalBrowser"
                                          forAccountType:@"Calendar"];
-    }
-}
-
-+ (void)registerAppsDomain
-{
-    NSString *path = [CABLConfig sharedInstance].appsDomainConfigPath;
-
-    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        @throw [NSException exceptionWithName:@"Missing configuration"
-                                       reason:@"Unable to locate 'apps-domain.json' in application directory"
-                                     userInfo:nil];
-    } else {
-        NSError *error = nil;
-        NSData *data = [NSData dataWithContentsOfFile:path];
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data
-                                                             options:NSJSONReadingAllowFragments
-                                                               error:&error];
-        
-        if (error || dict == nil) {
-            @throw [NSException exceptionWithName:@"Invalid configuration"
-                                           reason:@"Invalid 'clientConfig.json'.  Check system settings."
-                                         userInfo:nil];
-        }
-        
-        NSString *domain = dict[@"domain"];
-        
-        if (domain.length < 1) {
-            @throw [NSException exceptionWithName:@"Invalid configuration"
-                                           reason:@"apps domain value is empty"
-                                         userInfo:nil];
-        }
-
-        [CABLConfig sharedInstance].appsDomainName = domain;
     }
 }
 

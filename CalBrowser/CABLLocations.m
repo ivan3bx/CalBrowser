@@ -6,48 +6,77 @@
 //  Copyright (c) 2013 Ivan Moscoso. All rights reserved.
 //
 
+#import <FMDB/FMDatabase.h>
 #import "CABLLocations.h"
 #import "CABLResource.h"
 #import "CABLConfig.h"
 
 @interface CABLLocations() {
-    NSDictionary *_locationData;
-    NSDictionary *_locationsByCity;
-    NSArray *_regionNames;
+    NSString *_locationId;
+    NSString *_cityName;
+    NSString *_countryName;
 }
 @end
 
 @implementation CABLLocations
 
-- (id)init
+- (id)initWithData:(NSDictionary *)data
 {
     self = [super init];
     if (self) {
-        NSError *error;
-        NSString *path             = [CABLConfig sharedInstance].appsDomainConfigPath;
-        NSData *configData         = [NSData dataWithContentsOfFile:path];
-        NSDictionary *domainConfig = [NSJSONSerialization JSONObjectWithData:configData
-                                                                     options:NSJSONReadingAllowFragments
-                                                                       error:&error];
-        _locationData = domainConfig[@"regions"];
-        _regionNames  = domainConfig[@"regionSort"];
+        _locationId  = data[@"locationId"];
+        _cityName    = data[@"cityName"];
+        _countryName = data[@"countryName"];
     }
     return self;
 }
 
 -(NSArray *)regions
 {
-    return _regionNames;
+    NSMutableArray *result = [NSMutableArray array];
+    FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
+    if ([db open]) {
+        FMResultSet *res = [db executeQuery:@"SELECT distinct(countryName) from locations"];
+        while([res next]) {
+            [result addObject:[res stringForColumnIndex:0]];
+        }
+        [db close];
+    }
+    return result;
+}
+
+-(BOOL)save
+{
+    /*
+     *   'resourceId'
+     *   'resourceCommonName'
+     *   'resourceEmail'
+     *   'resourceDescription'
+     *   'resourceType'
+     */
+    FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
+    if ([db open]) {
+        BOOL result = [db executeUpdate:@"INSERT INTO locations \
+                       (locationId, cityName, countryName) \
+                       VALUES \
+                       (:locationId, :cityName, :countryName)" withArgumentsInArray:@[_locationId, _cityName, _countryName]];
+        [db close];
+        return result;
+    }
+    return NO;
+
 }
 
 -(NSArray *)citiesForRegion:(NSString *)regionName
 {
-    NSArray *result;
-    if (regionName) {
-        NSArray *allCityNames = [_locationData[regionName] allKeys];
-        result = [allCityNames sortedArrayUsingComparator:^NSComparisonResult(NSString *s1, NSString *s2) {
-            return [s1 compare:s2];
-        }];
+    NSMutableArray *result = [NSMutableArray array];
+    FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
+    if ([db open]) {
+        FMResultSet *res = [db executeQuery:@"SELECT distinct(cityName) FROM locations ORDER BY cityName DESC"];
+        while([res next]) {
+            [result addObject:[res stringForColumnIndex:0]];
+        }
+        [db close];
     }
     return result;
 }
@@ -58,17 +87,18 @@
  */
 -(NSArray *)locationsForCity:(NSString *)name
 {
-    if (_locationsByCity == nil) {
-        NSMutableDictionary *results = [[NSMutableDictionary alloc] init];
-        for (NSString *regionName in [_locationData allKeys]) {
-            NSDictionary *allCitiesInRegion = _locationData[regionName];
-            [allCitiesInRegion enumerateKeysAndObjectsUsingBlock:^(NSString *cityName, NSArray *locations, BOOL *stop) {
-                results[cityName] = locations;
-            }];
+    NSMutableArray *result = [NSMutableArray array];
+    FMDatabase *db = [FMDatabase databaseWithPath:[CABLConfig sharedInstance].databasePath];
+    if ([db open]) {
+        FMResultSet *res = [db executeQuery:@"SELECT locationId FROM locations \
+                                                WHERE cityName = :cityName\
+                                                ORDER BY locationId DESC"];
+        while([res next]) {
+            [result addObject:[res stringForColumnIndex:0]];
         }
-        _locationsByCity = results;
+        [db close];
     }
-    return _locationsByCity[name];
+    return result;
 }
 
 /*

@@ -56,12 +56,6 @@ CABLConfig *INSTANCE;
     return self;
 }
 
-- (NSString *)appsDomainConfigPath
-{
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    return [bundle pathForResource:@"apps-domain" ofType:@"json"];
-}
-
 - (CABLUser *)currentAccount
 {
     id data = [prefs objectForKey:kDefaultAccount];

@@ -36,16 +36,6 @@
     [super tearDownWith:@"DELETE from resources"];
 }
 
-- (void)testEmptyList
-{
-    list = [[CABLResourceLoader alloc] initWithData:nil];
-    [list loadResources:^(NSArray *resources) {
-        XCTAssertEqual((NSUInteger)0, resources.count);
-    } error:^(NSError *error) {
-        XCTFail(@"Expected loadResources to return empty results");
-    }];
-}
-
 - (void)testResourceListInitialization
 {
     [list loadResources:^(NSArray *resources) {
